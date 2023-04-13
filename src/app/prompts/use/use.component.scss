@@ -23,7 +23,8 @@
       background-color: #ececec;
       border-radius: 5px;
       margin-bottom: 10px;
-      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
   }
 }
