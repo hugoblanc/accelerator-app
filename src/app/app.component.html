@@ -1,9 +1,14 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <!-- <span> ⚡ The accelerator ⚡</span> -->
-    <button mat-button>
+    <button mat-button routerLink="/prompts">
       <mat-icon>checklists</mat-icon>
       Prompts
+      <span class="example-spacer"></span>
+    </button>
+    <button mat-button routerLink="/contribute">
+      <mat-icon>add</mat-icon>
+      Create prompt
       <span class="example-spacer"></span>
     </button>
   </mat-toolbar-row>

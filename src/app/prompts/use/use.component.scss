@@ -1,0 +1,29 @@
+:host {
+  margin: 3rem;
+  display: block;
+
+  form {
+    display: flex;
+
+    flex-direction: column;
+  }
+
+
+  .result-container {
+    margin: 3rem auto 0 auto;
+    display: block;
+
+    .result {
+      padding: 1rem 0;
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5em;
+      color: #000;
+      background-color: #ececec;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      white-space: pre;
+    }
+  }
+}

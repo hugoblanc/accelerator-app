@@ -1,0 +1,17 @@
+<form [formGroup]="createPromptForms" (ngSubmit)="createPromptForms.valid && savePrompt()">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="A killer prompt for sales" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Prompt</mat-label>
+    <textarea matInput placeholder="Put prompt variables between [], eg: Act as persona [Persona]"
+      formControlName="text"></textarea>
+  </mat-form-field>
+
+  <button mat-button type="submit">
+    Save my prompt
+  </button>
+</form>

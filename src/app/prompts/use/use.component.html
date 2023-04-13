@@ -1,0 +1,15 @@
+<form *ngIf="usePromptForms" [formGroup]="usePromptForms" (ngSubmit)="startEngine()">
+  <div>{{usePromptForms.controls.text.value}}</div>
+  <mat-form-field *ngFor="let variable of usePromptForms.controls.variables?.controls" appearance="outline">
+    <input matInput [formControl]="variable.controls.value">
+  </mat-form-field>
+  <button mat-button type="submit">
+    Start the engine
+  </button>
+</form>
+
+<div class="result-container">
+
+  <div *ngIf="result" class="result" [innerHTML]="result">
+  </div>
+</div>

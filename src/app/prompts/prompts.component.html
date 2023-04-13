@@ -1,1 +1,21 @@
-<p>prompts works!</p>
+<mat-card *ngFor="let prompt of prompts$ | async" class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{prompt.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ prompt.text }}</p>
+    <strong> Variables: </strong>
+    <ul>
+      <li *ngFor="let variable of prompt.promptVariables"> {{variable.value}}</li>
+    </ul>
+
+
+    <mat-card-actions>
+      <button mat-fab extended color="primary" [routerLink]="prompt.id">
+        <mat-icon>electric_bolt</mat-icon>
+        Use it
+      </button>
+    </mat-card-actions>
+
+  </mat-card-content>
+</mat-card>
