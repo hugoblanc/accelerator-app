@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'http://accelerator-api.inv.agicapcollect.com',
+  apiUrl: 'https://accelerator-api.inv.agicapcollect.com',
 };
