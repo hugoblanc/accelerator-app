@@ -23,6 +23,8 @@ FROM nginx:1.21.3-alpine
 # Copy the built Angular app from the previous stage
 COPY --from=builder /app/dist/accelerator-app /usr/share/nginx/html
 
+ADD default.conf /etc/nginx/conf.d/
+
 # Expose port 80 to the outside world
 EXPOSE 80
 
