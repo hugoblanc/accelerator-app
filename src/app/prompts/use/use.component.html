@@ -1,15 +1,27 @@
-<form *ngIf="usePromptForms" [formGroup]="usePromptForms" (ngSubmit)="startEngine()">
-  <div>{{usePromptForms.controls.text.value}}</div>
-  <mat-form-field *ngFor="let variable of usePromptForms.controls.variables?.controls" appearance="outline">
-    <input matInput [formControl]="variable.controls.value">
-  </mat-form-field>
-  <button mat-button type="submit">
-    Start the engine
-  </button>
-</form>
-
 <div class="result-container">
 
-  <div *ngIf="result" class="result" [innerHTML]="result">
-  </div>
+  <div class="result" [innerHTML]="result"></div>
 </div>
+
+<form *ngIf="usePromptForms" [formGroup]="usePromptForms" (ngSubmit)="startEngine()">
+  <h1>Prompt:</h1>
+  <div class="prompt-recap"> "{{preview}}"</div>
+
+  <br>
+  <br>
+  <h1>Variables:</h1>
+  <div class="variables-input">
+    <mat-form-field *ngFor="let variable of usePromptForms.controls.variables?.controls" appearance="outline">
+      <input matInput [formControl]="variable.controls.value">
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button [disabled]="isLoading || !usePromptForms.touched" extended color="accent">
+    <mat-icon *ngIf="isLoading">
+      <mat-spinner color="primary" diameter="16">
+      </mat-spinner>
+    </mat-icon>
+    Ask Gpt
+    <mat-icon *ngIf="!isLoading">psychology</mat-icon>
+  </button>
+</form>

@@ -1,0 +1,13 @@
+<div class="content">
+  <app-message *ngFor="let message of chatSession?.messages" [message]="message"></app-message>
+</div>
+
+<form class="chat-bar">
+  <mat-form-field appearance="fill">
+    <textarea matInput class="msger-input" [formControl]="chatInputCtrl" placeholder="Enter your message..."></textarea>
+  </mat-form-field>
+
+  <button mat-button color="primary" type="button" (click)="sendMessage()">Send
+    <mat-icon>send</mat-icon>
+  </button>
+</form>

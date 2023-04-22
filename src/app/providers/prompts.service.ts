@@ -7,6 +7,8 @@ import { PromptDto } from './dto/prompt.dto';
   providedIn: 'root'
 })
 export class PromptsService {
+
+
   constructor(private readonly http: HttpClient) { }
 
   getPrompts() {
@@ -14,9 +16,5 @@ export class PromptsService {
   }
   getPromptById(promptId: unknown) {
     return this.http.get<PromptDto>(environment.apiUrl + '/prompts/' + promptId);
-  }
-
-  usePrompt(value: any) {
-    return this.http.post<{ result: string }>(environment.apiUrl + '/prompts/use/iiiii', value);
   }
 }

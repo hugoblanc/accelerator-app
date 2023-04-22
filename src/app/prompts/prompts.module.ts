@@ -11,12 +11,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ChatComponent } from './chat/chat.component';
+import { MessageComponent } from './chat/message/message.component';
 
 @NgModule({
   declarations: [
     PromptsComponent,
-    UseComponent
+    UseComponent,
+    ChatComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,8 @@ import { MatChipsModule } from '@angular/material/chips';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressSpinnerModule
   ]
 })
 export class PromptsModule { }
