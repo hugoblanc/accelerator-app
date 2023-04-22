@@ -14,12 +14,15 @@ export class ChatComponent {
 
   chatInputCtrl = new FormControl('');
 
+  isLoading = false;
+
   constructor(private readonly chatService: ChatService) { }
 
 
   sendMessage() {
-    if (!this.chatInputCtrl.value) return;
-    this.chatService.continueChatting(this.chatInputCtrl.value).subscribe(() =>
-      this.chatInputCtrl.setValue(''));
+    if (!this.chatInputCtrl.value || this.isLoading) return;
+    this.isLoading = true;
+    this.chatService.continueChatting(this.chatInputCtrl.value).subscribe(() => this.isLoading = false);
+    this.chatInputCtrl.setValue('');
   }
 }

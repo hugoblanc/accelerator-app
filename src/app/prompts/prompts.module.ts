@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './chat/message/message.component';
 
@@ -32,7 +33,8 @@ import { MessageComponent } from './chat/message/message.component';
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ]
 })
 export class PromptsModule { }

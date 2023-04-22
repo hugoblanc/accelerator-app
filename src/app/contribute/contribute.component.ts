@@ -7,7 +7,7 @@ import { CategoryDto } from '../providers/dto/category.dto';
 import { ContribPromptService } from './contrib-prompt.service';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { Observable, debounceTime, switchMap } from 'rxjs';
+import { Observable, debounceTime, merge, startWith, switchMap } from 'rxjs';
 
 interface CreatePromptForm {
   text: FormControl<string>;
@@ -40,6 +40,7 @@ export class ContributeComponent implements OnInit {
   ngOnInit(): void {
     this.categories$ = this.categoryCtrl.valueChanges
       .pipe(
+        startWith(''),
         debounceTime(200),
         switchMap(value => this.categoryService.getCategories(value))
       );
