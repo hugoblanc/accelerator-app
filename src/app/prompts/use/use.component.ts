@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PromptsService } from '../prompts.service';
+import { PromptsService } from '../../providers/prompts.service';
 import { Observable, map, mergeMap } from 'rxjs';
-import { PromptDto } from '../prompt.dto';
+import { PromptDto } from '../../providers/dto/prompt.dto';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 

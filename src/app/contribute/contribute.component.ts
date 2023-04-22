@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ContribPromptService } from './contrib-prompt.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CategoryService } from '../providers/category.service';
+import { ContribPromptService } from './contrib-prompt.service';
+
+interface CreatePromptForm {
+  text: FormControl<string>;
+  name: FormControl<string>;
+  categoryIds: FormControl<string[]>;
+}
 
 @Component({
   selector: 'app-contribute',
@@ -10,12 +17,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ContributeComponent implements OnInit {
 
-  createPromptForms = this.fb.group({
-    text: ['', Validators.required],
-    name: ['', Validators.required]
+  categories$ = this.categoryService.getCategories();
+
+  createPromptForms = new FormGroup<CreatePromptForm>({
+    text: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    categoryIds: new FormControl<string[]>([], { nonNullable: true, validators: [Validators.required] })
   });
 
-  constructor(private readonly fb: FormBuilder, private readonly contribPrompt: ContribPromptService, private readonly snackBar: MatSnackBar) { }
+  constructor(private readonly fb: FormBuilder, private readonly contribPrompt: ContribPromptService, private readonly snackBar: MatSnackBar, private readonly categoryService: CategoryService) { }
 
   ngOnInit(): void {
   }
@@ -24,10 +34,9 @@ export class ContributeComponent implements OnInit {
     const { text, name } = this.createPromptForms.value;
     if (!text || !name) return;
 
-    this.contribPrompt.createPrompt(text, name).subscribe(() => {
+    this.contribPrompt.createPrompt(this.createPromptForms.getRawValue()).subscribe(() => {
       this.createPromptForms.reset();
       this.createPromptForms.markAsPristine();
-      console.log("Prompt created!");
       this.snackBar.open("Prompt created!", "Close", { duration: 2000 });
     });
   }

@@ -10,6 +10,7 @@ import { UseComponent } from './use/use.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatChipsModule
   ]
 })
 export class PromptsModule { }

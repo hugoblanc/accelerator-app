@@ -11,6 +11,14 @@
       formControlName="text"></textarea>
   </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>Toppings</mat-label>
+    <mat-select *ngIf="categories$ != null" formControlName="categoryIds" multiple>
+      <button mat-button>Create </button>
+      <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <button mat-button type="submit">
     Save my prompt
   </button>

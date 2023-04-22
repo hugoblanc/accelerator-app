@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { CreatePromptDto } from '../providers/dto/create.prompt.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class ContribPromptService {
 
   constructor(private readonly http: HttpClient) { }
 
-  createPrompt(text: string, name: string) {
-    return this.http.post(environment.apiUrl + '/prompts', { text, name });
+  createPrompt(createPrompt: CreatePromptDto) {
+    return this.http.post(environment.apiUrl + '/prompts', createPrompt);
   }
 }

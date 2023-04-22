@@ -1,10 +1,17 @@
 <mat-card *ngFor="let prompt of prompts$ | async" class="example-card">
   <mat-card-header>
-    <mat-card-title>{{prompt.name}}</mat-card-title>
+    <mat-card-title>{{prompt.name}}<mat-chip-listbox>
+        <mat-chip-option *ngFor="let category of prompt.categories">{{category.name}}</mat-chip-option>
+      </mat-chip-listbox></mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <p>{{ prompt.text }}</p>
-    <strong> Variables: </strong>
+
+
+    <p>
+      <strong> Variables: </strong>
+    </p>
+
     <ul>
       <li *ngFor="let variable of prompt.promptVariables"> {{variable.value}}</li>
     </ul>
