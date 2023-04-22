@@ -10,8 +10,9 @@ export class CategoryService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getCategories() {
-    return this.http.get<CategoryDto[]>(environment.apiUrl + '/categories');
+  getCategories(name: string | null) {
+    const options = name ? { params: { name } } : {};
+    return this.http.get<CategoryDto[]>(environment.apiUrl + '/categories', options);
   }
 
   createCategory(name: string) {

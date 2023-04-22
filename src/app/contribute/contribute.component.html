@@ -1,4 +1,4 @@
-<form [formGroup]="createPromptForms" (ngSubmit)="createPromptForms.valid && savePrompt()">
+<form [formGroup]="createPromptForms" (ngSubmit)="createPromptForms.valid && savePrompt()" #myForm="ngForm">
 
   <mat-form-field appearance="outline">
     <mat-label>Name</mat-label>
@@ -11,13 +11,28 @@
       formControlName="text"></textarea>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Toppings</mat-label>
-    <mat-select *ngIf="categories$ != null" formControlName="categoryIds" multiple>
-      <button mat-button>Create </button>
-      <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}</mat-option>
-    </mat-select>
+  <mat-form-field appearance="outline" *ngIf="categories$ != null">
+    <mat-label>Category</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Fruit selection" formControlName="categories">
+      <mat-chip-row *ngFor="let category of categories; let i=index" (removed)="remove(i)">
+        {{category.name}}
+        <button matChipRemove [attr.aria-label]="'remove ' + category.name">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+    </mat-chip-grid>
+    <input type="text" placeholder="Software engineer" aria-label="Category" matInput [formControl]="categoryCtrl"
+      multiple [matAutocomplete]="auto" [matChipInputFor]="chipGrid"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayCategory"
+      (optionSelected)="selected($event)">
+      <mat-option *ngFor="let category of categories$ | async" [value]="category">
+        {{category.name}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
+
+
 
   <button mat-button type="submit">
     Save my prompt
