@@ -15,6 +15,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './chat/message/message.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MessageComponent } from './chat/message/message.component';
     MatInputModule,
     MatChipsModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    ClipboardModule
   ]
 })
 export class PromptsModule { }

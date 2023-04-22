@@ -8,6 +8,7 @@ import { ContribPromptService } from './contrib-prompt.service';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable, debounceTime, merge, startWith, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface CreatePromptForm {
   text: FormControl<string>;
@@ -35,7 +36,7 @@ export class ContributeComponent implements OnInit {
     categories: new FormControl<any[]>([], { nonNullable: true, validators: [Validators.required] })
   });
 
-  constructor(private readonly contribPrompt: ContribPromptService, private readonly snackBar: MatSnackBar, private readonly categoryService: CategoryService) { }
+  constructor(private readonly contribPrompt: ContribPromptService, private readonly snackBar: MatSnackBar, private readonly categoryService: CategoryService, private readonly router: Router) { }
 
   ngOnInit(): void {
     this.categories$ = this.categoryCtrl.valueChanges
@@ -53,10 +54,13 @@ export class ContributeComponent implements OnInit {
 
     if (!text || !name || !categoryIds) return;
 
-    this.contribPrompt.createPrompt({ text, name, categoryIds, categoryNamesToCreate }).subscribe(() => {
+    this.contribPrompt.createPrompt({ text, name, categoryIds, categoryNamesToCreate }).subscribe((prompt) => {
       this.categories = [];
       this.myForm.resetForm();
-      this.snackBar.open("Prompt created!", "Close", { duration: 2000 });
+      const snackBarRef = this.snackBar.open("Prompt created!", "Use it", { duration: 10000 });
+      snackBarRef.onAction().subscribe(() => {
+        this.router.navigate(['/prompts', (prompt as any).id]);
+      });
     });
   }
 
