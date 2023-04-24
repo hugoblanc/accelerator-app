@@ -36,10 +36,7 @@
 
 
 :host[role="system"] {
-  .msg-bubble {
-    background: #fff;
-    border: 2px solid #f1f1f1;
-  }
+  display: none;
 }
 
 :host[role="assistant"] {
