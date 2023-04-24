@@ -56,9 +56,7 @@ export class UseComponent implements OnInit {
 
   startEngine() {
     this.isLoading = true;
-    setTimeout(() => {
-      this.router.navigateByUrl('/prompts/chat');
-    }, 150);
+    this.router.navigateByUrl('/prompts/chat');
     this.chatService.usePrompt(this.usePromptForms.value, this.preview).subscribe((boom) => {
       this.result = boom.result;
       this.isLoading = false;
