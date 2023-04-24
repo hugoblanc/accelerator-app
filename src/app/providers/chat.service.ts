@@ -31,7 +31,7 @@ export class ChatService {
 
   usePrompt(value: any, preview: string) {
     this.chatSession = new ChatSession();
-    this.chatSession.messages.push({ content: preview, role: 'system' });
+    this.chatSession.messages.push({ content: preview, role: 'user' });
 
     return this.http.post<{ result: string }>(environment.apiUrl + '/prompts/use/iiiii', value)
       .pipe(
