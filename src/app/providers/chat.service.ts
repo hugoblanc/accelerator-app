@@ -33,7 +33,7 @@ export class ChatService {
     this.chatSession = new ChatSession();
     this.chatSession.messages.push({ content: preview, role: 'user' });
 
-    return this.http.post<{ result: string }>(environment.apiUrl + '/prompts/use/iiiii', value)
+    return this.http.post<{ result: string }>(environment.apiUrl + '/prompts/use', value)
       .pipe(
         tap(this.addAssistantResponse.bind(this))
       );
