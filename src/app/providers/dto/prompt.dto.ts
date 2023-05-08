@@ -17,4 +17,11 @@ interface Variable {
   id: string;
   promptId: string;
   value: string;
+  key: string;
+  type: VariableType;
+}
+
+export enum VariableType {
+  text = 'text',
+  longText = 'longText'
 }

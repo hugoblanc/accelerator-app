@@ -33,14 +33,14 @@ export class ChatService {
     this.chatSession = new ChatSession();
     this.chatSession.messages.push({ content: preview, role: 'user' });
 
-    return this.http.post<{ result: string }>(environment.apiUrl + '/prompts/use', value)
+    return this.http.post<{ result: string }>(environment.apiUrl + '/chat/start-chat', value)
       .pipe(
         tap(this.addAssistantResponse.bind(this))
       );
   }
   continueChatting(value: string) {
     this.chatSession?.messages.push({ content: value, role: 'user' });
-    return this.http.post<{ result: string }>(environment.apiUrl + '/chat/short-term-memory', this.chatSession)
+    return this.http.post<{ result: string }>(environment.apiUrl + '/chat/continue-chatting', this.chatSession)
       .pipe(tap(this.addAssistantResponse.bind(this)));
   }
 
