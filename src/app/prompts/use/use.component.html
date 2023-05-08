@@ -16,12 +16,8 @@
     </mat-form-field>
   </div>
 
-  <button mat-raised-button [disabled]="isLoading || !usePromptForms.touched" extended color="accent">
-    <mat-icon *ngIf="isLoading">
-      <mat-spinner color="primary" diameter="16">
-      </mat-spinner>
-    </mat-icon>
+  <button mat-raised-button [disabled]="!usePromptForms.touched" extended color="accent">
     Ask Gpt
-    <mat-icon *ngIf="!isLoading">psychology</mat-icon>
+    <mat-icon>psychology</mat-icon>
   </button>
 </form>

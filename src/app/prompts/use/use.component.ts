@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { PromptsService } from '../../providers/prompts.service';
-import { Observable, map, mergeMap } from 'rxjs';
-import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router } from '@angular/router';
+import { Observable, filter, map, mergeMap, take } from 'rxjs';
 import { ChatService } from '../../providers/chat.service';
+import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
+import { PromptsService } from '../../providers/prompts.service';
 
-type VariableArray = FormArray<FormGroup<{ name: FormControl<string>, value: FormControl<string>, type: FormControl<VariableType> }>>;
+type VariableArray = FormArray<FormGroup<{ key: FormControl<string>, value: FormControl<string>, type: FormControl<VariableType> }>>;
 interface UsePromptForm {
-  text: FormControl<string>;
   variables?: VariableArray;
 }
 
@@ -21,33 +20,43 @@ export class UseComponent implements OnInit {
 
 
   prompt$!: Observable<PromptDto>;
-
   usePromptForms!: FormGroup<UsePromptForm>;
-
   result: string = '';
-
   preview: string = '';
-  isLoading = false;
-  constructor(private readonly promptsService: PromptsService, private readonly route: ActivatedRoute, private readonly chatService: ChatService, private readonly router: Router) { }
+  initialPromptText: string = '';
+
+
+  get promptId$(): Observable<string> {
+    return this.route.paramMap.pipe(
+      map((params: ParamMap) => params.get('promptId')),
+      filter((promptId: string | null) => promptId !== null),
+    ) as Observable<string>;
+  }
+
+  constructor(
+    private readonly promptsService: PromptsService,
+    private readonly route: ActivatedRoute,
+    private readonly chatService: ChatService,
+    private readonly router: Router) { }
 
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(
-      map((params: ParamMap) => params.get('promptId')),
+    this.promptId$.pipe(
       mergeMap(promptId => this.promptsService.getPromptById(promptId))
     ).subscribe((prompt: PromptDto) => {
       const variables: VariableArray = new FormArray(
         prompt.promptVariables.map((variable) =>
           new FormGroup(
             {
-              name: new FormControl(variable.value, { nonNullable: true }),
+              key: new FormControl(variable.value, { nonNullable: true }),
               value: new FormControl(variable.value, { nonNullable: true }),
               type: new FormControl(variable.type, { nonNullable: true })
             }
           ))
       );
       this.preview = prompt.text;
-      this.usePromptForms = new FormGroup({ text: new FormControl(prompt.text, { nonNullable: true }), variables }) as any;
+      this.initialPromptText = prompt.text;
+      this.usePromptForms = new FormGroup({ variables }) as any;
       this.initVariableListener(variables);
     });
   }
@@ -57,27 +66,26 @@ export class UseComponent implements OnInit {
   }
 
   private updatePreview(value: Partial<{
-    name: string;
+    key: string;
     value: string;
     type: VariableType;
   }>[]) {
-    this.preview = this.usePromptForms.value.text as string;
+    this.preview = this.initialPromptText;
     value.forEach((variable) => {
       if (variable.type === VariableType.text) {
-        this.preview = this.preview.replace(`text(${variable.name})`, variable.value as string);
+        this.preview = this.preview.replace(`text(${variable.key})`, variable.value as string);
       } else if (variable.type === VariableType.longText) {
-        this.preview = this.preview.replace(`longText(${variable.name})`, variable.value as string);
+        this.preview = this.preview.replace(`longText(${variable.key})`, variable.value as string);
       }
     });
   }
 
 
   startEngine() {
-    this.isLoading = true;
     this.router.navigateByUrl('/prompts/chat');
-    this.chatService.usePrompt(this.usePromptForms.value, this.preview).subscribe((boom) => {
-      this.result = boom.result;
-      this.isLoading = false;
-    });
+    this.promptId$.pipe(
+      take(1),
+      mergeMap((promptId: string) => this.chatService.usePrompt(this.usePromptForms.value, this.preview, promptId))
+    ).subscribe();
   }
 }
