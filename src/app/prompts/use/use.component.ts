@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router } from '@angular/router';
-import { Observable, filter, map, mergeMap, take } from 'rxjs';
-import { ChatService } from '../../providers/chat.service';
-import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
-import { PromptsService } from '../../providers/prompts.service';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router} from '@angular/router';
+import {Observable, filter, map, mergeMap, take} from 'rxjs';
+import {ChatService} from '../../providers/chat.service';
+import {PromptDto, VariableType} from '../../providers/dto/prompt.dto';
+import {PromptsService} from '../../providers/prompts.service';
 
-type VariableArray = FormArray<FormGroup<{ key: FormControl<string>, value: FormControl<string>, type: FormControl<VariableType> }>>;
+type VariableArray = FormArray<FormGroup<{
+  key: FormControl<string>,
+  value: FormControl<string>,
+  type: FormControl<VariableType>
+}>>;
+
 interface UsePromptForm {
   variables?: VariableArray;
 }
@@ -37,27 +42,31 @@ export class UseComponent implements OnInit {
     private readonly promptsService: PromptsService,
     private readonly route: ActivatedRoute,
     private readonly chatService: ChatService,
-    private readonly router: Router) { }
+    private readonly router: Router) {
+  }
 
 
   ngOnInit(): void {
     this.promptId$.pipe(
       mergeMap(promptId => this.promptsService.getPromptById(promptId))
     ).subscribe((prompt: PromptDto) => {
-      const variables: VariableArray = new FormArray(
-        prompt.promptVariables.map((variable) =>
-          new FormGroup(
-            {
-              key: new FormControl(variable.value, { nonNullable: true }),
-              value: new FormControl(variable.value, { nonNullable: true }),
-              type: new FormControl(variable.type, { nonNullable: true })
-            }
-          ))
-      );
-      this.preview = prompt.text;
-      this.initialPromptText = prompt.text;
-      this.usePromptForms = new FormGroup({ variables }) as any;
-      this.initVariableListener(variables);
+      if (prompt.promptVariables) {
+        const variables: VariableArray = new FormArray(
+          prompt.promptVariables.map((variable) =>
+            new FormGroup(
+              {
+                key: new FormControl(variable.value, {nonNullable: true}),
+                value: new FormControl(variable.value, {nonNullable: true}),
+                type: new FormControl(variable.type, {nonNullable: true})
+              }
+            ))
+        );
+
+        this.preview = prompt.text;
+        this.initialPromptText = prompt.text;
+        this.usePromptForms = new FormGroup({variables}) as any;
+        this.initVariableListener(variables);
+      }
     });
   }
 

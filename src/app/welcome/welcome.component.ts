@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CategoryDto} from "../providers/dto/category.dto";
+import {categoriesList, CategoryDto} from "../providers/dto/category.dto";
 import {Router} from "@angular/router";
 
 @Component({
@@ -8,18 +8,13 @@ import {Router} from "@angular/router";
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent {
-  categoriesList: CategoryDto[] = [
-    { id: '1', name: 'Category 1' },
-    { id: '2', name: 'Category 2' },
-    { id: '3', name: 'Category 3' },
-    { id: '4', name: 'Category 4' },
-  ];
+  categoriesList: CategoryDto[] = categoriesList;
 
   constructor(private router: Router) {
   }
 
   categorySelected(category: CategoryDto) {
     localStorage.setItem('onboarding', 'true');
-    this.router.navigate(['/home']).then();
+    this.router.navigate(['/gallery']).then();
   }
 }
