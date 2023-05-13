@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+// Colors
+$primary-color: #C296FF;
+$secondary-color: #AAEDFD;
+$accent-color: #FF9A9A;
+$black-color: #121316;
+$light-grey: #F1F5FF;
+
+
+// Utilisation des variables de couleurs générées
+body {
+  background-color: $light-grey;
+  color: $black-color;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 html,
 body {

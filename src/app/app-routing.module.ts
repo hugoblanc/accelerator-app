@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: 'prompts', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+
   { path: 'prompts', loadChildren: () => import('./prompts/prompts.module').then(m => m.PromptsModule) },
 
   { path: 'contribute', loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule) }
