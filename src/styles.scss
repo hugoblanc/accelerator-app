@@ -23,3 +23,42 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+// Font classes
+.g-title-1 {
+  font-size: 2em;
+  font-weight: bolder;
+}
+
+// Global classes
+
+.g-text-centered {
+  text-align: center;
+}
+
+.g-container {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Alignement vertical */
+  align-items: center; /* Alignement horizontal */
+}
+
+.g-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Alignement horizontal */
+  justify-content: space-around;
+}
+
+.g-top-space {
+  margin-top: 1em;
+}
+
+.g-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2em;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
