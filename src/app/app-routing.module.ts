@@ -5,6 +5,8 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
+  { path: 'welcome', loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomeModule) },
+
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
 
   { path: 'prompts', loadChildren: () => import('./prompts/prompts.module').then(m => m.PromptsModule) },

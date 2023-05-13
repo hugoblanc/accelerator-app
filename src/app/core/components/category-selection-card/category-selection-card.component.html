@@ -1,6 +1,6 @@
 <ng-container *ngIf="category">
-  <div class="g-card g-container container">
-    <div class="name">{{category.name}}</div>
+  <div class="flex g-card h-52 items-center border-black border rounded-md" (click)="select()">
+    <div class="text-xl font-bold w-full">{{category.name}}</div>
   </div>
 </ng-container>
 
