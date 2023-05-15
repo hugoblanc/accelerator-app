@@ -3,21 +3,29 @@
   <div class="result" [innerHTML]="result"></div>
 </div>
 
-<form *ngIf="usePromptForms" [formGroup]="usePromptForms" (ngSubmit)="startEngine()">
-  <h1>Prompt:</h1>
-  <div class="prompt-recap"> "{{preview}}"</div>
+<div class="flex flex-row gap-5">
+  <div class="w-1/2 g-card">
+    <form *ngIf="usePromptForms" [formGroup]="usePromptForms" (ngSubmit)="startEngine()">
+      <div class="font-bold">Prompt:</div>
+      <div> "{{preview}}"</div>
 
-  <br>
-  <br>
-  <h1>Variables:</h1>
-  <div class="variables-input">
-    <mat-form-field *ngFor="let variable of usePromptForms.controls.variables?.controls" appearance="outline">
-      <input matInput [formControl]="variable.controls.value">
-    </mat-form-field>
+      <div class="font-bold mt-5">Variables:</div>
+      <div class="flex flex-col">
+        <mat-form-field *ngFor="let variable of usePromptForms.controls.variables?.controls" appearance="outline">
+          <input matInput [formControl]="variable.controls.value">
+        </mat-form-field>
+      </div>
+
+      <button mat-raised-button [disabled]="!usePromptForms.touched" extended color="accent">
+        Ask Gpt
+        <mat-icon>psychology</mat-icon>
+      </button>
+    </form>
+
   </div>
 
-  <button mat-raised-button [disabled]="!usePromptForms.touched" extended color="accent">
-    Ask Gpt
-    <mat-icon>psychology</mat-icon>
-  </button>
-</form>
+<!--  TODO Insert chat here-->
+  <div class="w-1/2 border-dashed border-2 border-gray-300 rounded-md">
+  </div>
+</div>
+

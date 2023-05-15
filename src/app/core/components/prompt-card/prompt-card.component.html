@@ -1,6 +1,6 @@
 <div class="g-card rounded-md shadow-md flex flex-col gap-3">
   <div class="font-medium text-xl w-full">{{prompt?.name}}</div>
-  <p class="text-slate-500">{{prompt?.text}}</p>
+  <p class="text-slate-500 truncate ...">{{prompt?.text}}</p>
   <div class="flex flex-row">
     <ng-container *ngIf="mode === 'gallery'">
       <div class="flex items-center justify-center gap-x-6">

@@ -24,6 +24,9 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     ChatComponent,
     MessageComponent
   ],
+  exports: [
+    UseComponent
+  ],
   imports: [
     CommonModule,
     PromptsRoutingModule,

@@ -1,9 +1,11 @@
 <div class="g-screen-container flex flex-col gap-5">
   <div class="text-xl">My prompts</div>
 <!--  User Prompts list-->
-  <div class="grid grid-cols-4 gap-4">
+  <div class="grid grid-cols-3 gap-4">
     <app-prompt-card *ngFor="let prompt of prompts$ | async"
+                     class="max-h-36"
                      (click)="selectPrompt(prompt)"
+                     [ngClass]="promptSelected?.id === prompt.id ? 'shadow-2xl shadow-indigo-500/50' : ''"
                      [mode]="'home'"
                      [prompt]="prompt">
     </app-prompt-card>
@@ -11,5 +13,6 @@
 
   <ng-container *ngIf="promptSelected">
     <div class="text-xl">How to use this prompt?</div>
+    <app-use [prompt]="promptSelected"></app-use>
   </ng-container>
 </div>
