@@ -1,0 +1,10 @@
+<div class="g-screen-container flex flex-col gap-5">
+  <div class="text-xl">My prompts</div>
+<!--  User Prompts list-->
+  <div class="grid grid-cols-4 gap-4">
+    <app-prompt-card *ngFor="let prompt of prompts$ | async"
+                     [mode]="'home'"
+                     [prompt]="prompt">
+    </app-prompt-card>
+  </div>
+</div>

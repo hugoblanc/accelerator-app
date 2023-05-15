@@ -1,28 +1,32 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {categoriesList, CategoryDto} from "../providers/dto/category.dto";
 import {PromptDto, promptsList} from "../providers/dto/prompt.dto";
+import {Observable} from "rxjs";
+import {PromptsService} from "../providers/prompts.service";
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit {
 
   searchInput: string = '';
   category: CategoryDto | undefined;
 
   protected readonly categoriesList: CategoryDto[] = categoriesList;
 
-  protected readonly promptsList = promptsList;
-
   isLoading: boolean = false;
 
   userList: string[] = [];
 
-  constructor() {
-    this.userList = JSON.parse(localStorage.getItem('promptList') || '[]');
+  prompts$!: Observable<PromptDto[]>;
 
+  constructor(private readonly promptsService: PromptsService) { }
+
+  ngOnInit(): void {
+    this.prompts$ = this.promptsService.getPrompts();
+    this.userList = JSON.parse(localStorage.getItem('promptList') || '[]');
   }
 
   search() {
