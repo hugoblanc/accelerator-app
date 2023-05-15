@@ -2,22 +2,29 @@
   <div class="font-medium text-xl w-full">{{prompt?.name}}</div>
   <p class="text-slate-500">{{prompt?.text}}</p>
   <div class="flex flex-row">
-    <ng-container *ngIf="mode === 'gallery'; else home">
+    <ng-container *ngIf="mode === 'gallery'">
       <div class="flex items-center justify-center gap-x-6">
-        <button class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-          Try it
+        <button
+          class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          <mat-icon>electric_bolt</mat-icon>
+          <span class="mx-1">Try It</span>
         </button>
-        <button *ngIf="!isInList" class="text-sm font-semibold leading-6 text-gray-900" (click)="addToList()">Add to my list <span aria-hidden="true">→</span></button>
+        <button *ngIf="!isInList" class="text-sm font-semibold leading-6 text-gray-900" (click)="addToList()">Add to my
+          list <span aria-hidden="true">→</span></button>
       </div>
     </ng-container>
   </div>
 </div>
 
 
+<!--
 <ng-template #home>
   <div class="flex items-center justify-center gap-x-6">
-    <button class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-      Use it
+    <button
+      class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+      <mat-icon>electric_bolt</mat-icon>
+      <span class="mx-1">Use it</span>
     </button>
   </div>
 </ng-template>
+-->

@@ -3,8 +3,13 @@
 <!--  User Prompts list-->
   <div class="grid grid-cols-4 gap-4">
     <app-prompt-card *ngFor="let prompt of prompts$ | async"
+                     (click)="selectPrompt(prompt)"
                      [mode]="'home'"
                      [prompt]="prompt">
     </app-prompt-card>
   </div>
+
+  <ng-container *ngIf="promptSelected">
+    <div class="text-xl">How to use this prompt?</div>
+  </ng-container>
 </div>

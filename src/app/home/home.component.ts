@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
 
   userPromptIdsList: string[] = [];
 
+  promptSelected!: PromptDto;
+
   constructor(private router: Router,
               private readonly promptsService: PromptsService) {
     if (!localStorage.getItem('onboarding')) {
@@ -32,4 +34,9 @@ export class HomeComponent implements OnInit {
   getPrompts() {
     this.prompts$ = this.promptsService.getPromptByIds(this.userPromptIdsList);
   }
+
+  selectPrompt(prompt: PromptDto) {
+    this.promptSelected = prompt;
+  }
 }
+
