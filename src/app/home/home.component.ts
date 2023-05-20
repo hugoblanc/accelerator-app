@@ -38,5 +38,16 @@ export class HomeComponent implements OnInit {
   selectPrompt(prompt: PromptDto) {
     this.promptSelected = prompt;
   }
+
+  removeFromList(prompt: PromptDto) {
+    var userList: string[] = JSON.parse(localStorage.getItem('promptList') || '[]');
+    if (userList && prompt) {
+      const index = userList.findIndex((id) => id === prompt.id);
+      if (index !== -1) {
+        userList.splice(index, 1);
+        localStorage.setItem('promptList', JSON.stringify(userList));
+      }
+    }
+  }
 }
 

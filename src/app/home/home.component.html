@@ -2,13 +2,16 @@
   <div class="text-xl">My prompts</div>
 <!--  User Prompts list-->
   <div class="grid grid-cols-3 gap-4">
-    <app-prompt-card *ngFor="let prompt of prompts$ | async"
-                     class="max-h-36"
-                     (click)="selectPrompt(prompt)"
-                     [ngClass]="promptSelected?.id === prompt.id ? 'shadow-2xl shadow-indigo-500/50' : ''"
-                     [mode]="'home'"
-                     [prompt]="prompt">
-    </app-prompt-card>
+    <ng-container *ngIf="(prompts$ | async)?.length; else emptyPrompts">
+      <app-prompt-card *ngFor="let prompt of prompts$ | async"
+                       class="max-h-36"
+                       (click)="selectPrompt(prompt)"
+                       [ngClass]="promptSelected?.id === prompt.id ? 'border-2 border-black rounded-md' : 'undefined'"
+                       (removedFromList)="removeFromList(prompt)"
+                       [mode]="'home'"
+                       [prompt]="prompt">
+      </app-prompt-card>
+    </ng-container>
   </div>
 
   <ng-container *ngIf="promptSelected">
@@ -16,3 +19,12 @@
     <app-use [prompt]="promptSelected"></app-use>
   </ng-container>
 </div>
+
+
+<ng-template #emptyPrompts>
+  <div class="flex flex-col text-gray-400">
+    <p>You don't have any prompts yet</p>
+    <p>Visit the <a [routerLink]="'/gallery'" class="font-bold text-black">Gallery</a> or <a [routerLink]="'/contribute'" class="font-bold text-black">Create a new one</a></p>
+  </div>
+
+</ng-template>

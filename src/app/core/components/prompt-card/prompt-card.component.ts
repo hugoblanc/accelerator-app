@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PromptDto} from "../../../providers/dto/prompt.dto";
 
 @Component({
@@ -6,7 +6,7 @@ import {PromptDto} from "../../../providers/dto/prompt.dto";
   templateUrl: './prompt-card.component.html',
   styleUrls: ['./prompt-card.component.scss']
 })
-export class PromptCardComponent {
+export class PromptCardComponent implements OnInit {
 
   @Input() prompt: PromptDto | undefined;
 
@@ -15,12 +15,23 @@ export class PromptCardComponent {
   @Input() isInList: boolean = false;
 
   @Output() addedToList = new EventEmitter<PromptDto>();
+  @Output() removedFromList = new EventEmitter<PromptDto>();
 
   constructor() {
 
   }
 
+  ngOnInit(): void {
+    if (this.mode === 'home') {
+      this.isInList = true;
+    }
+  }
+
   addToList() {
     this.addedToList.emit(this.prompt);
+  }
+
+  removeFromList() {
+    this.removedFromList.emit(this.prompt);
   }
 }

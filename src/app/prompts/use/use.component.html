@@ -24,8 +24,15 @@
 
   </div>
 
-<!--  TODO Insert chat here-->
-  <div class="w-1/2 border-dashed border-2 border-gray-300 rounded-md">
+
+  <div class="w-1/2 border-dashed border-2 border-gray-300 rounded-md flex items-center">
+    <div *ngIf="result; else noResult">
+      <!--  TODO Insert chat here-->
+    </div>
   </div>
 </div>
 
+
+<ng-template #noResult>
+  <div class="w-full text-center text-gray-300 font-bold text-xl">Lunch the prompt to see what's append</div>
+</ng-template>

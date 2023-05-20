@@ -21,6 +21,7 @@
     <app-prompt-card *ngFor="let prompt of prompts$ | async"
                      [prompt]="prompt"
                      [isInList]="isInList(prompt)"
+                     (removedFromList)="removeFromList($event)"
                      (addedToList)="addToList($event)"></app-prompt-card>
   </div>
 

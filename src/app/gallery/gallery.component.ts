@@ -41,6 +41,16 @@ export class GalleryComponent implements OnInit {
     }
   }
 
+  removeFromList(prompt: PromptDto) {
+    if (this.userList && prompt) {
+      const index = this.userList.findIndex((id) => id === prompt.id);
+      if (index !== -1) {
+        this.userList.splice(index, 1);
+        localStorage.setItem('promptList', JSON.stringify(this.userList));
+      }
+    }
+  }
+
   isInList(prompt: PromptDto): boolean {
     return this.userList.findIndex((id) => id === prompt.id) !== -1;
   }
