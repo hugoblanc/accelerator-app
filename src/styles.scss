@@ -14,7 +14,7 @@ $light-grey: #F1F5FF;
 
 // Utilisation des variables de couleurs générées
 body {
-  background-color: $light-grey;
+  background-color: #fafafa;
   color: $black-color;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -39,7 +39,7 @@ body {
 
 .g-card {
   background-color: white;
-  padding: 2em;
+  padding: 1em;
   border-radius: 10px;
 }
 

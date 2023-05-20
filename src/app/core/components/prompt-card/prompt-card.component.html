@@ -1,11 +1,13 @@
 <div class="g-card rounded-md shadow-md flex flex-col gap-3 min-w-full min-h-full max-h-80 cursor-pointer">
   <div class="w-full flex items-center">
     <div class="font-medium text-xl w-9/12">{{prompt?.name}}</div>
-    <ng-container *ngIf="!isInList; else inList">
-      <button mat-icon-button class="float-right" matTooltip="Add to your list" (click)="addToList()">
-        <mat-icon>favorite_outline</mat-icon>
-      </button>
-    </ng-container>
+    <div class="w-3/12">
+      <ng-container *ngIf="!isInList; else inList">
+          <button mat-icon-button matTooltip="Add to your list" (click)="addToList()">
+            <mat-icon>favorite_outline</mat-icon>
+          </button>
+      </ng-container>
+    </div>
   </div>
   <p class="text-slate-500 truncate ...">{{prompt?.text}}</p>
   <div class="flex flex-row">
@@ -22,7 +24,7 @@
 </div>
 
 <ng-template #inList>
-  <button mat-icon-button class="float-right" matTooltip="Remove from your list" (click)="removeFromList()">
+  <button mat-icon-button matTooltip="Remove from your list" (click)="removeFromList()">
     <mat-icon *ngIf="mode ===  'gallery'" class="text-red-600">favorite</mat-icon>
     <mat-icon *ngIf="mode ===  'home'">close</mat-icon>
   </button>
