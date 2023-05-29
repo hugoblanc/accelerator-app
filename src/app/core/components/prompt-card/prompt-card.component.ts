@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PromptDto} from "../../../providers/dto/prompt.dto";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-prompt-card',
@@ -17,8 +18,14 @@ export class PromptCardComponent implements OnInit {
   @Output() addedToList = new EventEmitter<PromptDto>();
   @Output() removedFromList = new EventEmitter<PromptDto>();
 
-  constructor() {
+  constructor(private router: Router) {
 
+  }
+
+  use(prompt: PromptDto | undefined) {
+    if (prompt) {
+      this.router.navigate(['/prompts/' + prompt.id]).then();
+    }
   }
 
   ngOnInit(): void {
