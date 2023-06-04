@@ -1,40 +1,54 @@
-<form [formGroup]="createPromptForms" (ngSubmit)="createPromptForms.valid && savePrompt()" #myForm="ngForm">
+<div class="g-screen-container flex justify-center">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Name</mat-label>
-    <input matInput placeholder="A killer prompt for sales" formControlName="name">
-  </mat-form-field>
+  <form [formGroup]="createPromptForms"
+        (ngSubmit)="createPromptForms.valid && savePrompt()"
+        #myForm="ngForm"
+        class="flex flex-col w-1/2 g-card shadow">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Prompt</mat-label>
-    <textarea matInput placeholder="Put prompt variables between [], eg: Act as persona [Persona]"
-      formControlName="text"></textarea>
-  </mat-form-field>
+    <div class="text-2xl font-bold mb-5">Create a new prompt</div>
 
-  <mat-form-field appearance="outline" *ngIf="categories$ != null">
-    <mat-label>Category</mat-label>
-    <mat-chip-grid #chipGrid aria-label="Fruit selection" formControlName="categories">
-      <mat-chip-row *ngFor="let category of categories; let i=index" (removed)="remove(i)">
-        {{category.name}}
-        <button matChipRemove [attr.aria-label]="'remove ' + category.name">
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip-row>
-    </mat-chip-grid>
-    <input type="text" placeholder="Software engineer" aria-label="Category" matInput [formControl]="categoryCtrl"
-      multiple [matAutocomplete]="auto" [matChipInputFor]="chipGrid"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayCategory"
-      (optionSelected)="selected($event)">
-      <mat-option *ngFor="let category of categories$ | async" [value]="category">
-        {{category.name}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="A killer prompt for sales" formControlName="name">
+    </mat-form-field>
 
+    <mat-form-field appearance="outline">
+      <mat-label>Prompt</mat-label>
+      <textarea matInput placeholder="Put prompt variables between [], eg: Act as persona [Persona]"
+                rows="15"
+                formControlName="text"></textarea>
+    </mat-form-field>
 
+    <mat-form-field appearance="outline" *ngIf="categories$ != null">
+      <mat-label>Category</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Fruit selection" formControlName="categories">
+        <mat-chip-row *ngFor="let category of categories; let i=index" (removed)="remove(i)">
+          {{category.name}}
+          <button matChipRemove [attr.aria-label]="'remove ' + category.name">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input type="text" placeholder="Software engineer" aria-label="Category" matInput [formControl]="categoryCtrl"
+             multiple [matAutocomplete]="auto" [matChipInputFor]="chipGrid"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayCategory"
+                        (optionSelected)="selected($event)">
+        <mat-option *ngFor="let category of categories$ | async" [value]="category">
+          {{category.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
 
-  <button mat-button type="submit">
-    Save my prompt
+<div class="flex flex-row justify-center">
+  <button type="submit" [disabled]="!myForm.valid"
+          class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+    <mat-icon>add</mat-icon>
+    <span class="mx-1">Create my prompt</span>
   </button>
-</form>
+</div>
+
+  </form>
+</div>
+
+

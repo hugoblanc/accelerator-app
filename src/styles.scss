@@ -45,5 +45,10 @@ body {
 
 .g-screen-container {
   padding:1em;
-  height: 100vh;
+  height: calc(100vh - 64px);
+}
+
+// Style to fix the weird border with angular material
+.mdc-notched-outline__notch {
+  border-right: none !important;
 }
