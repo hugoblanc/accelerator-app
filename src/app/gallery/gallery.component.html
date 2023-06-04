@@ -8,7 +8,7 @@
 
     <mat-form-field appearance="outline" class="w-1/2">
       <mat-label>Category</mat-label>
-      <mat-select (selectionChange)="categorySelect($event)" >
+      <mat-select (selectionChange)="categorySelect($event)" [(ngModel)]="categorySelectedId">
         <mat-option *ngFor="let category of categories$ | async"
                     [value]="category.id">
           {{category.name}}

@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CategoryDto} from "../../../providers/dto/category.dto";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-category-selection-card',

@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {categoriesList, CategoryDto} from "../providers/dto/category.dto";
+import {CategoryDto} from "../providers/dto/category.dto";
 import {PromptDto} from "../providers/dto/prompt.dto";
 import {Observable} from "rxjs";
 import {PromptsService} from "../providers/prompts.service";
 import {CategoryService} from "../providers/category.service";
 import {MatSelectChange} from "@angular/material/select";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 @Component({
   selector: 'app-gallery',
@@ -23,8 +24,17 @@ export class GalleryComponent implements OnInit {
 
   filteredPrompts: PromptDto[] = [];
 
-  constructor(private readonly promptsService: PromptsService,
+  constructor(private route: ActivatedRoute,
+              private readonly promptsService: PromptsService,
               private readonly categoryService: CategoryService) {
+    // Get category id from url
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const categoryId = params.get('categoryId');
+      if (categoryId) {
+        this.categorySelectedId = categoryId;
+        console.log(this.categorySelectedId);
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -35,7 +45,6 @@ export class GalleryComponent implements OnInit {
   }
 
   categorySelect(event: MatSelectChange) {
-    this.categorySelectedId = event.value;
     this.search();
   }
 
