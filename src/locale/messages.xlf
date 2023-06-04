@@ -2,6 +2,30 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="2821179408673282599" datatype="html">
+        <source>Home</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">home</note>
+      </trans-unit>
+      <trans-unit id="2181154762165715522" datatype="html">
+        <source>Gallery</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description">gallery</note>
+      </trans-unit>
+      <trans-unit id="1455444070089634673" datatype="html">
+        <source>Create prompt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">create prompt</note>
+      </trans-unit>
       <trans-unit id="854010648554435642" datatype="html">
         <source>My prompts</source>
         <context-group purpose="location">
@@ -9,6 +33,21 @@
           <context context-type="linenumber">2</context>
         </context-group>
         <note priority="1" from="description">prompts</note>
+      </trans-unit>
+      <trans-unit id="8724429827618198739" datatype="html">
+        <source>You don&apos;t have any prompts yet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <note priority="1" from="description">no prompt yet</note>
+      </trans-unit>
+      <trans-unit id="6057875967635550559" datatype="html">
+        <source>Visit the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;&apos;/gallery&apos;&quot; class=&quot;font-bold text-black&quot;&gt;"/>Gallery<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> or <x id="START_LINK_1" equiv-text="&lt;a [routerLink]=&quot;&apos;/contribute&apos;&quot; class=&quot;font-bold text-black&quot;&gt;"/>Create a new one<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">27,29</context>
+        </context-group>
       </trans-unit>
     </body>
   </file>
