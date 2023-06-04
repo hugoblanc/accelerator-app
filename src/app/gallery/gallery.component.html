@@ -8,8 +8,9 @@
 
     <mat-form-field appearance="outline" class="w-1/2">
       <mat-label>Category</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let category of categoriesList" [value]="category.id">
+      <mat-select (selectionChange)="categorySelect($event)" >
+        <mat-option *ngFor="let category of categories$ | async"
+                    [value]="category.id">
           {{category.name}}
         </mat-option>
       </mat-select>
@@ -17,8 +18,8 @@
   </div>
 
   <!--  Results component-->
-  <div class="grid grid-cols-5 gap-4">
-    <app-prompt-card *ngFor="let prompt of prompts$ | async"
+  <div class="grid grid-cols-4 gap-4">
+    <app-prompt-card *ngFor="let prompt of filteredPrompts"
                      [prompt]="prompt"
                      [isInList]="isInList(prompt)"
                      (removedFromList)="removeFromList($event)"

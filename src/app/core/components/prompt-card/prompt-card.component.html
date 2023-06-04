@@ -1,4 +1,4 @@
-<div class="g-card rounded-md shadow-md flex flex-col gap-3 min-w-full min-h-full max-h-80 cursor-pointer">
+<div class="g-card rounded-md shadow-md flex flex-col gap-1 min-w-full min-h-full max-h-80 cursor-pointer">
   <div class="w-full flex items-center">
     <div class="font-medium text-xl w-9/12">{{prompt?.name}}</div>
     <div class="flex w-3/12 justify-end">
@@ -7,6 +7,12 @@
             <mat-icon>favorite_outline</mat-icon>
           </button>
       </ng-container>
+    </div>
+  </div>
+  <div class="w-full flex items-center flex-wrap gap-2">
+    <div *ngFor="let category of prompt?.categories"
+         class="px-2 py-1 bg-gray-200 rounded text-xs">
+      {{category.name}}
     </div>
   </div>
   <p class="text-slate-500 truncate ...">{{prompt?.text}}</p>
