@@ -18,8 +18,11 @@ export class PromptCardComponent implements OnInit {
   @Output() addedToList = new EventEmitter<PromptDto>();
   @Output() removedFromList = new EventEmitter<PromptDto>();
 
-  constructor(private router: Router) {
+  // Translation
+  tooltip_delete = $localize`Delete from my list`
+  tooltip_add = $localize`Add to my list`
 
+  constructor(private router: Router) {
   }
 
   use(prompt: PromptDto | undefined) {

@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
         this.prompts$.subscribe(prompts => {
           const indexObs = prompts.findIndex((entity) => prompt.id === entity.id);
           prompts.splice(indexObs, 1);
-          console.log(prompts);
         });
         localStorage.setItem('promptList', JSON.stringify(userList));
       }

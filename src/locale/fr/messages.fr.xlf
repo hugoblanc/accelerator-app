@@ -29,6 +29,58 @@
         </context-group>
         <note priority="1" from="description">create prompt</note>
       </trans-unit>
+      <trans-unit id="6192255928376640659" datatype="html">
+        <source>Try It</source>
+        <target>Tester</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">Try it</note>
+      </trans-unit>
+      <trans-unit id="5408278033096006593" datatype="html">
+        <source>Delete from my list</source>
+        <target>Supprimer de ma liste</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8727895599577852669" datatype="html">
+        <source>Add to my list</source>
+        <target>Ajouter à ma liste</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4153648057850936186" datatype="html">
+        <source>Search a prompt</source>
+        <target>Rechercher un prompt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/gallery/gallery.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">search a prompt</note>
+      </trans-unit>
+      <trans-unit id="1806667489382256324" datatype="html">
+        <source>Category</source>
+        <target>Catégorie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/gallery/gallery.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">category</note>
+      </trans-unit>
+      <trans-unit id="6256593087556038995" datatype="html">
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="All Categories&lt;/b&gt;&lt;/mat-o"/>All Categories<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
+        <target><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="All Categories&lt;/b&gt;&lt;/mat-o"/>Toutes les catégories<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/gallery/gallery.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+        <note priority="1" from="description">all categories</note>
+      </trans-unit>
       <trans-unit id="854010648554435642" datatype="html">
         <source>My prompts</source>
         <target>Mes Prompts</target>

@@ -15,7 +15,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 export class GalleryComponent implements OnInit {
 
   searchInput: string = '';
-  categorySelectedId: string | undefined;
+  categorySelectedId: string | undefined = undefined;
 
   userList: string[] = [];
 
@@ -32,7 +32,6 @@ export class GalleryComponent implements OnInit {
       const categoryId = params.get('categoryId');
       if (categoryId) {
         this.categorySelectedId = categoryId;
-        console.log(this.categorySelectedId);
       }
     });
   }
@@ -70,7 +69,6 @@ export class GalleryComponent implements OnInit {
     if (this.userList && prompt && this.userList.findIndex((id) => id === prompt.id) === -1) {
       this.userList.push(prompt.id);
       localStorage.setItem('promptList', JSON.stringify(this.userList));
-      console.log(this.userList);
     }
   }
 

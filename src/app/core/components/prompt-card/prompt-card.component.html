@@ -3,7 +3,7 @@
     <div class="font-medium text-xl w-9/12">{{prompt?.name}}</div>
     <div class="flex w-3/12 justify-end">
       <ng-container *ngIf="!isInList; else inList">
-          <button mat-icon-button matTooltip="Add to your list" (click)="addToList()">
+          <button mat-icon-button [matTooltip]="tooltip_add" (click)="addToList()">
             <mat-icon>favorite_outline</mat-icon>
           </button>
       </ng-container>
@@ -22,7 +22,7 @@
         <button (click)="use(prompt)"
           class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
           <mat-icon>electric_bolt</mat-icon>
-          <span class="mx-1">Try It</span>
+          <span class="mx-1" i18n="Try it">Try It</span>
         </button>
       </div>
     </ng-container>
@@ -30,21 +30,8 @@
 </div>
 
 <ng-template #inList>
-  <button mat-icon-button matTooltip="Remove from your list" (click)="removeFromList()">
+  <button mat-icon-button [matTooltip]="tooltip_delete" (click)="removeFromList()">
     <mat-icon *ngIf="mode ===  'gallery'" class="text-red-600">favorite</mat-icon>
     <mat-icon *ngIf="mode ===  'home'">close</mat-icon>
   </button>
 </ng-template>
-
-
-<!--
-<ng-template #home>
-  <div class="flex items-center justify-center gap-x-6">
-    <button
-      class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-      <mat-icon>electric_bolt</mat-icon>
-      <span class="mx-1">Use it</span>
-    </button>
-  </div>
-</ng-template>
--->
