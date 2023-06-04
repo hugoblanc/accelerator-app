@@ -52,3 +52,12 @@ body {
 .mdc-notched-outline__notch {
   border-right: none !important;
 }
+
+.g-bg-linear, .g-bg-linear-hover:hover {
+  background: linear-gradient(92.26deg, #78afc0 -20.44%, #C296FF 44.32%, #FF9A9A 111.84%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  background-blend-mode: darken;
+}
