@@ -1,5 +1,5 @@
 <div class="g-screen-container flex flex-col gap-5">
-  <div class="text-xl">My prompts</div>
+  <div class="text-xl" i18n="prompts">My prompts</div>
 <!--  User Prompts list-->
   <div class="grid grid-cols-3 gap-4">
     <ng-container *ngIf="(prompts$ | async)?.length; else emptyPrompts">
