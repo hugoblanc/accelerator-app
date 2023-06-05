@@ -36,6 +36,10 @@ export class ChatService {
 
   constructor(private readonly http: HttpClient) { }
 
+  cleanSession(): void {
+    this.chatSession = null;
+  }
+
   usePrompt(variables: any, preview: string, promptId: string) {
     this.chatSession = new ChatSession();
     this.chatSession.startLoading();

@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { ChatService } from '../../providers/chat.service';
 
 @Component({
+  selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })

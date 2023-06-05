@@ -3,19 +3,18 @@
     <div class="font-medium text-xl w-9/12">{{prompt?.name}}</div>
     <div class="flex w-3/12 justify-end">
       <ng-container *ngIf="!isInList; else inList">
-          <button mat-icon-button [matTooltip]="tooltip_add" (click)="addToList()">
-            <mat-icon>favorite_outline</mat-icon>
-          </button>
+        <button mat-icon-button [matTooltip]="tooltip_add" (click)="addToList()">
+          <mat-icon>favorite_outline</mat-icon>
+        </button>
       </ng-container>
     </div>
   </div>
   <div class="w-full flex items-center flex-wrap gap-2">
-    <div *ngFor="let category of prompt?.categories"
-         class="px-2 py-1 bg-gray-200 rounded text-xs">
+    <div *ngFor="let category of prompt?.categories" class="px-2 py-1 bg-gray-200 rounded text-xs">
       {{category.name}}
     </div>
   </div>
-  <p class="text-slate-500 truncate ...">{{prompt?.text}}</p>
+  <p class="text-slate-500 truncate ...">{{prompt?.description}}</p>
   <div class="flex flex-row">
     <ng-container *ngIf="mode === 'gallery'">
       <div class="flex flex-col gap-y-2">

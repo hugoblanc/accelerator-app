@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {PromptsService} from "../providers/prompts.service";
-import {Observable} from "rxjs";
-import {PromptDto} from "../providers/dto/prompt.dto";
+import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { PromptsService } from "../providers/prompts.service";
+import { Observable } from "rxjs";
+import { PromptDto } from "../providers/dto/prompt.dto";
 
 @Component({
   selector: 'app-home',
@@ -15,14 +15,13 @@ export class HomeComponent implements OnInit {
 
   userPromptIdsList: string[] = [];
 
-  promptSelected!: PromptDto;
+  promptSelected?: PromptDto;
 
   constructor(private router: Router,
-              private readonly promptsService: PromptsService) {
+    private readonly promptsService: PromptsService) {
     if (!localStorage.getItem('onboarding')) {
       this.router.navigate(['/welcome']).then();
     } else {
-      // Get prompts list
       this.userPromptIdsList = JSON.parse(localStorage.getItem('promptList') || '[]');
     }
   }

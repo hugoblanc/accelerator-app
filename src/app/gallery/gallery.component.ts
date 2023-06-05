@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {CategoryDto} from "../providers/dto/category.dto";
-import {PromptDto} from "../providers/dto/prompt.dto";
-import {Observable} from "rxjs";
-import {PromptsService} from "../providers/prompts.service";
-import {CategoryService} from "../providers/category.service";
-import {MatSelectChange} from "@angular/material/select";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { CategoryDto } from "../providers/dto/category.dto";
+import { PromptDto } from "../providers/dto/prompt.dto";
+import { Observable } from "rxjs";
+import { PromptsService } from "../providers/prompts.service";
+import { CategoryService } from "../providers/category.service";
+import { MatSelectChange } from "@angular/material/select";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 
 @Component({
   selector: 'app-gallery',
@@ -24,10 +24,11 @@ export class GalleryComponent implements OnInit {
 
   filteredPrompts: PromptDto[] = [];
 
+
+
   constructor(private route: ActivatedRoute,
-              private readonly promptsService: PromptsService,
-              private readonly categoryService: CategoryService) {
-    // Get category id from url
+    private readonly promptsService: PromptsService,
+    private readonly categoryService: CategoryService) {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const categoryId = params.get('categoryId');
       if (categoryId) {
@@ -40,22 +41,23 @@ export class GalleryComponent implements OnInit {
     this.prompts$ = this.promptsService.getPrompts();
     this.categories$ = this.categoryService.getCategories();
     this.userList = JSON.parse(localStorage.getItem('promptList') || '[]');
-    this.search(); // to initialize filteredPrompts
+    this.loadFilteredPrompt();
   }
 
   categorySelect(event: MatSelectChange) {
-    this.search();
+    this.loadFilteredPrompt();
   }
 
-  search() {
+  loadFilteredPrompt() {
     this.prompts$.subscribe(prompts => {
-      // Name or Description Filtering
-      if (this.searchInput === '') {
+      const isSearchEmpty = this.searchInput === '';
+      if (isSearchEmpty) {
         this.filteredPrompts = prompts;
       } else {
+        const lowerCaseSearch = this.searchInput.toLowerCase();
         this.filteredPrompts = prompts.filter(prompt =>
-          prompt.name.toLowerCase().includes(this.searchInput.toLowerCase()) ||
-          prompt.text.toLowerCase().includes(this.searchInput.toLowerCase())
+          prompt.name.toLowerCase().includes(lowerCaseSearch) ||
+          prompt.text.toLowerCase().includes(lowerCaseSearch)
         );
       }
       if (this.categorySelectedId) {

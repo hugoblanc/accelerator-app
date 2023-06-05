@@ -1,15 +1,11 @@
 <div class="g-screen-container flex flex-col gap-5">
   <div class="text-xl" i18n="prompts">My prompts</div>
-<!--  User Prompts list-->
+  <!--  User Prompts list-->
   <div class="grid grid-cols-3 gap-4">
     <ng-container *ngIf="(prompts$ | async)?.length; else emptyPrompts">
-      <app-prompt-card *ngFor="let prompt of prompts$ | async"
-                       class="max-h-36"
-                       (click)="selectPrompt(prompt)"
-                       [ngClass]="promptSelected?.id === prompt.id ? 'border-2 border-black rounded-md' : 'undefined'"
-                       (removedFromList)="removeFromList(prompt)"
-                       [mode]="'home'"
-                       [prompt]="prompt">
+      <app-prompt-card *ngFor="let prompt of prompts$ | async" class="max-h-36" (click)="selectPrompt(prompt)"
+        [ngClass]="promptSelected?.id === prompt.id ? 'border-2 border-black rounded-md' : 'undefined'"
+        (removedFromList)="removeFromList(prompt)" [mode]="'home'" [prompt]="prompt">
       </app-prompt-card>
     </ng-container>
   </div>
@@ -24,7 +20,8 @@
 <ng-template #emptyPrompts>
   <div class="flex flex-col text-gray-400">
     <p i18n="no prompt yet">You don't have any prompts yet</p>
-    <p i18n>Visit the <a [routerLink]="'/gallery'" class="font-bold text-black">Gallery</a> or <a [routerLink]="'/contribute'" class="font-bold text-black">Create a new one</a></p>
+    <p i18n>Visit the <a [routerLink]="'/gallery'" class="font-bold text-black">Gallery</a> or <a
+        [routerLink]="'/contribute'" class="font-bold text-black">Create a new one</a></p>
   </div>
 
 </ng-template>

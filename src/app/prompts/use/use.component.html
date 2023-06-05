@@ -21,7 +21,7 @@
 
         <div class="flex w-full justify-center">
           <button [disabled]="!usePromptForms.touched"
-                  class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             <mat-icon>psychology</mat-icon>
             <span class="mx-1">Run It</span>
           </button>
@@ -33,14 +33,14 @@
 
 
     <div class="w-1/2 border-dashed border-2 border-gray-300 rounded-md flex items-center">
-      <div *ngIf="result; else noResult">
-        <!--  TODO Insert chat here-->
+      <div class="w-full" *ngIf="isSessionInitialized; else noResult">
+        <app-chat></app-chat>
       </div>
     </div>
   </div>
 
 
   <ng-template #noResult>
-    <div class="w-full text-center text-gray-300 font-bold text-xl">Lunch the prompt to see what's append</div>
+    <div class="w-full text-center text-gray-300 font-bold text-xl">Run the prompt to see output</div>
   </ng-template>
 </div>
