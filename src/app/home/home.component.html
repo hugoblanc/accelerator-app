@@ -12,7 +12,7 @@
 
   <ng-container *ngIf="promptSelected">
     <div class="text-xl">How to use this prompt?</div>
-    <app-use [prompt]="promptSelected"></app-use>
+    <app-use [promptId]="promptSelected.id"></app-use>
   </ng-container>
 </div>
 

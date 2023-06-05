@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, filter, map, mergeMap, take } from 'rxjs';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ChatService } from '../../providers/chat.service';
 import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
 import { PromptsService } from '../../providers/prompts.service';
@@ -23,17 +23,10 @@ interface UsePromptForm {
   styleUrls: ['./use.component.scss']
 })
 export class UseComponent implements OnInit, OnDestroy {
-
-  @Input() set prompt(prompt: PromptDto) {
-    this._prompt = prompt;
-    this.initForm(this._prompt);
-  }
-
-  _prompt!: PromptDto;
+  @Input() promptId?: string;
 
   prompt$!: Observable<PromptDto>;
   usePromptForms!: FormGroup<UsePromptForm>;
-  result: string = '';
   preview: string = '';
   initialPromptText: string = '';
 
@@ -41,12 +34,12 @@ export class UseComponent implements OnInit, OnDestroy {
     return this.chatService.isSessionInitialized;
   }
 
-
-  get promptId$(): Observable<string> {
-    return this.route.paramMap.pipe(
-      map((params: ParamMap) => params.get('promptId')),
-      filter((promptId: string | null) => promptId !== null),
-    ) as Observable<string>;
+  get id(): string {
+    const promptId = this.promptId ?? this.route.snapshot.paramMap.get('promptId');
+    if (!promptId) {
+      throw new Error('Prompt ID is not defined');
+    }
+    return promptId;
   }
 
   constructor(
@@ -56,13 +49,7 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.prompt) {
-      this.initForm(this.prompt);
-    } else {
-      this.promptId$.pipe(
-        mergeMap(promptId => this.promptsService.getPromptById(promptId))
-      ).subscribe((prompt: PromptDto) => this.initForm(prompt));
-    }
+    this.promptsService.getPromptById(this.id).subscribe((prompt) => this.initForm(prompt));
   }
 
 
@@ -110,9 +97,6 @@ export class UseComponent implements OnInit, OnDestroy {
 
 
   startEngine() {
-    this.promptId$.pipe(
-      take(1),
-      mergeMap((promptId: string) => this.chatService.usePrompt(this.usePromptForms.value, this.preview, promptId))
-    ).subscribe();
+    this.chatService.usePrompt(this.usePromptForms.value, this.preview, this.id).subscribe();
   }
 }

@@ -21,7 +21,7 @@ export class ChatComponent {
 
 
   sendMessage() {
-    if (!this.chatInputCtrl.value || this.isLoading) return;
+    if (!this.chatInputCtrl.value || this.chatSession?.isLoading) return;
     this.chatService.continueChatting(this.chatInputCtrl.value).subscribe();
     this.chatInputCtrl.setValue('');
   }
