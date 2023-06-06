@@ -9,13 +9,17 @@ import { Observable, debounceTime, startWith, switchMap } from 'rxjs';
 import { CategoryService } from '../providers/category.service';
 import { CategoryDto } from '../providers/dto/category.dto';
 import { ContribPromptService } from './contrib-prompt.service';
+import { GPTModel } from './gtp-model.enum';
 
 interface CreatePromptForm {
   text: FormControl<string>;
   description: FormControl<string>;
+  model: FormControl<GPTModel>;
   name: FormControl<string>;
   categories: FormControl<any[]>;
 }
+
+
 
 @Component({
   selector: 'app-contribute',
@@ -34,9 +38,14 @@ export class ContributeComponent implements OnInit {
   createPromptForms = new FormGroup<CreatePromptForm>({
     text: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     description: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    model: new FormControl(GPTModel.GPT35Turbo, { nonNullable: true, validators: [Validators.required] }),
     name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     categories: new FormControl<any[]>([], { nonNullable: true, validators: [Validators.required] })
   });
+
+  get modelEnum(): typeof GPTModel {
+    return GPTModel;
+  }
 
   constructor(private readonly contribPrompt: ContribPromptService, private readonly snackBar: MatSnackBar, private readonly categoryService: CategoryService, private readonly router: Router) { }
 
@@ -50,13 +59,13 @@ export class ContributeComponent implements OnInit {
   }
 
   savePrompt() {
-    const { text, name, description } = this.createPromptForms.value;
-    const categoryIds = this.categories.map(category => category.id).filter(id => !id) as string[];
-    const categoryNamesToCreate = this.categories.filter(category => !!category.id).map(category => category.name);
+    const { text, name, description, model } = this.createPromptForms.value;
+    const categoryIds = this.categories.map(category => category.id).filter(id => id !== undefined) as string[];
+    const categoryNamesToCreate = this.categories.filter(category => category.id === undefined).map(category => category.name);
 
-    if (!text || !name || !categoryIds || !description) return;
+    if (!text || !name || !categoryIds || !description || !model) return;
 
-    this.contribPrompt.createPrompt({ text, name, description, categoryIds, categoryNamesToCreate }).subscribe((prompt) => {
+    this.contribPrompt.createPrompt({ text, name, description, categoryIds, categoryNamesToCreate, model }).subscribe((prompt) => {
       this.categories = [];
       this.myForm.resetForm();
       const snackBarRef = this.snackBar.open("Prompt created!", "Use it", { duration: 10000 });
@@ -89,7 +98,6 @@ export class ContributeComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.categories.push(event.option.value as any);
-    // this.fruitInput.nativeElement.value = '';
     this.categoryCtrl.setValue('');
   }
 

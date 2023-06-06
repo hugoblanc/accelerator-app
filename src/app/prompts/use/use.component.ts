@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ChatService } from '../../providers/chat.service';
 import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
