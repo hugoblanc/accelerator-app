@@ -14,7 +14,6 @@ export class ChatComponent {
   }
 
   chatInputCtrl = new FormControl('');
-
   isLoading = false;
 
   constructor(private readonly chatService: ChatService) { }
