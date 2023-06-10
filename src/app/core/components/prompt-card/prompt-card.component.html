@@ -1,4 +1,4 @@
-<div class="g-card rounded-md shadow-md flex flex-col gap-1 min-w-full min-h-full max-h-80 cursor-pointer">
+<div class="g-card rounded-md shadow-md flex flex-col gap-1 min-w-full min-h-full max-h-80" [ngClass]="{'cursor-pointer': mode === 'home'}">
   <div class="w-full flex items-center">
     <div class="font-medium text-xl w-9/12">{{prompt?.name}}</div>
     <div class="flex w-3/12 justify-end">
@@ -29,8 +29,7 @@
 </div>
 
 <ng-template #inList>
-  <button mat-icon-button [matTooltip]="tooltip_delete" (click)="removeFromList()">
-    <mat-icon *ngIf="mode ===  'gallery'" class="text-red-600">favorite</mat-icon>
-    <mat-icon *ngIf="mode ===  'home'">close</mat-icon>
+  <button *ngIf="mode ===  'gallery'" mat-icon-button [matTooltip]="tooltip_delete" (click)="removeFromList()">
+    <mat-icon class="text-red-600">favorite</mat-icon>
   </button>
 </ng-template>

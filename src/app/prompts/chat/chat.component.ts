@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, NgZone, ViewChild} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ChatService } from '../../providers/chat.service';
+import {CdkTextareaAutosize} from "@angular/cdk/text-field";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-chat',
@@ -9,6 +11,9 @@ import { ChatService } from '../../providers/chat.service';
 })
 export class ChatComponent {
 
+  // @ts-ignore
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
+
   get chatSession() {
     return this.chatService.getSession();
   }
@@ -16,8 +21,13 @@ export class ChatComponent {
   chatInputCtrl = new FormControl('');
   isLoading = false;
 
-  constructor(private readonly chatService: ChatService) { }
+  constructor(private readonly chatService: ChatService,
+              private _ngZone: NgZone) { }
 
+  triggerResize() {
+    // Wait for changes to be applied, then trigger textarea resize.
+    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
+  }
 
   sendMessage() {
     if (!this.chatInputCtrl.value || this.chatSession?.isLoading) return;

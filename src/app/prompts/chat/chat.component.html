@@ -5,12 +5,20 @@
 <form class="chat-bar">
   <mat-form-field appearance="fill">
     <mat-progress-bar *ngIf="chatSession?.isLoading" mode="indeterminate"></mat-progress-bar>
-    <textarea matInput class="msger-input" [formControl]="chatInputCtrl" placeholder="Enter your message..."
+    <textarea matInput class="msger-input"
+              [formControl]="chatInputCtrl"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              cdkAutosizeMaxRows="5"
+              placeholder="Enter your message..."
       (keyup.enter)="sendMessage()">
     </textarea>
   </mat-form-field>
 
-  <button class="send-button" mat-button color="primary" type="button" (click)="sendMessage()">Send
+  <button (click)="sendMessage()"
+          class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
     <mat-icon>send</mat-icon>
+    <span class="mx-1">Send</span>
   </button>
 </form>
