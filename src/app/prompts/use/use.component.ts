@@ -23,9 +23,12 @@ interface UsePromptForm {
   styleUrls: ['./use.component.scss']
 })
 export class UseComponent implements OnInit, OnDestroy {
-  @Input() promptId?: string;
+  @Input() set promptId(value: string) {
+    this._promptId = value;
+    this.getPrompt();
+  }
 
-  prompt$!: Observable<PromptDto>;
+  _promptId: string | undefined;
   usePromptForms!: FormGroup<UsePromptForm>;
   preview: string = '';
   initialPromptText: string = '';
@@ -35,7 +38,7 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   get id(): string {
-    const promptId = this.promptId ?? this.route.snapshot.paramMap.get('promptId');
+    const promptId = this._promptId ?? this.route.snapshot.paramMap.get('promptId');
     if (!promptId) {
       throw new Error('Prompt ID is not defined');
     }
@@ -49,9 +52,12 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.promptsService.getPromptById(this.id).subscribe((prompt) => this.initForm(prompt));
+    this.getPrompt();
   }
 
+  getPrompt() {
+    this.promptsService.getPromptById(this.id).subscribe((prompt) => this.initForm(prompt));
+  }
 
   ngOnDestroy(): void {
     this.chatService.cleanSession();
