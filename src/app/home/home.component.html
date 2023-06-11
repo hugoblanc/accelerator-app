@@ -1,8 +1,8 @@
 <div class="g-screen-container flex flex-col gap-3">
   <div class="text-xl" i18n="prompts">My prompts</div>
   <div class="grid grid-cols-3 gap-4">
-    <ng-container *ngIf="(prompts$ | async)?.length; else emptyPrompts">
-      <app-prompt-card *ngFor="let prompt of prompts$ | async" class="max-h-36" (click)="selectPrompt(prompt)"
+    <ng-container *ngIf="prompts?.length; else emptyPrompts">
+      <app-prompt-card *ngFor="let prompt of prompts" class="max-h-36" (click)="selectPrompt(prompt)"
         [ngClass]="promptSelected?.id === prompt.id ? 'border-2 border-black rounded-md' : 'undefined'"
         [mode]="'home'" [prompt]="prompt">
       </app-prompt-card>

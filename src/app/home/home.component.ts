@@ -11,7 +11,7 @@ import { PromptDto } from "../providers/dto/prompt.dto";
 })
 export class HomeComponent implements OnInit {
 
-  prompts$!: Observable<PromptDto[]>;
+  prompts: PromptDto[] = [];
 
   userPromptIdsList: string[] = [];
 
@@ -31,7 +31,12 @@ export class HomeComponent implements OnInit {
   }
 
   getPrompts() {
-    this.prompts$ = this.promptsService.getPromptByIds(this.userPromptIdsList);
+    this.promptsService.getPromptByIds(this.userPromptIdsList).subscribe((prompts) => this.getPromptsSuccess(prompts));
+  }
+
+  getPromptsSuccess(prompts: PromptDto[]) {
+    this.prompts = prompts;
+    console.log(this.prompts);
   }
 
   selectPrompt(prompt: PromptDto) {
@@ -44,11 +49,10 @@ export class HomeComponent implements OnInit {
       const index = userList.findIndex((id) => id === prompt.id);
       if (index !== -1) {
         userList.splice(index, 1);
-        this.prompts$.subscribe(prompts => {
-          const indexObs = prompts.findIndex((entity) => prompt.id === entity.id);
-          prompts.splice(indexObs, 1);
-        });
+        const indexObs = this.prompts.findIndex((entity) => prompt.id === entity.id);
+        this.prompts.splice(indexObs, 1);
         localStorage.setItem('promptList', JSON.stringify(userList));
+        this.promptSelected = undefined;
       }
     }
   }
