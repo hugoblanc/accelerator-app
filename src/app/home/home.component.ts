@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
 
   getPromptsSuccess(prompts: PromptDto[]) {
     this.prompts = prompts;
-    console.log(this.prompts);
   }
 
   selectPrompt(prompt: PromptDto) {
