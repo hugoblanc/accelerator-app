@@ -1,17 +1,36 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <!-- <span> ⚡ The accelerator ⚡</span> -->
-    <button mat-button routerLink="/prompts">
-      <mat-icon>checklists</mat-icon>
-      Prompts
-      <span class="example-spacer"></span>
-    </button>
-    <button mat-button routerLink="/contribute">
-      <mat-icon>add</mat-icon>
-      Create prompt
-      <span class="example-spacer"></span>
-    </button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<nav class="border-gray-200">
+  <div class="flex flex-wrap items-center justify-between p-4 mr-5">
+    <a class="flex items-center">
+      <span class="self-center text-3xl font-semibold whitespace-nowrap g-bg-linear">Aasmoz.ai</span>
+    </a>
+
+    <div>
+      <ul
+        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-6 md:mt-0 md:border-0">
+        <li>
+          <a routerLink="/home"
+             class="flex items-center gap-2 py-2 pl-3 pr-4 rounded bg-transparent g-bg-linear-hover p-0">
+            <mat-icon>home</mat-icon>
+            <span i18n="home">Home</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/gallery"
+             class="flex items-center gap-2 py-2 pl-3 pr-4 rounded bg-transparent g-bg-linear-hover p-0">
+            <mat-icon>dashboard</mat-icon>
+            <span i18n="gallery">Gallery</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/contribute"
+             class="flex items-center gap-2 py-2 pl-3 pr-4 rounded bg-transparent g-bg-linear-hover p-0">
+            <mat-icon>add</mat-icon>
+            <span i18n="create prompt">Create prompt</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <router-outlet></router-outlet>

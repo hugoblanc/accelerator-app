@@ -3,10 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: 'prompts', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  { path: 'welcome', loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomeModule) },
+
+  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+
   { path: 'prompts', loadChildren: () => import('./prompts/prompts.module').then(m => m.PromptsModule) },
 
-  { path: 'contribute', loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule) }
+  { path: 'contribute', loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule) },
+
+  { path: 'gallery', loadChildren: () => import('./gallery/gallery.module').then(m => m.GalleryModule) },
+
 ];
 
 @NgModule({

@@ -1,0 +1,27 @@
+<div class="g-screen-container flex flex-col gap-5">
+  <div class="w-full flex space-x-3">
+    <mat-form-field appearance="outline" class="w-1/2">
+      <mat-label i18n="search a prompt">Search a prompt</mat-label>
+      <input matInput [(ngModel)]="searchInput" (ngModelChange)="loadFilteredPrompt()" />
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-1/2">
+      <mat-label i18n="category">Category</mat-label>
+      <mat-select (selectionChange)="categorySelect($event)" [(ngModel)]="categorySelectedId">
+        <mat-option [value]="undefined" i18n="all categories"><b>All Categories</b></mat-option>
+        <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!--  Results component-->
+  <div class="grid grid-cols-4 gap-4">
+    <app-prompt-card *ngFor="let prompt of filteredPrompts" [prompt]="prompt" [isInList]="isInList(prompt)"
+      (removedFromList)="removeFromList($event)" (addedToList)="addToList($event)"></app-prompt-card>
+  </div>
+
+
+</div>

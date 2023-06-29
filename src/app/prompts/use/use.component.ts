@@ -1,49 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap, Router } from '@angular/router';
-import { Observable, filter, map, mergeMap, take } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ChatService } from '../../providers/chat.service';
 import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
 import { PromptsService } from '../../providers/prompts.service';
 
-type VariableArray = FormArray<FormGroup<{ key: FormControl<string>, value: FormControl<string>, type: FormControl<VariableType> }>>;
+type VariableArray = FormArray<FormGroup<{
+  key: FormControl<string>,
+  value: FormControl<string>,
+  type: FormControl<VariableType>
+}>>;
+
 interface UsePromptForm {
   variables?: VariableArray;
 }
 
 
 @Component({
+  selector: 'app-use',
   templateUrl: './use.component.html',
   styleUrls: ['./use.component.scss']
 })
-export class UseComponent implements OnInit {
+export class UseComponent implements OnInit, OnDestroy {
+  @Input() set promptId(value: string) {
+    this._promptId = value;
+    this.getPrompt();
+  }
 
-
-  prompt$!: Observable<PromptDto>;
+  _promptId: string | undefined;
   usePromptForms!: FormGroup<UsePromptForm>;
-  result: string = '';
   preview: string = '';
   initialPromptText: string = '';
 
+  get isSessionInitialized(): boolean {
+    return this.chatService.isSessionInitialized;
+  }
 
-  get promptId$(): Observable<string> {
-    return this.route.paramMap.pipe(
-      map((params: ParamMap) => params.get('promptId')),
-      filter((promptId: string | null) => promptId !== null),
-    ) as Observable<string>;
+  get id(): string {
+    const promptId = this._promptId ?? this.route.snapshot.paramMap.get('promptId');
+    if (!promptId) {
+      throw new Error('Prompt ID is not defined');
+    }
+    return promptId;
   }
 
   constructor(
     private readonly promptsService: PromptsService,
     private readonly route: ActivatedRoute,
-    private readonly chatService: ChatService,
-    private readonly router: Router) { }
-
+    private readonly chatService: ChatService) {
+  }
 
   ngOnInit(): void {
-    this.promptId$.pipe(
-      mergeMap(promptId => this.promptsService.getPromptById(promptId))
-    ).subscribe((prompt: PromptDto) => {
+    this.getPrompt();
+  }
+
+  getPrompt() {
+    this.promptsService.getPromptById(this.id).subscribe((prompt) => this.initForm(prompt));
+  }
+
+  ngOnDestroy(): void {
+    this.chatService.cleanSession();
+  }
+
+  initForm(prompt: PromptDto) {
+    if (prompt.promptVariables) {
       const variables: VariableArray = new FormArray(
         prompt.promptVariables.map((variable) =>
           new FormGroup(
@@ -58,7 +79,7 @@ export class UseComponent implements OnInit {
       this.initialPromptText = prompt.text;
       this.usePromptForms = new FormGroup({ variables }) as any;
       this.initVariableListener(variables);
-    });
+    }
   }
 
   initVariableListener(variables: VariableArray) {
@@ -82,10 +103,6 @@ export class UseComponent implements OnInit {
 
 
   startEngine() {
-    this.router.navigateByUrl('/prompts/chat');
-    this.promptId$.pipe(
-      take(1),
-      mergeMap((promptId: string) => this.chatService.usePrompt(this.usePromptForms.value, this.preview, promptId))
-    ).subscribe();
+    this.chatService.usePrompt(this.usePromptForms.value, this.preview, this.id).subscribe();
   }
 }

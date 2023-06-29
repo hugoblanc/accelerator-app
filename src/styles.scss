@@ -1,4 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 /* You can add global styles to this file, and also import other style files */
+// Colors
+$primary-color: #C296FF;
+$secondary-color: #AAEDFD;
+$accent-color: #FF9A9A;
+$black-color: #121316;
+$light-grey: #F1F5FF;
+
+
+// Utilisation des variables de couleurs générées
+body {
+  background-color: #fafafa;
+  color: $black-color;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 html,
 body {
@@ -8,4 +27,37 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Font classes
+.g-title-1 {
+  font-size: 2em;
+  font-weight: bolder;
+}
+
+// Global classes
+
+.g-card {
+  background-color: white;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.g-screen-container {
+  padding:1em;
+  height: calc(100vh - 64px);
+}
+
+// Style to fix the weird border with angular material
+.mdc-notched-outline__notch {
+  border-right: none !important;
+}
+
+.g-bg-linear, .g-bg-linear-hover:hover {
+  background: linear-gradient(92.26deg, #78afc0 -20.44%, #C296FF 44.32%, #FF9A9A 111.84%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  background-blend-mode: darken;
 }

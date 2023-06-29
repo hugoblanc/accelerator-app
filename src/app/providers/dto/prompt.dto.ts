@@ -1,14 +1,15 @@
 export interface PromptDto {
   id: string;
   text: string;
+  description: string;
   name: string;
-  promptVariables: Variable[]
-  categories: Categorie[]
+  promptVariables?: Variable[]
+  categories?: Category[]
 
 }
 
 
-interface Categorie {
+interface Category {
   id: string;
   name: string;
 }

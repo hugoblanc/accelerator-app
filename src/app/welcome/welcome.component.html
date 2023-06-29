@@ -1,0 +1,17 @@
+<div class="flex flex-col text-center gap-10 place-items-center">
+  <span class=" text-3xl font-bold">
+    Welcome to Aasmos.ai, where we empower you to harness the power of AI in your daily work
+  </span>
+
+  <span class="">
+    What is your profession?
+  </span>
+
+  <div class="flex flex-row gap-5 w-3/4">
+    <ng-container *ngFor="let category of categories$ | async; let i = index">
+      <app-category-selection-card [category]="category" (selected)="categorySelected($event)"
+        class="flex-auto"></app-category-selection-card>
+    </ng-container>
+  </div>
+
+</div>

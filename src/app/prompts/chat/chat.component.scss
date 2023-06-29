@@ -16,8 +16,6 @@
 
   .chat-bar {
     display: flex;
-    justify-content: space-evenly;
-    padding-top: 10px;
     border-top: 2px;
     gap: 2rem;
     align-items: center;
@@ -32,5 +30,9 @@
         }
       }
     }
+  }
+
+  .send-button {
+    margin-right: 2rem;
   }
 }

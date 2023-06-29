@@ -1,0 +1,35 @@
+<div class="g-card rounded-md shadow-md flex flex-col gap-1 min-w-full min-h-full max-h-80" [ngClass]="{'cursor-pointer': mode === 'home'}">
+  <div class="w-full flex items-center">
+    <div class="font-medium text-xl w-9/12">{{prompt?.name}}</div>
+    <div class="flex w-3/12 justify-end">
+      <ng-container *ngIf="!isInList; else inList">
+        <button mat-icon-button [matTooltip]="tooltip_add" (click)="addToList()">
+          <mat-icon>favorite_outline</mat-icon>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+  <div class="w-full flex items-center flex-wrap gap-2">
+    <div *ngFor="let category of prompt?.categories" class="px-2 py-1 bg-gray-200 rounded text-xs">
+      {{category.name}}
+    </div>
+  </div>
+  <p class="text-slate-500 text-xs max-h-64">{{prompt?.description}}</p>
+  <div class="flex flex-row">
+    <ng-container *ngIf="mode === 'gallery'">
+      <div class="flex flex-col gap-y-2">
+        <button (click)="use(prompt)"
+          class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          <mat-icon>electric_bolt</mat-icon>
+          <span class="mx-1" i18n="Try it">Try It</span>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #inList>
+  <button *ngIf="mode ===  'gallery'" mat-icon-button [matTooltip]="tooltip_delete" (click)="removeFromList()">
+    <mat-icon class="text-red-600">favorite</mat-icon>
+  </button>
+</ng-template>

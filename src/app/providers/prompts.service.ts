@@ -17,4 +17,7 @@ export class PromptsService {
   getPromptById(promptId: unknown) {
     return this.http.get<PromptDto>(environment.apiUrl + '/prompts/' + promptId);
   }
+  getPromptByIds(promptIds: unknown) {
+    return this.http.post<PromptDto[]>(environment.apiUrl + '/prompts/ids', promptIds);
+  }
 }

@@ -10,6 +10,14 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "fr": {
+            "translation": "src/locale/fr/messages.fr.xlf"
+          }
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -36,6 +44,9 @@
             "scripts": []
           },
           "configurations": {
+            "fr": {
+              "localize": ["fr"]
+            },
             "production": {
               "budgets": [
                 {
@@ -76,6 +87,9 @@
             },
             "development": {
               "browserTarget": "accelerator-app:build:development"
+            },
+            "fr": {
+              "browserTarget": "accelerator-app:build:development,fr"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +97,9 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "accelerator-app:build"
+            "browserTarget": "accelerator-app:build",
+            "format": "xlf",
+            "outputPath": "src/locale"
           }
         },
         "test": {
