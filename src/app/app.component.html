@@ -14,11 +14,6 @@
           <span i18n="gallery">Gallery</span>
         </a>
 
-        <a routerLink="/contribute" class="flex items-center gap-2 p-3">
-          <mat-icon>add</mat-icon>
-          <span i18n="create prompt">Create prompt</span>
-        </a>
-
         <div class="flex flex-col mt-auto">
           <ng-container *ngIf="userService.userAuthenticated">
             <app-user-credits-card></app-user-credits-card>
@@ -42,6 +37,16 @@
         <span i18n="create prompt">Start for free</span>
       </a>
     </div>
+
+
+    <div *ngIf="userService.userAuthenticated" class="w-full flex justify-end gap-5">
+      <a routerLink="/contribute"
+         class="rounded inline-flex items-center px-3 py-2 text-sm font-semibold bg-indigo-500 text-white">
+        <mat-icon>add</mat-icon>
+        <span i18n="create prompt">Create a new prompt</span>
+      </a>
+    </div>
+
     <router-outlet class="h-full"></router-outlet>
   </div>
 </div>
