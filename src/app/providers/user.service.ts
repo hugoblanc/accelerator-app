@@ -3,6 +3,7 @@ import {Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {UserDto} from "./dto/user.dto";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UserService {
 
   userAuthenticated: UserDto | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   register(email: string, password: string): Observable<UserDto> {
     const body = { email, password };
@@ -27,6 +28,11 @@ export class UserService {
         console.log(this.userAuthenticated);
       })
     );
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.userAuthenticated = null;
   }
 
 }

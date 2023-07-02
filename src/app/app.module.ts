@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { WelcomeModule } from "./welcome/welcome.module";
 import {SignUpModule} from "./sign-up/sign-up.module";
 import {AuthInterceptor} from "./providers/auth-interceptor";
+import {UserModule} from "./user/user.module";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {AuthInterceptor} from "./providers/auth-interceptor";
     HttpClientModule,
     WelcomeModule,
     MatListModule,
-    SignUpModule
+    SignUpModule,
+    UserModule
   ],
   providers: [
     {

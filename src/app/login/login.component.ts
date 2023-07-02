@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../providers/auth.service";
 import {catchError, EMPTY, of, tap} from "rxjs";
 import {Router} from "@angular/router";
+import {UserService} from "../providers/user.service";
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private userService: UserService,
     private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
@@ -31,6 +33,7 @@ export class LoginComponent {
         (response) => {
           const token = response.token;
           this.authService.storeToken(token);
+          this.userService.setCurrentUser().subscribe();
           this.router.navigate(['/home']).then();
         },
         (error) => {
