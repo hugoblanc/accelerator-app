@@ -12,14 +12,12 @@ export class UserPromptsListComponent implements OnInit {
 
   prompts: PromptDto[] = [];
 
-  userPromptIdsList: string[] = [];
   constructor(private router: Router,
     private readonly promptsService: PromptsService) {
-    this.userPromptIdsList = JSON.parse(localStorage.getItem('promptList') || '[]');
   }
 
   getPrompts() {
-    this.promptsService.getPromptByIds(this.userPromptIdsList).subscribe((prompts) => this.getPromptsSuccess(prompts));
+    this.promptsService.getMyPrompts().subscribe((prompts) => this.getPromptsSuccess(prompts));
   }
 
   ngOnInit() {
@@ -28,7 +26,6 @@ export class UserPromptsListComponent implements OnInit {
 
   getPromptsSuccess(prompts: PromptDto[]) {
     this.prompts = prompts;
-    console.log(this.prompts);
   }
 
   goToPrompt(prompt: PromptDto) {

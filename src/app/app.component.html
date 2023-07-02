@@ -10,25 +10,26 @@
           <span i18n="gallery">Gallery</span>
         </a>
 
-        <mat-divider></mat-divider>
+        <ng-container *ngIf="userService.userAuthenticated">
+          <mat-divider></mat-divider>
 
-        <app-user-prompts-list class="h-full mt-2"></app-user-prompts-list>
+          <app-user-prompts-list class="h-full mt-2"></app-user-prompts-list>
 
-        <a routerLink="/home" class="flex items-center gap-2 p-3 text-gray-500 text-sm">
-          <mat-icon>settings</mat-icon>
-          <span i18n="home">Manage your prompts</span>
-        </a>
+          <a routerLink="/home" class="flex items-center gap-2 p-3 text-gray-500 text-sm">
+            <mat-icon>settings</mat-icon>
+            <span i18n="home">Manage your prompts</span>
+          </a>
 
-        <mat-divider></mat-divider>
+          <mat-divider></mat-divider>
 
-        <div class="flex flex-col mt-auto">
-          <ng-container *ngIf="userService.userAuthenticated">
+          <div class="flex flex-col mt-auto">
             <app-user-credits-card></app-user-credits-card>
             <app-user-card></app-user-card>
             <app-logout class="mt-2"></app-logout>
-          </ng-container>
+          </div>
+        </ng-container>
 
-        </div>
+
       </div>
     </div>
   </div>

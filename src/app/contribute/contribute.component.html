@@ -27,8 +27,6 @@
       </mat-form-field>
     </div>
 
-
-
     <mat-form-field appearance="outline">
       <mat-label>Prompt</mat-label>
       <textarea matInput placeholder="Put prompt variables between [], eg: Act as persona [Persona]" rows="15"
@@ -61,6 +59,9 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+
+    <mat-checkbox formControlName="opened">Will this prompt be accessible to everyone?</mat-checkbox>
+
 
     <div class="flex flex-row justify-center">
       <button type="submit" [disabled]="!createPromptForms.valid"

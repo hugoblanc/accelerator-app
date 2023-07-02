@@ -15,12 +15,7 @@ export class PromptCardComponent implements OnInit {
 
   @Input() isInList: boolean = false;
 
-  @Output() addedToList = new EventEmitter<PromptDto>();
-  @Output() removedFromList = new EventEmitter<PromptDto>();
-
-  // Translation
-  tooltip_delete = $localize`Delete from my list`
-  tooltip_add = $localize`Add to my list`
+  @Output() deleted = new EventEmitter<PromptDto>();
 
   constructor(private router: Router) {
   }
@@ -37,11 +32,7 @@ export class PromptCardComponent implements OnInit {
     }
   }
 
-  addToList() {
-    this.addedToList.emit(this.prompt);
-  }
-
-  removeFromList() {
-    this.removedFromList.emit(this.prompt);
+  delete() {
+    this.deleted.emit(this.prompt);
   }
 }

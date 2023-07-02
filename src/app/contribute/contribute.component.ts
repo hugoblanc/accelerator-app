@@ -17,6 +17,7 @@ interface CreatePromptForm {
   model: FormControl<GPTModel>;
   name: FormControl<string>;
   categories: FormControl<any[]>;
+  opened: FormControl<boolean>;
 }
 
 
@@ -40,7 +41,8 @@ export class ContributeComponent implements OnInit {
     description: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     model: new FormControl(GPTModel.GPT35Turbo, { nonNullable: true, validators: [Validators.required] }),
     name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    categories: new FormControl<any[]>([], { nonNullable: true, validators: [Validators.required] })
+    categories: new FormControl<any[]>([], { nonNullable: true, validators: [Validators.required] }),
+    opened: new FormControl(false, { nonNullable: true, validators: [Validators.required] })
   });
 
   get modelEnum(): typeof GPTModel {
@@ -59,19 +61,17 @@ export class ContributeComponent implements OnInit {
   }
 
   savePrompt() {
-    const { text, name, description, model } = this.createPromptForms.value;
+    const { text, name, description, model, opened } = this.createPromptForms.value;
     const categoryIds = this.categories.map(category => category.id).filter(id => id !== undefined) as string[];
     const categoryNamesToCreate = this.categories.filter(category => category.id === undefined).map(category => category.name);
 
-    if (!text || !name || !categoryIds || !description || !model) return;
+    if (!text || !name || !categoryIds || !description || !model || opened == null ) return;
 
-    this.contribPrompt.createPrompt({ text, name, description, categoryIds, categoryNamesToCreate, model }).subscribe((prompt) => {
+    this.contribPrompt.createPrompt({ text, name, description, categoryIds, categoryNamesToCreate, model, opened }).subscribe((prompt) => {
       this.categories = [];
       this.myForm.resetForm();
-      const snackBarRef = this.snackBar.open("Prompt created!", "Use it", { duration: 10000 });
-      snackBarRef.onAction().subscribe(() => {
-        this.router.navigate(['/prompts', (prompt as any).id]);
-      });
+      this.snackBar.open("Prompt created!");
+      this.router.navigate(['/prompts', (prompt as any).id]).then();
     });
   }
 

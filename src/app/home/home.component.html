@@ -7,21 +7,11 @@
   <div class="grid grid-cols-3 gap-4">
     <ng-container *ngIf="prompts?.length; else emptyPrompts">
       <app-prompt-card *ngFor="let prompt of prompts" class="max-h-36"
-                       (removedFromList)="removeFromList($event)"
-                       [ngClass]="promptSelected?.id === prompt.id ? 'border-2 border-black rounded-md' : 'undefined'"
+                       (deleted)="delete($event)"
                        [mode]="'home'" [prompt]="prompt">
       </app-prompt-card>
     </ng-container>
   </div>
-
-  <ng-container *ngIf="promptSelected">
-    <div class="flex justify-between">
-      <div class="text-xl">How to use this prompt?</div>
-      <a class="text-xs cursor-pointer text-gray-600 hover:underline hover:text-red-400"
-         (click)="removeFromList(promptSelected)">Remove this prompt from my list</a>
-    </div>
-    <app-use [promptId]="promptSelected.id"></app-use>
-  </ng-container>
 </div>
 
 

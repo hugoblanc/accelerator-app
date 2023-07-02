@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import {HomeRoutingModule} from "./home-routing.module";
 import {CoreModule} from "../core/core.module";
 import {PromptsModule} from "../prompts/prompts.module";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {PromptsModule} from "../prompts/prompts.module";
     CommonModule,
     HomeRoutingModule,
     CoreModule,
-    PromptsModule
+    PromptsModule,
+    MatSnackBarModule
   ]
 })
 export class HomeModule { }

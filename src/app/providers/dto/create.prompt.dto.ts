@@ -5,6 +5,7 @@ export interface CreatePromptDto {
   description: string;
   name: string;
   model: GPTModel;
+  opened: boolean;
   categoryIds: string[];
   categoryNamesToCreate: string[];
 }

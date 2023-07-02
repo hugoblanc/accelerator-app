@@ -25,7 +25,6 @@ export class UserService {
     return this.http.get<UserDto>(`${this.apiUrl}/current`).pipe(
       tap(user => {
         this.userAuthenticated = user;
-        console.log(this.userAuthenticated);
       })
     );
   }
