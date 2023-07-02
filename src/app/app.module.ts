@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeModule } from "./welcome/welcome.module";
+import {SignUpModule} from "./sign-up/sign-up.module";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { WelcomeModule } from "./welcome/welcome.module";
     HttpClientModule,
     WelcomeModule,
     MatListModule,
+    SignUpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
