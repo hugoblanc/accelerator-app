@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {PromptsService} from "../../../providers/prompts.service";
 import {PromptDto} from "../../../providers/dto/prompt.dto";
-import {of} from "rxjs";
 
 @Component({
   selector: 'app-user-prompts-list',

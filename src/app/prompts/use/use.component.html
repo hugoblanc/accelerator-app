@@ -1,6 +1,6 @@
-<div class="p-2">
-  <div class="flex flex-row gap-5">
-    <div class="w-1/2 g-card">
+<div class="p-2 h-full">
+  <div class="flex flex-row gap-5 h-full">
+    <div class="w-1/2 g-card shadow">
       <form *ngIf="usePromptForms" [formGroup]="usePromptForms" (ngSubmit)="startEngine()">
         <div class="font-bold">Prompt:</div>
         <div class="whitespace-pre-wrap"> "{{preview}}"</div>

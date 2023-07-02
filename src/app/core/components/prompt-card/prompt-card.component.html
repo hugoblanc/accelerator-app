@@ -7,6 +7,22 @@
           <mat-icon>favorite_outline</mat-icon>
         </button>
       </ng-container>
+
+      <ng-container *ngIf="mode === 'home'">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="use(prompt)">
+            <mat-icon>electric_bolt</mat-icon>
+            Use It
+          </button>
+          <button mat-menu-item (click)="removeFromList()">
+            <mat-icon>delete</mat-icon>
+              Remove from my list
+          </button>
+        </mat-menu>
+      </ng-container>
     </div>
   </div>
   <div class="w-full flex items-center flex-wrap gap-2">

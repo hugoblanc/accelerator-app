@@ -38,10 +38,6 @@ export class HomeComponent implements OnInit {
     this.prompts = prompts;
   }
 
-  selectPrompt(prompt: PromptDto) {
-    this.promptSelected = prompt;
-  }
-
   removeFromList(prompt: PromptDto) {
     var userList: string[] = JSON.parse(localStorage.getItem('promptList') || '[]');
     if (userList && prompt) {

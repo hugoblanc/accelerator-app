@@ -5,6 +5,7 @@ import { PromptCardComponent } from './components/prompt-card/prompt-card.compon
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -17,11 +18,12 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     CategorySelectionCardComponent,
     PromptCardComponent
   ],
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        MatIconModule,
-        MatTooltipModule
-    ]
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatMenuModule
+  ]
 })
 export class CoreModule { }

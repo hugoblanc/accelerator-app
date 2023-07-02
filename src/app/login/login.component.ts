@@ -33,7 +33,7 @@ export class LoginComponent {
           const token = response.token;
           this.authService.storeToken(token);
           this.userService.setCurrentUser().subscribe();
-          this.router.navigate(['/home']).then();
+          this.router.navigate(['/gallery']).then();
         },
         (error) => {
           console.error(error);

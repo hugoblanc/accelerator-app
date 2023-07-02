@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.userService.setCurrentUser().subscribe(
-        () => this.router.navigate(['/home']).then(),
+        () => this.router.navigate(['/gallery']).then(),
       );
     }
   }

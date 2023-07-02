@@ -38,14 +38,6 @@ export class UseComponent implements OnInit, OnDestroy {
     return this.chatService.isSessionInitialized;
   }
 
-  // get id(): string {
-  //   const promptId = this._promptId ?? this.route.snapshot.paramMap.get('promptId');
-  //   if (!promptId) {
-  //     throw new Error('Prompt ID is not defined');
-  //   }
-  //   return promptId;
-  // }
-
   constructor(
     private readonly promptsService: PromptsService,
     private readonly route: ActivatedRoute,

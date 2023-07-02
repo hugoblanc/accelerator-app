@@ -6,9 +6,10 @@
 
   <div class="grid grid-cols-3 gap-4">
     <ng-container *ngIf="prompts?.length; else emptyPrompts">
-      <app-prompt-card *ngFor="let prompt of prompts" class="max-h-36" (click)="selectPrompt(prompt)"
-        [ngClass]="promptSelected?.id === prompt.id ? 'border-2 border-black rounded-md' : 'undefined'"
-        [mode]="'home'" [prompt]="prompt">
+      <app-prompt-card *ngFor="let prompt of prompts" class="max-h-36"
+                       (removedFromList)="removeFromList($event)"
+                       [ngClass]="promptSelected?.id === prompt.id ? 'border-2 border-black rounded-md' : 'undefined'"
+                       [mode]="'home'" [prompt]="prompt">
       </app-prompt-card>
     </ng-container>
   </div>
@@ -16,7 +17,8 @@
   <ng-container *ngIf="promptSelected">
     <div class="flex justify-between">
       <div class="text-xl">How to use this prompt?</div>
-      <a class="text-xs cursor-pointer text-gray-600 hover:underline hover:text-red-400" (click)="removeFromList(promptSelected)">Remove this prompt from my list</a>
+      <a class="text-xs cursor-pointer text-gray-600 hover:underline hover:text-red-400"
+         (click)="removeFromList(promptSelected)">Remove this prompt from my list</a>
     </div>
     <app-use [promptId]="promptSelected.id"></app-use>
   </ng-container>
@@ -27,7 +29,7 @@
   <div class="flex flex-col text-gray-400">
     <p i18n="no prompt yet">You don't have any prompts yet</p>
     <p i18n>Visit the <a [routerLink]="'/gallery'" class="font-bold text-black">Gallery</a> or <a
-        [routerLink]="'/contribute'" class="font-bold text-black">Create a new one</a></p>
+      [routerLink]="'/contribute'" class="font-bold text-black">Create a new one</a></p>
   </div>
 
 </ng-template>

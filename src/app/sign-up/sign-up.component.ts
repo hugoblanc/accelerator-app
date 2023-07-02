@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
       this.userService.register(userData.email, userData.password)
         .subscribe(
           (result) => {
-            this.router.navigate(['/home']).then();
+            this.router.navigate(['/gallery']).then();
           }
         );
     }
