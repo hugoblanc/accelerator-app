@@ -7,13 +7,15 @@
     <div>
       <ul
         class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-6 md:mt-0 md:border-0">
-        <li>
-          <a routerLink="/home"
-             class="flex items-center gap-2 py-2 pl-3 pr-4 rounded bg-transparent g-bg-linear-hover p-0">
-            <mat-icon>home</mat-icon>
-            <span i18n="home">Home</span>
-          </a>
-        </li>
+        <ng-container *ngIf="userService.userAuthenticated">
+          <li>
+            <a routerLink="/home"
+               class="flex items-center gap-2 py-2 pl-3 pr-4 rounded bg-transparent g-bg-linear-hover p-0">
+              <mat-icon>home</mat-icon>
+              <span i18n="home">Home</span>
+            </a>
+          </li>
+        </ng-container>
         <li>
           <a routerLink="/gallery"
              class="flex items-center gap-2 py-2 pl-3 pr-4 rounded bg-transparent g-bg-linear-hover p-0">
@@ -21,13 +23,15 @@
             <span i18n="gallery">Gallery</span>
           </a>
         </li>
-        <li>
-          <a routerLink="/contribute"
-             class="flex items-center gap-2 py-2 pl-3 pr-4 rounded bg-transparent g-bg-linear-hover p-0">
-            <mat-icon>add</mat-icon>
-            <span i18n="create prompt">Create prompt</span>
-          </a>
-        </li>
+        <ng-container *ngIf="userService.userAuthenticated">
+          <li>
+            <a routerLink="/contribute"
+               class="flex items-center gap-2 py-2 pl-3 pr-4 rounded bg-transparent g-bg-linear-hover p-0">
+              <mat-icon>add</mat-icon>
+              <span i18n="create prompt">Create prompt</span>
+            </a>
+          </li>
+        </ng-container>
       </ul>
     </div>
   </div>

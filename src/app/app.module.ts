@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from "@angular/material/list";
@@ -11,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeModule } from "./welcome/welcome.module";
 import {SignUpModule} from "./sign-up/sign-up.module";
+import {AuthInterceptor} from "./providers/auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -28,7 +28,13 @@ import {SignUpModule} from "./sign-up/sign-up.module";
     MatListModule,
     SignUpModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
