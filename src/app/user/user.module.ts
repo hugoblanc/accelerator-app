@@ -6,6 +6,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatIconModule} from "@angular/material/icon";
+import { UserPromptsListComponent } from './components/user-prompts-list/user-prompts-list.component';
 
 
 
@@ -13,12 +14,14 @@ import {MatIconModule} from "@angular/material/icon";
     declarations: [
         UserCardComponent,
         UserCreditsCardComponent,
-        LogoutComponent
+        LogoutComponent,
+        UserPromptsListComponent
     ],
   exports: [
     UserCardComponent,
     UserCreditsCardComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserPromptsListComponent
   ],
   imports: [
     CommonModule,

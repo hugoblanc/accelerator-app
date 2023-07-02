@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import { ChatService } from '../../providers/chat.service';
 import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
 import { PromptsService } from '../../providers/prompts.service';
@@ -28,22 +28,23 @@ export class UseComponent implements OnInit, OnDestroy {
     this.getPrompt();
   }
 
-  _promptId: string | undefined;
+  _promptId!: string;
   usePromptForms!: FormGroup<UsePromptForm>;
   preview: string = '';
   initialPromptText: string = '';
+  private routeSubscription!: Subscription;
 
   get isSessionInitialized(): boolean {
     return this.chatService.isSessionInitialized;
   }
 
-  get id(): string {
-    const promptId = this._promptId ?? this.route.snapshot.paramMap.get('promptId');
-    if (!promptId) {
-      throw new Error('Prompt ID is not defined');
-    }
-    return promptId;
-  }
+  // get id(): string {
+  //   const promptId = this._promptId ?? this.route.snapshot.paramMap.get('promptId');
+  //   if (!promptId) {
+  //     throw new Error('Prompt ID is not defined');
+  //   }
+  //   return promptId;
+  // }
 
   constructor(
     private readonly promptsService: PromptsService,
@@ -52,11 +53,20 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getPrompt();
+    this.routeSubscription = this.route.paramMap.subscribe(params => {
+      const promptId = params.get('promptId');
+      if (promptId) {
+        this._promptId = promptId;
+        this.getPrompt();
+      } else if (this._promptId) {
+        this.getPrompt();
+      }
+    });
+
   }
 
   getPrompt() {
-    this.promptsService.getPromptById(this.id).subscribe((prompt) => this.initForm(prompt));
+    this.promptsService.getPromptById(this._promptId).subscribe((prompt) => this.initForm(prompt));
   }
 
   ngOnDestroy(): void {
@@ -103,6 +113,6 @@ export class UseComponent implements OnInit, OnDestroy {
 
 
   startEngine() {
-    this.chatService.usePrompt(this.usePromptForms.value, this.preview, this.id).subscribe();
+    this.chatService.usePrompt(this.usePromptForms.value, this.preview, this._promptId).subscribe();
   }
 }

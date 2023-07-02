@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../providers/auth.service";
-import {catchError, EMPTY, of, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {UserService} from "../providers/user.service";
 
