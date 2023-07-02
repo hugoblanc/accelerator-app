@@ -10,6 +10,8 @@ import { CategoryService } from '../providers/category.service';
 import { CategoryDto } from '../providers/dto/category.dto';
 import { ContribPromptService } from './contrib-prompt.service';
 import { GPTModel } from './gtp-model.enum';
+import {UserService} from "../providers/user.service";
+import {PromptDto} from "../providers/dto/prompt.dto";
 
 interface CreatePromptForm {
   text: FormControl<string>;
@@ -49,7 +51,11 @@ export class ContributeComponent implements OnInit {
     return GPTModel;
   }
 
-  constructor(private readonly contribPrompt: ContribPromptService, private readonly snackBar: MatSnackBar, private readonly categoryService: CategoryService, private readonly router: Router) { }
+  constructor(private readonly contribPrompt: ContribPromptService,
+              private readonly snackBar: MatSnackBar,
+              private readonly categoryService: CategoryService,
+              private readonly userService: UserService,
+              private readonly router: Router) { }
 
   ngOnInit(): void {
     this.categories$ = this.categoryCtrl.valueChanges
@@ -72,6 +78,7 @@ export class ContributeComponent implements OnInit {
       this.myForm.resetForm();
       this.snackBar.open("Prompt created!");
       this.router.navigate(['/prompts', (prompt as any).id]).then();
+      this.userService.setPromptList() // refresh the user prompt list
     });
   }
 

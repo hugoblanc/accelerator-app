@@ -5,8 +5,8 @@
   </div>
 
   <div class="grid grid-cols-3 gap-4">
-    <ng-container *ngIf="prompts?.length; else emptyPrompts">
-      <app-prompt-card *ngFor="let prompt of prompts" class="max-h-36"
+    <ng-container *ngIf="userService.promptList?.length; else emptyPrompts">
+      <app-prompt-card *ngFor="let prompt of userService.promptList" class="max-h-36"
                        (deleted)="delete($event)"
                        [mode]="'home'" [prompt]="prompt">
       </app-prompt-card>

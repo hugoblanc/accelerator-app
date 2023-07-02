@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {PromptsService} from "../../../providers/prompts.service";
 import {PromptDto} from "../../../providers/dto/prompt.dto";
+import {UserService} from "../../../providers/user.service";
 
 @Component({
   selector: 'app-user-prompts-list',
@@ -10,22 +10,11 @@ import {PromptDto} from "../../../providers/dto/prompt.dto";
 })
 export class UserPromptsListComponent implements OnInit {
 
-  prompts: PromptDto[] = [];
-
   constructor(private router: Router,
-    private readonly promptsService: PromptsService) {
-  }
-
-  getPrompts() {
-    this.promptsService.getMyPrompts().subscribe((prompts) => this.getPromptsSuccess(prompts));
+    public readonly userService: UserService) {
   }
 
   ngOnInit() {
-    this.getPrompts();
-  }
-
-  getPromptsSuccess(prompts: PromptDto[]) {
-    this.prompts = prompts;
   }
 
   goToPrompt(prompt: PromptDto) {

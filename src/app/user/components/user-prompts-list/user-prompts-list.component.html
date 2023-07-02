@@ -1,6 +1,6 @@
 <div class="h-full flex flex-col gap-1">
   <span class="text-gray-500">Your prompts</span>
-  <div *ngFor="let prompt of prompts"
+  <div *ngFor="let prompt of userService.promptList"
        class="p-2 rounded-md text-sm border-2 border-gray-200 cursor-pointer bg-gray-200 hover:bg-gray-100"
        (click)="goToPrompt(prompt)">
     <span class="flex-grow">{{prompt.name}}</span>
