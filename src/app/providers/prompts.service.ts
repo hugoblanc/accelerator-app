@@ -26,4 +26,8 @@ export class PromptsService {
   deletePrompt(promptId: string) {
     return this.http.delete(environment.apiUrl + '/prompts/' + promptId);
   }
+
+  forkPrompt(promptId: string) {
+    return this.http.post(environment.apiUrl + '/prompts/fork/' + promptId, null);
+  }
 }
