@@ -9,6 +9,9 @@ import { PromptsService } from '../../../providers/prompts.service';
   styleUrls: ['./prompt-card.component.scss']
 })
 export class PromptCardComponent implements OnInit {
+  edit(arg0: PromptDto) {
+    throw new Error('Method not implemented.');
+  }
 
   @Input() prompt: PromptDto | undefined;
 

@@ -2,18 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategorySelectionCardComponent } from './components/category-selection-card/category-selection-card.component';
 import { PromptCardComponent } from './components/prompt-card/prompt-card.component';
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import {MatTooltipModule} from "@angular/material/tooltip";
-import {MatMenuModule} from "@angular/material/menu";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatMenuModule } from "@angular/material/menu";
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-    declarations: [
-        CategorySelectionCardComponent,
-        PromptCardComponent
-    ],
+  declarations: [
+    CategorySelectionCardComponent,
+    PromptCardComponent
+  ],
   exports: [
     CategorySelectionCardComponent,
     PromptCardComponent
@@ -23,7 +24,8 @@ import {MatMenuModule} from "@angular/material/menu";
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatMenuModule
+    MatMenuModule,
+    RouterModule
   ]
 })
 export class CoreModule { }
