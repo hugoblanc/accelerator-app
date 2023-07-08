@@ -95,7 +95,7 @@ export class ContributeComponent implements OnInit {
     this.contribPrompt.createPrompt({ text, name, description, categoryIds, categoryNamesToCreate, model, opened }).subscribe((prompt) => {
       this.categories = [];
       this.myForm.resetForm();
-      this.snackBar.open("Prompt created!");
+      this.snackBar.open("Prompt created!",'Close', {duration : 2000});
       this.router.navigate(['/prompts', (prompt as any).id]).then();
       this.userService.setPromptList() // refresh the user prompt list
     });

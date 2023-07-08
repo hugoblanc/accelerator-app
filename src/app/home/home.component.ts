@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   deleteSuccess(prompt: PromptDto) {
-    this.snackBarService.open('Prompt deleted', 'OK', {duration: 3000});
+    this.snackBarService.open('Prompt deleted', 'OK', {duration: 2000});
     this.userService.promptList = this.userService.promptList.filter((p) => p.id !== prompt.id);
   }
 }

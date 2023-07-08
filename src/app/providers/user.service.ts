@@ -45,7 +45,6 @@ export class UserService {
     this.promptService.getMyPrompts().subscribe(prompts => {
       this.promptList = prompts;
       this.promptListIsLoading = false;
-      console.log(this.promptList);
     });
   }
 

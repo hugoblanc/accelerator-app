@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../providers/user.service";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthService} from "../providers/auth.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -12,6 +14,8 @@ export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
 
   constructor(private fb: FormBuilder,
+              private snackBarService: MatSnackBar,
+              private authService: AuthService,
               private router: Router,
               private userService: UserService) { }
 
@@ -29,7 +33,19 @@ export class SignUpComponent implements OnInit {
       this.userService.register(userData.email, userData.password)
         .subscribe(
           (result) => {
-            this.router.navigate(['/gallery']).then();
+            this.snackBarService.open('User account has been created successfully', 'Close', {duration : 2000});
+            // Login the user to have his jwt token
+            this.authService.login(userData.email, userData.password).subscribe(
+              (response) => {
+                const token = response.token;
+                this.authService.storeToken(token);
+                this.userService.setCurrentUser().subscribe();
+                this.router.navigate(['/gallery']).then();
+              },
+              (error) => {
+                console.error(error);
+              }
+            );
           }
         );
     }

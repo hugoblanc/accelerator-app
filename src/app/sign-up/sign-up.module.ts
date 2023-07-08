@@ -5,6 +5,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {SignUpRoutingModule} from "./sign-up-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 
@@ -17,7 +18,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatInputModule,
     MatButtonModule,
     SignUpRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ]
 })
 export class SignUpModule { }
