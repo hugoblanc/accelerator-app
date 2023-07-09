@@ -18,6 +18,7 @@ import {MessageComponent} from './chat/message/message.component';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {MatDividerModule} from "@angular/material/divider";
 import {MarkdownModule} from "ngx-markdown";
+import {CoreModule} from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MarkdownModule} from "ngx-markdown";
     MatProgressBarModule,
     ClipboardModule,
     MatDividerModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    CoreModule
   ]
 })
 export class PromptsModule {

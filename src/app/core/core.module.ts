@@ -7,18 +7,21 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatMenuModule } from "@angular/material/menu";
 import { RouterModule } from '@angular/router';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 
 @NgModule({
   declarations: [
     CategorySelectionCardComponent,
-    PromptCardComponent
+    PromptCardComponent,
+    LoaderComponent
   ],
-  exports: [
-    CategorySelectionCardComponent,
-    PromptCardComponent
-  ],
+    exports: [
+        CategorySelectionCardComponent,
+        PromptCardComponent,
+        LoaderComponent
+    ],
   imports: [
     CommonModule,
     MatButtonModule,

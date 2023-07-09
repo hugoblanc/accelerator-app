@@ -5,6 +5,7 @@ import {Observable, Subscription} from 'rxjs';
 import { ChatService } from '../../providers/chat.service';
 import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
 import { PromptsService } from '../../providers/prompts.service';
+import {UserService} from "../../providers/user.service";
 
 type VariableArray = FormArray<FormGroup<{
   key: FormControl<string>,
@@ -41,6 +42,7 @@ export class UseComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly promptsService: PromptsService,
+    public readonly userService: UserService,
     private readonly route: ActivatedRoute,
     private readonly chatService: ChatService) {
   }

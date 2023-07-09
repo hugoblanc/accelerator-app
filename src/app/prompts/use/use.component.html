@@ -43,6 +43,13 @@
 
 
   <ng-template #noResult>
-    <div class="w-full text-center text-gray-300 font-bold text-xl h-64">Run the prompt to see output</div>
+    <div class="w-full justify-center text-gray-300 font-bold text-xl h-64 flex items-center">
+      <ng-container *ngIf="userService.userAuthenticated">
+        Run the prompt to see output
+      </ng-container>
+      <ng-container *ngIf="!userService.userAuthenticated">
+        Log in to lunch this prompt
+      </ng-container>
+    </div>
   </ng-template>
 </div>
