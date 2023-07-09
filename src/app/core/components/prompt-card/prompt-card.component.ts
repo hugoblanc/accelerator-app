@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PromptDto } from "../../../providers/dto/prompt.dto";
 import { Router } from "@angular/router";
 import { PromptsService } from '../../../providers/prompts.service';
+import {UserService} from "../../../providers/user.service";
 
 @Component({
   selector: 'app-prompt-card',
@@ -21,7 +22,9 @@ export class PromptCardComponent implements OnInit {
 
   @Output() deleted = new EventEmitter<PromptDto>();
 
-  constructor(private router: Router, private readonly promptService: PromptsService) {
+  constructor(private router: Router,
+              public userService: UserService,
+              private readonly promptService: PromptsService) {
   }
 
   use(prompt: PromptDto) {

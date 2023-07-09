@@ -44,7 +44,7 @@
             <span class="mx-1" i18n="Try it">Try It</span>
           </button>
 
-          <button (click)="fork(prompt)"
+          <button *ngIf="userService.userAuthenticated" (click)="fork(prompt)"
             class="rounded inline-flex items-center px-2 py-1.5 text-sm font-semibold border border-indigo-500 text-indigo-500">
             <mat-icon>fork_right</mat-icon>
             <span class="mx-1" i18n="Fork it">Fork It</span>
