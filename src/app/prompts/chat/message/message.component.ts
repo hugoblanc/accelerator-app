@@ -13,5 +13,6 @@ export class MessageComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = this.message.role;
+    console.log(this.role);
   }
 }
