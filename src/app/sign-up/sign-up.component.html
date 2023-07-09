@@ -1,7 +1,17 @@
 <div class="flex items-center justify-center h-full">
   <div class="g-card shadow">
-    <form [formGroup]="signUpForm" class="p-5">
+    <form [formGroup]="signUpForm" class="p-5 gap-5">
       <h2 class="text-center">Create a new account</h2>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Firstname</mat-label>
+        <input matInput formControlName="firstname">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Lastname</mat-label>
+        <input matInput formControlName="lastname">
+      </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>Email</mat-label>

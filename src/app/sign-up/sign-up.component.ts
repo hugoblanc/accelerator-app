@@ -23,6 +23,8 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
     });
   }
 
@@ -30,7 +32,7 @@ export class SignUpComponent implements OnInit {
     if (this.signUpForm.valid) {
       // Envoyez les données du formulaire au backend pour créer un compte utilisateur
       const userData = this.signUpForm.value;
-      this.userService.register(userData.email, userData.password)
+      this.userService.register(userData.email, userData.password, userData.firstname, userData.lastname)
         .subscribe(
           (result) => {
             this.snackBarService.open('User account has been created successfully', 'Close', {duration : 2000});
