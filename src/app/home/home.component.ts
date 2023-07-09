@@ -17,9 +17,6 @@ export class HomeComponent implements OnInit {
     private snackBarService: MatSnackBar,
     public userService: UserService,
     private readonly promptsService: PromptsService) {
-    if (!localStorage.getItem('onboarding')) {
-      this.router.navigate(['/welcome']).then();
-    }
   }
 
   ngOnInit() {

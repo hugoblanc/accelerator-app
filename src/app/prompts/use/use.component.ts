@@ -32,6 +32,7 @@ export class UseComponent implements OnInit, OnDestroy {
   usePromptForms!: FormGroup<UsePromptForm>;
   preview: string = '';
   initialPromptText: string = '';
+  prompt!: PromptDto;
   private routeSubscription!: Subscription;
 
   get isSessionInitialized(): boolean {
@@ -66,6 +67,7 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   initForm(prompt: PromptDto) {
+    this.prompt = prompt;
     if (prompt.promptVariables) {
       const variables: VariableArray = new FormArray(
         prompt.promptVariables.map((variable) =>

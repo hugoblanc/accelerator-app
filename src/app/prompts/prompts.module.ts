@@ -16,6 +16,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './chat/message/message.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -27,19 +28,20 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
   exports: [
     UseComponent
   ],
-  imports: [
-    CommonModule,
-    PromptsRoutingModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatChipsModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    ClipboardModule
-  ]
+    imports: [
+        CommonModule,
+        PromptsRoutingModule,
+        MatCardModule,
+        MatIconModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatChipsModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        ClipboardModule,
+        MatDividerModule
+    ]
 })
 export class PromptsModule { }
