@@ -2,6 +2,9 @@ FROM node:16.14.0-alpine3.14 as config-builder
 
 WORKDIR /app
 
+ARG API_URL
+ENV API_URL=$API_URL
+
 COPY config.js .
 COPY src/assets/config.json ./src/assets/config.json
 RUN node config.js
