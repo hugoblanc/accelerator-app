@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { PromptDto } from './dto/prompt.dto';
 
 @Injectable({
@@ -12,22 +11,22 @@ export class PromptsService {
   constructor(private readonly http: HttpClient) { }
 
   getPrompts() {
-    return this.http.get<PromptDto[]>(environment.apiUrl + '/prompts');
+    return this.http.get<PromptDto[]>('/prompts');
   }
   getPromptById(promptId: unknown) {
-    return this.http.get<PromptDto>(environment.apiUrl + '/prompts/id/' + promptId);
+    return this.http.get<PromptDto>('/prompts/id/' + promptId);
   }
   getPromptByIds(promptIds: unknown) {
-    return this.http.post<PromptDto[]>(environment.apiUrl + '/prompts/ids', promptIds);
+    return this.http.post<PromptDto[]>('/prompts/ids', promptIds);
   }
   getMyPrompts() {
-    return this.http.get<PromptDto[]>(environment.apiUrl + '/prompts/myPrompts');
+    return this.http.get<PromptDto[]>('/prompts/myPrompts');
   }
   deletePrompt(promptId: string) {
-    return this.http.delete(environment.apiUrl + '/prompts/' + promptId);
+    return this.http.delete('/prompts/' + promptId);
   }
 
   forkPrompt(promptId: string) {
-    return this.http.post(environment.apiUrl + '/prompts/fork/' + promptId, null);
+    return this.http.post('/prompts/fork/' + promptId, null);
   }
 }

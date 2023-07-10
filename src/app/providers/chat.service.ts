@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { tap } from 'rxjs';
 
 export interface Message {
@@ -45,7 +44,7 @@ export class ChatService {
     this.chatSession.startLoading();
     this.chatSession.messages.push({ content: preview, role: 'user' });
 
-    return this.http.post<{ result: string }>(environment.apiUrl + '/chat/start-chat/' + this.chatSession.promptId, variables)
+    return this.http.post<{ result: string }>('/chat/start-chat/' + this.chatSession.promptId, variables)
       .pipe(
         tap(this.addAssistantResponse.bind(this))
       );
@@ -57,7 +56,7 @@ export class ChatService {
 
     this.chatSession.startLoading();
     this.chatSession?.messages.push({ content: value, role: 'user' });
-    return this.http.post<{ result: string }>(environment.apiUrl + '/chat/continue-chatting/' + this.chatSession.promptId, { messages: this.chatSession?.messages })
+    return this.http.post<{ result: string }>('/chat/continue-chatting/' + this.chatSession.promptId, { messages: this.chatSession?.messages })
       .pipe(tap(this.addAssistantResponse.bind(this)));
   }
 

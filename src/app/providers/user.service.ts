@@ -1,18 +1,17 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import {Observable, tap} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {UserDto} from "./dto/user.dto";
-import {AuthService} from "./auth.service";
-import {PromptDto} from "./dto/prompt.dto";
-import {PromptsService} from "./prompts.service";
+import { Observable, tap } from "rxjs";
+import { AuthService } from "./auth.service";
+import { PromptDto } from "./dto/prompt.dto";
+import { UserDto } from "./dto/user.dto";
+import { PromptsService } from "./prompts.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private apiUrl: string = environment.apiUrl + '/users'
+  private apiUrl: string = '/users'
 
   userAuthenticated: UserDto | null = null;
 
