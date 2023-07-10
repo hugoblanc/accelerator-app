@@ -19,8 +19,7 @@
 
   <!--  Results component-->
   <div class="grid grid-cols-4 gap-4">
-    <app-prompt-card *ngFor="let prompt of filteredPrompts" [prompt]="prompt" [isInList]="isInList(prompt)"
-      (removedFromList)="removeFromList($event)" (addedToList)="addToList($event)"></app-prompt-card>
+    <app-prompt-card *ngFor="let prompt of filteredPrompts" [prompt]="prompt"></app-prompt-card>
   </div>
 
 

@@ -1,6 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PromptDto} from "../../../providers/dto/prompt.dto";
-import {Router} from "@angular/router";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PromptDto } from "../../../providers/dto/prompt.dto";
+import { Router } from "@angular/router";
+import { PromptsService } from '../../../providers/prompts.service';
+import {UserService} from "../../../providers/user.service";
 
 @Component({
   selector: 'app-prompt-card',
@@ -8,6 +10,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./prompt-card.component.scss']
 })
 export class PromptCardComponent implements OnInit {
+  edit(arg0: PromptDto) {
+    throw new Error('Method not implemented.');
+  }
 
   @Input() prompt: PromptDto | undefined;
 
@@ -15,20 +20,21 @@ export class PromptCardComponent implements OnInit {
 
   @Input() isInList: boolean = false;
 
-  @Output() addedToList = new EventEmitter<PromptDto>();
-  @Output() removedFromList = new EventEmitter<PromptDto>();
+  @Output() deleted = new EventEmitter<PromptDto>();
 
-  // Translation
-  tooltip_delete = $localize`Delete from my list`
-  tooltip_add = $localize`Add to my list`
-
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              public userService: UserService,
+              private readonly promptService: PromptsService) {
   }
 
-  use(prompt: PromptDto | undefined) {
-    if (prompt) {
-      this.router.navigate(['/prompts/' + prompt.id]).then();
-    }
+  use(prompt: PromptDto) {
+    this.router.navigate(['/prompts/' + prompt.id]).then();
+  }
+
+  fork(prompt: PromptDto) {
+    this.promptService.forkPrompt(prompt?.id).subscribe((forkedPrompt: any) => {
+      this.router.navigate(['/prompts/' + forkedPrompt.id]).then();
+    });
   }
 
   ngOnInit(): void {
@@ -37,11 +43,7 @@ export class PromptCardComponent implements OnInit {
     }
   }
 
-  addToList() {
-    this.addedToList.emit(this.prompt);
-  }
-
-  removeFromList() {
-    this.removedFromList.emit(this.prompt);
+  delete() {
+    this.deleted.emit(this.prompt);
   }
 }

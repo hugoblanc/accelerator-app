@@ -1,0 +1,22 @@
+<div class="flex items-center justify-center h-full">
+  <div class="g-card shadow">
+    <form [formGroup]="loginForm" class="p-5">
+      <h2 class="text-center">Login</h2>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="example@gmail.com" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Password" formControlName="password">
+      </mat-form-field>
+      <div class="flex items-center justify-center">
+        <button class="rounded inline-flex items-center bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                type="submit" (click)="onSubmit()">Log in</button>
+      </div>
+    </form>
+  </div>
+
+</div>

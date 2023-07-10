@@ -1,3 +1,11 @@
+FROM node:16.14.0-alpine3.14 as config-builder
+
+WORKDIR /app
+
+COPY config.js .
+RUN node config.js
+
+
 # Use an official Node.js runtime as a parent image
 FROM node:16.14.0-alpine3.14 as builder
 
@@ -8,13 +16,14 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
+
 
 # Copy the rest of the application code to the working directory
 COPY . .
 
 # Build the Angular app
-RUN npm run build --prod
+RUN npm run build --configuration=production
 
 # Use a smaller, lightweight base image for serving
 FROM nginx:1.21.3-alpine

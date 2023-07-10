@@ -1,0 +1,9 @@
+<div class="flex flex-row border-2 rounded-md border-indigo-200 p-3 items-center">
+  <div class="img-circle bg-indigo-500 text-white">
+    {{userService.userAuthenticated?.firstname?.charAt(0)}}{{userService.userAuthenticated?.lastname?.charAt(0)}}
+  </div>
+  <div class="text-indigo-500 text-md ml-2 flex flex-col">
+    <span><b>{{userService.userAuthenticated?.firstname}} {{userService.userAuthenticated?.lastname}}</b></span>
+    <span>{{userService.userAuthenticated?.email}}</span>
+  </div>
+</div>

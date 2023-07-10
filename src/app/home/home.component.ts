@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { PromptsService } from "../providers/prompts.service";
 import { Observable } from "rxjs";
 import { PromptDto } from "../providers/dto/prompt.dto";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserService} from "../providers/user.service";
 
 @Component({
   selector: 'app-home',
@@ -11,49 +13,22 @@ import { PromptDto } from "../providers/dto/prompt.dto";
 })
 export class HomeComponent implements OnInit {
 
-  prompts: PromptDto[] = [];
-
-  userPromptIdsList: string[] = [];
-
-  promptSelected?: PromptDto;
-
   constructor(private router: Router,
+    private snackBarService: MatSnackBar,
+    public userService: UserService,
     private readonly promptsService: PromptsService) {
-    if (!localStorage.getItem('onboarding')) {
-      this.router.navigate(['/welcome']).then();
-    } else {
-      this.userPromptIdsList = JSON.parse(localStorage.getItem('promptList') || '[]');
-    }
   }
 
   ngOnInit() {
-    this.getPrompts();
   }
 
-  getPrompts() {
-    this.promptsService.getPromptByIds(this.userPromptIdsList).subscribe((prompts) => this.getPromptsSuccess(prompts));
+  delete(prompt: PromptDto) {
+    this.promptsService.deletePrompt(prompt.id).subscribe(() => this.deleteSuccess(prompt));
   }
 
-  getPromptsSuccess(prompts: PromptDto[]) {
-    this.prompts = prompts;
-  }
-
-  selectPrompt(prompt: PromptDto) {
-    this.promptSelected = prompt;
-  }
-
-  removeFromList(prompt: PromptDto) {
-    var userList: string[] = JSON.parse(localStorage.getItem('promptList') || '[]');
-    if (userList && prompt) {
-      const index = userList.findIndex((id) => id === prompt.id);
-      if (index !== -1) {
-        userList.splice(index, 1);
-        const indexObs = this.prompts.findIndex((entity) => prompt.id === entity.id);
-        this.prompts.splice(indexObs, 1);
-        localStorage.setItem('promptList', JSON.stringify(userList));
-        this.promptSelected = undefined;
-      }
-    }
+  deleteSuccess(prompt: PromptDto) {
+    this.snackBarService.open('Prompt deleted', 'OK', {duration: 2000});
+    this.userService.promptList = this.userService.promptList.filter((p) => p.id !== prompt.id);
   }
 }
 

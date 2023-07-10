@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { CategoryDto } from './dto/category.dto';
 
 @Injectable({
@@ -12,10 +11,10 @@ export class CategoryService {
 
   getCategories(name?: string | null) {
     const options = name ? { params: { name } } : {};
-    return this.http.get<CategoryDto[]>(environment.apiUrl + '/categories', options);
+    return this.http.get<CategoryDto[]>('/categories', options);
   }
 
   createCategory(name: string) {
-    return this.http.post(environment.apiUrl + '/categories', { name });
+    return this.http.post('/categories', { name });
   }
 }

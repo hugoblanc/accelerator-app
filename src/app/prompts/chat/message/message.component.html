@@ -1,12 +1,11 @@
-<div class="msg-bubble">
+<div class="flex flex-col w-full items-center py-1" [ngClass]="{'bg-gray-100': role === 'user'}" >
 
-  <div class="msg-info">
+  <div class="flex flex-row w-1/2 justify-between items-center">
     <div class="msg-info-name">{{message.role | titlecase}}</div>
     <div class="msg-info-time"><button mat-button [cdkCopyToClipboard]="message.content">
         <mat-icon>content_copy</mat-icon>
       </button></div>
   </div>
 
-  <div class="msg-text" [innerHTML]="message.content">
-  </div>
+  <div class="msg-text w-1/2" [innerHTML]="message.content | markdown"></div>
 </div>
