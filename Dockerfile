@@ -25,6 +25,7 @@ RUN npm ci
 
 # Copy the rest of the application code to the working directory
 COPY . .
+COPY --from=config-builder /app/src/assets/config.json ./src/assets/config.json
 
 # Build the Angular app
 RUN npm run build --configuration=production
