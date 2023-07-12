@@ -1,32 +1,57 @@
-<div class="flex items-center justify-center h-full">
-  <div class="g-card shadow">
-    <form [formGroup]="signUpForm" class="p-5 gap-5">
-      <h2 class="text-center">Create a new account</h2>
-
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Firstname</mat-label>
-        <input matInput formControlName="firstname">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Lastname</mat-label>
-        <input matInput formControlName="lastname">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="example@gmail.com" formControlName="email">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" placeholder="Password" formControlName="password">
-      </mat-form-field>
-      <div class="flex items-center justify-center">
-        <button class="rounded inline-flex items-center bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                type="submit" (click)="onSubmit()">Sign up</button>
-      </div>
-    </form>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create an account</h2>
   </div>
 
+  <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form [formGroup]="signUpForm" class="space-y-6" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="firstname" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
+        <div class="mt-2">
+          <input id="firstname" name="firstname" type="text" formControlName="firstname" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+      <div>
+        <label for="lastname" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+        <div class="mt-2">
+          <input id="lastname" name="lastname" type="text" formControlName="lastname" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+        <div class="mt-2">
+          <input id="email" name="email" type="email" autocomplete="email" formControlName="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+        <div class="mt-2">
+          <input id="password" name="password" type="password" autocomplete="new-password" formControlName="password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+      <div>
+        <label for="passwordConfirmation" class="block text-sm font-medium leading-6 text-gray-900">Confirm Password</label>
+        <div class="mt-2">
+          <input id="passwordConfirmation" name="passwordConfirmation" type="password" autocomplete="new-password" formControlName="passwordConfirmation" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+
+      <div class="text-red-500" *ngIf="signUpForm.get('passwordConfirmation')?.hasError('passwordMismatch') && signUpForm.get('passwordConfirmation')?.touched">
+        Passwords do not match.
+      </div>
+
+      <div>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
+      </div>
+    </form>
+
+    <div class="mt-10 text-center text-sm text-gray-500">
+      Already have an account?
+      <a routerLink="/login" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Sign in</a>
+    </div>
+  </div>
 </div>
