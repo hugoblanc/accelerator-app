@@ -11,19 +11,19 @@
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="use(prompt)">
               <mat-icon>electric_bolt</mat-icon>
-              Use It
+              <span i18n>Use It</span>
             </button>
             <button mat-menu-item routerLink="/contribute/{{prompt.id}}" routerLinkActive="router-link-active">
               <mat-icon>edit</mat-icon>
-              Edit
+              <span i18n>Edit</span>
             </button>
             <button mat-menu-item (click)="fork(prompt)">
               <mat-icon>fork_right</mat-icon>
-              Fork It
+              <span i18n>Fork It</span>
             </button>
             <button mat-menu-item (click)="delete()">
               <mat-icon>delete</mat-icon>
-              Delete
+              <span i18n>Delete</span>
             </button>
           </mat-menu>
         </ng-container>
