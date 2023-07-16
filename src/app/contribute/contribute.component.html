@@ -5,14 +5,14 @@
 
     <div class="text-2xl font-bold mb-5">Create a new prompt</div>
 
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="A killer prompt for sales" formControlName="name">
+    </mat-form-field>
+
     <div class="flex gap-4">
 
-      <mat-form-field appearance="outline" class="w-2/3">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="A killer prompt for sales" formControlName="name">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="w-1/3">
+      <mat-form-field appearance="outline" class="w-1/2">
         <mat-label>Model</mat-label>
         <mat-select formControlName="model">
           <mat-option [value]="modelEnum.GPT35Turbo">
@@ -22,6 +22,19 @@
           <mat-option [value]="modelEnum.GPT4">
             <mat-icon>auto_awesome</mat-icon>
             GPT-4
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-1/2">
+        <mat-label i18n="language">Language</mat-label>
+        <mat-select formControlName="lang">
+          <mat-option *ngFor="let language of languagesList" [value]="language.value">
+            <div class="flex flex-row gap-5 items-center">
+              <img [src]="'/assets/images/flags/' + language.flag + '.svg'" alt="flag" width="25" class="rounded">
+              <span>{{language.name}}</span>
+            </div>
+
           </mat-option>
         </mat-select>
       </mat-form-field>

@@ -4,7 +4,7 @@
     <div class="w-full flex items-center">
       <div class="font-medium text-xl w-9/12">{{prompt.name}}</div>
       <div class="flex w-3/12 justify-end">
-        <ng-container *ngIf="mode === 'home'">
+        <ng-container *ngIf="mode === 'home'; else language">
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_horiz</mat-icon>
           </button>
@@ -54,3 +54,9 @@
     </div>
   </div>
 </ng-container>
+
+<ng-template #language>
+  <ng-container *ngIf="prompt">
+    <img [src]="'/assets/images/flags/' + getFlag() + '.svg'" alt="flag" width="25" class="rounded">
+  </ng-container>
+</ng-template>
