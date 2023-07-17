@@ -2,51 +2,147 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="2821179408673282599" datatype="html">
-        <source>Home</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-        <note priority="1" from="description">home</note>
-      </trans-unit>
       <trans-unit id="2181154762165715522" datatype="html">
         <source>Gallery</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <note priority="1" from="description">gallery</note>
       </trans-unit>
-      <trans-unit id="1455444070089634673" datatype="html">
-        <source>Create prompt</source>
+      <trans-unit id="3776395933349661437" datatype="html">
+        <source>Manage your prompts</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">home</note>
+      </trans-unit>
+      <trans-unit id="840692109692540367" datatype="html">
+        <source>Sign In</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1494195545418521225" datatype="html">
+        <source>Start for free</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1792913990617194754" datatype="html">
+        <source>Create a new prompt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contribute/contribute.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
         <note priority="1" from="description">create prompt</note>
+      </trans-unit>
+      <trans-unit id="8953033926734869941" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contribute/contribute.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2826581353496868063" datatype="html">
+        <source>Language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contribute/contribute.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/gallery/gallery.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">language</note>
+      </trans-unit>
+      <trans-unit id="7686866803574290184" datatype="html">
+        <source>Put prompt variables between text(), eg: Act as persona text(PERSONA)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contribute/contribute.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <note priority="1" from="description">prompt create-placeholder</note>
+      </trans-unit>
+      <trans-unit id="8180751774391517083" datatype="html">
+        <source>Description to help users to understand it</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contribute/contribute.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <note priority="1" from="description">description help</note>
+      </trans-unit>
+      <trans-unit id="1806667489382256324" datatype="html">
+        <source>Category</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contribute/contribute.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/gallery/gallery.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4717838798954160391" datatype="html">
+        <source>Will this prompt be accessible to everyone?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contribute/contribute.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5592473304833889078" datatype="html">
+        <source>Create my prompt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contribute/contribute.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8158089296770068535" datatype="html">
+        <source>Use It</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7585826646011739428" datatype="html">
+        <source>Edit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1181887549131157769" datatype="html">
+        <source>Fork It</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6192255928376640659" datatype="html">
         <source>Try It</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">44</context>
         </context-group>
         <note priority="1" from="description">Try it</note>
-      </trans-unit>
-      <trans-unit id="5408278033096006593" datatype="html">
-        <source>Delete from my list</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8727895599577852669" datatype="html">
-        <source>Add to my list</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/core/components/prompt-card/prompt-card.component.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="4153648057850936186" datatype="html">
         <source>Search a prompt</source>
@@ -56,14 +152,6 @@
         </context-group>
         <note priority="1" from="description">search a prompt</note>
       </trans-unit>
-      <trans-unit id="1806667489382256324" datatype="html">
-        <source>Category</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/gallery/gallery.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-        <note priority="1" from="description">category</note>
-      </trans-unit>
       <trans-unit id="6256593087556038995" datatype="html">
         <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="All Categories&lt;/b&gt;&lt;/mat-o"/>All Categories<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
         <context-group purpose="location">
@@ -72,27 +160,95 @@
         </context-group>
         <note priority="1" from="description">all categories</note>
       </trans-unit>
+      <trans-unit id="3879064266303275809" datatype="html">
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="All Languages&lt;/b&gt;&lt;/mat-op"/>All Languages<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/gallery/gallery.component.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+        <note priority="1" from="description">all categories</note>
+      </trans-unit>
       <trans-unit id="854010648554435642" datatype="html">
         <source>My prompts</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">3</context>
         </context-group>
         <note priority="1" from="description">prompts</note>
+      </trans-unit>
+      <trans-unit id="1304756989820534550" datatype="html">
+        <source>Manage your prompts below</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">prompts-additional-text</note>
       </trans-unit>
       <trans-unit id="8724429827618198739" datatype="html">
         <source>You don&apos;t have any prompts yet</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <note priority="1" from="description">no prompt yet</note>
       </trans-unit>
       <trans-unit id="6057875967635550559" datatype="html">
-        <source>Visit the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;&apos;/gallery&apos;&quot; class=&quot;font-bold text-black&quot;&gt;"/>Gallery<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> or <x id="START_LINK_1" equiv-text="&lt;a [routerLink]=&quot;&apos;/contribute&apos;&quot; class=&quot;font-bold text-black&quot;&gt;"/>Create a new one<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <source>Visit the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;&apos;/gallery&apos;&quot; class=&quot;font-bold text-black&quot;&gt;"/>Gallery<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> or <x id="START_LINK_1" equiv-text="&lt;a
+      [routerLink]=&quot;&apos;/contribute&apos;&quot; class=&quot;font-bold text-black&quot;&gt;"/>Create a new one<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
-          <context context-type="linenumber">27,29</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7927385905892512538" datatype="html">
+        <source>Variables:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/prompts/use/use.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7838478482045275504" datatype="html">
+        <source>Run It</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/prompts/use/use.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6826289214955505852" datatype="html">
+        <source> Run the prompt to see output </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/prompts/use/use.component.html</context>
+          <context context-type="linenumber">47,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3163333034978833077" datatype="html">
+        <source> Log in to launch this prompt </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/prompts/use/use.component.html</context>
+          <context context-type="linenumber">50,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5113165610004622651" datatype="html">
+        <source>Log Out</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/user/components/logout/logout.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Log Out</note>
+      </trans-unit>
+      <trans-unit id="2853139694130238544" datatype="html">
+        <source>Unlimited credits</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/user/components/user-credits-card/user-credits-card.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Unlimited credits</note>
+      </trans-unit>
+      <trans-unit id="7584122009131866664" datatype="html">
+        <source>Your prompts</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/user/components/user-prompts-list/user-prompts-list.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
     </body>

@@ -3,6 +3,7 @@ import { PromptDto } from "../../../providers/dto/prompt.dto";
 import { Router } from "@angular/router";
 import { PromptsService } from '../../../providers/prompts.service';
 import {UserService} from "../../../providers/user.service";
+import {getFlagByLanguage} from "../../../providers/dto/languages";
 
 @Component({
   selector: 'app-prompt-card',
@@ -45,5 +46,12 @@ export class PromptCardComponent implements OnInit {
 
   delete() {
     this.deleted.emit(this.prompt);
+  }
+
+  getFlag(): string | undefined {
+    if (this.prompt) {
+      return getFlagByLanguage(this.prompt.lang);
+    }
+    return undefined;
   }
 }

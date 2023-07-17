@@ -8,4 +8,5 @@ export interface CreatePromptDto {
   opened: boolean;
   categoryIds: string[];
   categoryNamesToCreate: string[];
+  lang: string;
 }

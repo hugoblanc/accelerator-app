@@ -3,16 +3,16 @@
   <form [formGroup]="createPromptForms" (ngSubmit)="createPromptForms.valid && savePrompt()" #myForm="ngForm"
     class="flex flex-col w-1/2 g-card shadow">
 
-    <div class="text-2xl font-bold mb-5">Create a new prompt</div>
+    <div class="text-2xl font-bold mb-5" i18n="create prompt">Create a new prompt</div>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label i18n>Name</mat-label>
+      <input matInput placeholder="A killer prompt for sales" formControlName="name">
+    </mat-form-field>
 
     <div class="flex gap-4">
 
-      <mat-form-field appearance="outline" class="w-2/3">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="A killer prompt for sales" formControlName="name">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="w-1/3">
+      <mat-form-field appearance="outline" class="w-1/2">
         <mat-label>Model</mat-label>
         <mat-select formControlName="model">
           <mat-option [value]="modelEnum.GPT35Turbo">
@@ -25,22 +25,35 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-1/2">
+        <mat-label i18n="language">Language</mat-label>
+        <mat-select formControlName="lang">
+          <mat-option *ngFor="let language of languagesList" [value]="language.value">
+            <div class="flex flex-row gap-5 items-center">
+              <img [src]="'/assets/images/flags/' + language.flag + '.svg'" alt="flag" width="25" class="rounded">
+              <span>{{language.name}}</span>
+            </div>
+
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
     <mat-form-field appearance="outline">
       <mat-label>Prompt</mat-label>
-      <textarea matInput placeholder="Put prompt variables between [], eg: Act as persona [Persona]" rows="15"
+      <textarea matInput i18n-placeholder="prompt create-placeholder" placeholder="Put prompt variables between text(), eg: Act as persona text(PERSONA)" rows="15"
         formControlName="text"></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
-      <textarea matInput placeholder="Description to help users to understand it" rows="3"
+      <textarea matInput i18n-placeholder="description help" placeholder="Description to help users to understand it" rows="3"
         formControlName="description"></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline" *ngIf="categories$ != null">
-      <mat-label>Category</mat-label>
+      <mat-label i18n>Category</mat-label>
       <mat-chip-grid #chipGrid aria-label="Fruit selection" formControlName="categories">
         <mat-chip-row *ngFor="let category of categories; let i=index" (removed)="remove(i)">
           {{category.name}}
@@ -60,14 +73,14 @@
       </mat-autocomplete>
     </mat-form-field>
 
-    <mat-checkbox formControlName="opened">Will this prompt be accessible to everyone?</mat-checkbox>
+    <mat-checkbox formControlName="opened" i18n>Will this prompt be accessible to everyone?</mat-checkbox>
 
 
     <div class="flex flex-row justify-center">
       <button type="submit" [disabled]="!createPromptForms.valid"
         class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         <mat-icon>add</mat-icon>
-        <span class="mx-1">Create my prompt</span>
+        <span class="mx-1" i18n>Create my prompt</span>
       </button>
     </div>
 

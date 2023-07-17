@@ -13,6 +13,7 @@ import { GPTModel } from './gtp-model.enum';
 import { UserService } from "../providers/user.service";
 import { PromptDto } from "../providers/dto/prompt.dto";
 import { PromptsService } from '../providers/prompts.service';
+import {languagesList} from "../providers/dto/languages";
 
 interface CreatePromptForm {
   text: FormControl<string>;
@@ -21,6 +22,7 @@ interface CreatePromptForm {
   name: FormControl<string>;
   categories: FormControl<any[]>;
   opened: FormControl<boolean>;
+  lang: FormControl<string>
 }
 
 
@@ -45,12 +47,15 @@ export class ContributeComponent implements OnInit {
     model: new FormControl(GPTModel.GPT35Turbo, { nonNullable: true, validators: [Validators.required] }),
     name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     categories: new FormControl<any[]>([], { nonNullable: true, validators: [Validators.required] }),
-    opened: new FormControl(false, { nonNullable: true, validators: [Validators.required] })
+    opened: new FormControl(false, { nonNullable: true, validators: [Validators.required] }),
+    lang: new FormControl('', { nonNullable: true, validators: [Validators.required] })
   });
 
   get modelEnum(): typeof GPTModel {
     return GPTModel;
   }
+
+  languagesList = languagesList;
 
   constructor(private readonly contribPrompt: ContribPromptService,
     private readonly promptService: PromptsService,
@@ -71,6 +76,7 @@ export class ContributeComponent implements OnInit {
             this.createPromptForms.controls.description.setValue(prompt.description);
             // this.createPromptForms.controls.model.setValue(prompt.model);
             this.createPromptForms.controls.name.setValue(prompt.name);
+            this.createPromptForms.controls.lang.setValue(prompt.lang);
             // this.createPromptForms.controls.categories.setValue(prompt.categories);
             // this.createPromptForms.controls.opened.setValue(prompt.opened);
           });
@@ -86,13 +92,13 @@ export class ContributeComponent implements OnInit {
   }
 
   savePrompt() {
-    const { text, name, description, model, opened } = this.createPromptForms.value;
+    const { text, name, description, model, opened, lang } = this.createPromptForms.value;
     const categoryIds = this.categories.map(category => category.id).filter(id => id !== undefined) as string[];
     const categoryNamesToCreate = this.categories.filter(category => category.id === undefined).map(category => category.name);
 
-    if (!text || !name || !categoryIds || !description || !model || opened == null) return;
+    if (!text || !name || !categoryIds || !description || !model || opened == null || !lang) return;
 
-    this.contribPrompt.createPrompt({ text, name, description, categoryIds, categoryNamesToCreate, model, opened }).subscribe((prompt) => {
+    this.contribPrompt.createPrompt({ text, name, description, categoryIds, categoryNamesToCreate, model, opened, lang }).subscribe((prompt) => {
       this.categories = [];
       this.myForm.resetForm();
       this.snackBar.open("Prompt created!",'Close', {duration : 2000});

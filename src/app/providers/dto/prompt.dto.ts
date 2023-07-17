@@ -5,6 +5,7 @@ export interface PromptDto {
   name: string;
   promptVariables?: Variable[]
   categories?: Category[]
+  lang: string;
 
 }
 

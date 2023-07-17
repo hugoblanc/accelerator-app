@@ -15,7 +15,7 @@
         </div>
 
 
-        <div class="font-bold mt-5">Variables:</div>
+        <div class="font-bold mt-5" i18n>Variables:</div>
         <div class="flex flex-col">
           <mat-form-field *ngFor="let variable of usePromptForms.controls.variables?.controls" appearance="outline">
             <input matInput [formControl]="variable.controls.value">
@@ -23,9 +23,9 @@
         </div>
 
         <div class="flex w-full justify-center">
-          <button class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          <button [disabled]="!userService.userAuthenticated" class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-gray-500">
             <mat-icon>psychology</mat-icon>
-            <span class="mx-1">Run It</span>
+            <span class="mx-1" i18n>Run It</span>
           </button>
         </div>
 
@@ -44,11 +44,11 @@
 
   <ng-template #noResult>
     <div class="w-full justify-center text-gray-300 font-bold text-xl h-64 flex items-center">
-      <ng-container *ngIf="userService.userAuthenticated">
+      <ng-container *ngIf="userService.userAuthenticated" i18n>
         Run the prompt to see output
       </ng-container>
-      <ng-container *ngIf="!userService.userAuthenticated">
-        Log in to lunch this prompt
+      <ng-container *ngIf="!userService.userAuthenticated" i18n>
+        Log in to launch this prompt
       </ng-container>
     </div>
   </ng-template>

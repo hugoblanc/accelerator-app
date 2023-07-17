@@ -4,8 +4,8 @@ import { PromptDto } from "../providers/dto/prompt.dto";
 import { Observable } from "rxjs";
 import { PromptsService } from "../providers/prompts.service";
 import { CategoryService } from "../providers/category.service";
-import { MatSelectChange } from "@angular/material/select";
 import { ActivatedRoute, ParamMap } from "@angular/router";
+import {languagesList} from "../providers/dto/languages";
 
 @Component({
   selector: 'app-gallery',
@@ -16,6 +16,7 @@ export class GalleryComponent implements OnInit {
 
   searchInput: string = '';
   categorySelectedId: string | undefined = undefined;
+  langSelected: string | undefined = undefined;
 
   userList: string[] = [];
 
@@ -24,6 +25,7 @@ export class GalleryComponent implements OnInit {
 
   filteredPrompts: PromptDto[] = [];
 
+  languagesList = languagesList;
 
 
   constructor(private route: ActivatedRoute,
@@ -44,7 +46,11 @@ export class GalleryComponent implements OnInit {
     this.loadFilteredPrompt();
   }
 
-  categorySelect(event: MatSelectChange) {
+  categorySelect() {
+    this.loadFilteredPrompt();
+  }
+
+  langSelect() {
     this.loadFilteredPrompt();
   }
 
@@ -62,6 +68,9 @@ export class GalleryComponent implements OnInit {
       }
       if (this.categorySelectedId) {
         this.filteredPrompts = this.filteredPrompts.filter(prompt => prompt.categories?.findIndex(item => item.id === this.categorySelectedId) != -1);
+      }
+      if (this.langSelected) {
+        this.filteredPrompts = this.filteredPrompts.filter(prompt => prompt.lang === this.langSelected);
       }
     });
   }
