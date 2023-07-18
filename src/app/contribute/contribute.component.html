@@ -1,6 +1,6 @@
 <div class="g-screen-container flex justify-center">
 
-  <form [formGroup]="createPromptForms" (ngSubmit)="createPromptForms.valid && savePrompt()" #myForm="ngForm"
+  <form [formGroup]="createPromptForms" (ngSubmit)="createPromptForms.valid && save()" #myForm="ngForm"
     class="flex flex-col w-1/2 g-card shadow">
 
     <div class="text-2xl font-bold mb-5" i18n="create prompt">Create a new prompt</div>
@@ -42,14 +42,15 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Prompt</mat-label>
-      <textarea matInput i18n-placeholder="prompt create-placeholder" placeholder="Put prompt variables between text(), eg: Act as persona text(PERSONA)" rows="15"
+      <textarea matInput i18n-placeholder="prompt create-placeholder"
+        placeholder="Put prompt variables between text(), eg: Act as persona text(PERSONA)" rows="15"
         formControlName="text"></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
-      <textarea matInput i18n-placeholder="description help" placeholder="Description to help users to understand it" rows="3"
-        formControlName="description"></textarea>
+      <textarea matInput i18n-placeholder="description help" placeholder="Description to help users to understand it"
+        rows="3" formControlName="description"></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline" *ngIf="categories$ != null">
@@ -76,11 +77,19 @@
     <mat-checkbox formControlName="opened" i18n>Will this prompt be accessible to everyone?</mat-checkbox>
 
 
-    <div class="flex flex-row justify-center">
+    <div class="flex flex-row justify-center" *ngIf="isEditing">
       <button type="submit" [disabled]="!createPromptForms.valid"
         class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         <mat-icon>add</mat-icon>
         <span class="mx-1" i18n>Create my prompt</span>
+      </button>
+    </div>
+
+    <div class="flex flex-row justify-center" *ngIf="isEditing">
+      <button type="submit" [disabled]="!createPromptForms.valid"
+        class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        <mat-icon>edit</mat-icon>
+        <span class="mx-1" i18n>Save modifications</span>
       </button>
     </div>
 

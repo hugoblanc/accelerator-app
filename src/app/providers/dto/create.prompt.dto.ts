@@ -10,3 +10,5 @@ export interface CreatePromptDto {
   categoryNamesToCreate: string[];
   lang: string;
 }
+
+export interface EditPromptDto extends CreatePromptDto { id: string };

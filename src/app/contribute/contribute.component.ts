@@ -11,9 +11,10 @@ import { CategoryDto } from '../providers/dto/category.dto';
 import { ContribPromptService } from './contrib-prompt.service';
 import { GPTModel } from './gtp-model.enum';
 import { UserService } from "../providers/user.service";
-import { PromptDto } from "../providers/dto/prompt.dto";
+import { PromptDto, PromptToEditDto } from "../providers/dto/prompt.dto";
 import { PromptsService } from '../providers/prompts.service';
-import {languagesList} from "../providers/dto/languages";
+import { languagesList } from "../providers/dto/languages";
+import { CreatePromptDto } from '../providers/dto/create.prompt.dto';
 
 interface CreatePromptForm {
   text: FormControl<string>;
@@ -56,6 +57,7 @@ export class ContributeComponent implements OnInit {
   }
 
   languagesList = languagesList;
+  isEditing = false;
 
   constructor(private readonly contribPrompt: ContribPromptService,
     private readonly promptService: PromptsService,
@@ -71,14 +73,17 @@ export class ContributeComponent implements OnInit {
       .subscribe(params => {
         const promptId = params.get('promptId');
         if (promptId) {
-          this.promptService.getPromptById(promptId).subscribe((prompt: PromptDto) => {
+          this.isEditing = true;
+          this.promptService.getPromptToEdit(promptId).subscribe((prompt: PromptToEditDto) => {
             this.createPromptForms.controls.text.setValue(prompt.text);
             this.createPromptForms.controls.description.setValue(prompt.description);
-            // this.createPromptForms.controls.model.setValue(prompt.model);
+            console.log(prompt.model);
+            this.createPromptForms.controls.model.setValue(prompt.model);
             this.createPromptForms.controls.name.setValue(prompt.name);
             this.createPromptForms.controls.lang.setValue(prompt.lang);
-            // this.createPromptForms.controls.categories.setValue(prompt.categories);
-            // this.createPromptForms.controls.opened.setValue(prompt.opened);
+            this.createPromptForms.controls.categories.setValue(prompt.categories.map(category => category.id));
+            this.categories = [...prompt.categories];
+            this.createPromptForms.controls.opened.setValue(prompt.opened);
           });
         }
       });
@@ -91,20 +96,45 @@ export class ContributeComponent implements OnInit {
       );
   }
 
-  savePrompt() {
+  save() {
+
     const { text, name, description, model, opened, lang } = this.createPromptForms.value;
     const categoryIds = this.categories.map(category => category.id).filter(id => id !== undefined) as string[];
     const categoryNamesToCreate = this.categories.filter(category => category.id === undefined).map(category => category.name);
 
     if (!text || !name || !categoryIds || !description || !model || opened == null || !lang) return;
 
-    this.contribPrompt.createPrompt({ text, name, description, categoryIds, categoryNamesToCreate, model, opened, lang }).subscribe((prompt) => {
-      this.categories = [];
-      this.myForm.resetForm();
-      this.snackBar.open("Prompt created!",'Close', {duration : 2000});
-      this.router.navigate(['/prompts', (prompt as any).id]).then();
-      this.userService.setPromptList() // refresh the user prompt list
+    const data = { text, name, description, categoryIds, categoryNamesToCreate, model, opened, lang };
+
+    if (this.isEditing) {
+      this.saveEdition(data);
+    } else {
+      this.createPrompt(data);
+    }
+  }
+  private saveEdition(creationData: CreatePromptDto) {
+    const promptId = this.route.snapshot.paramMap.get('promptId') ?? '';
+    const editionData = { ...creationData, id: promptId };
+
+    this.contribPrompt.editPrompt(editionData).subscribe((prompt) => {
+      this.snackBar.open("Prompt created!", 'Close', { duration: 2000 });
+      this.resetAndNavigate(promptId);
     });
+
+  }
+
+  private createPrompt(creationData: CreatePromptDto) {
+    this.contribPrompt.createPrompt(creationData).subscribe((prompt) => {
+      this.snackBar.open("Prompt created!", 'Close', { duration: 2000 });
+      this.resetAndNavigate((prompt as any).id);
+    });
+  }
+
+  private resetAndNavigate(promptId: string) {
+    this.categories = [];
+    this.myForm.resetForm();
+    this.router.navigate(['/prompts', promptId]).then();
+    this.userService.setPromptList() // refresh the user prompt list
   }
 
   displayCategory(category: any) {
