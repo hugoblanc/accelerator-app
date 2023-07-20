@@ -100,12 +100,16 @@ export class UseComponent implements OnInit, OnDestroy {
     this.preview = this.initialPromptText;
     value.forEach((variable) => {
       if (variable.type === VariableType.text) {
-        this.preview = this.preview.replace(`text(${variable.key})`, variable.value as string);
+        this.preview = this.preview.replace(`text(${variable.key})`, this.getVariableValueViewComponent(variable.value));
       } else if (variable.type === VariableType.longText) {
-        this.preview = this.preview.replace(`longText(${variable.key})`, variable.value as string);
+        this.preview = this.preview.replace(`longText(${variable.key})`, this.getVariableValueViewComponent(variable.value));
       }
     });
   }
+
+  private getVariableValueViewComponent(value: any): string {
+    return '<b class="text-indigo-500">' + value + '</b>';
+}
 
 
   startEngine() {

@@ -1,19 +1,18 @@
 <div class="p-2 max-h-full text-sm">
   <div *ngIf="prompt">
-    <div class="text-xl">{{prompt.name}}</div>
-    <div class="text-sm text-gray-500">{{prompt.description}}</div>
+    <div class="text-2xl">{{prompt.name}}</div>
+    <div class="text-xl text-gray-500">{{prompt.description}}</div>
   </div>
 
   <div class="flex flex-col gap-5 h-full mt-2">
-    <div class="g-card shadow">
-      <form *ngIf="usePromptForms" [formGroup]="usePromptForms" (ngSubmit)="startEngine()">
-        <div class="whitespace-pre-wrap"> {{preview}}</div>
-
+    <div class="g-card shadow flex flex-row justify-center">
+      <form *ngIf="usePromptForms" class="md:w-1/2 w-full"
+            [formGroup]="usePromptForms" (ngSubmit)="startEngine()">
+        <div class="whitespace-pre-wrap" [innerHTML]="preview"></div>
 
         <div class="mt-2">
           <mat-divider></mat-divider>
         </div>
-
 
         <div class="font-bold mt-5" i18n>Variables:</div>
         <div class="flex flex-col">
