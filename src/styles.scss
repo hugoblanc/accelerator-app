@@ -60,3 +60,8 @@ body {
   text-fill-color: transparent;
   background-blend-mode: darken;
 }
+
+.snackbar-error {
+  color: #fff!important; /* Couleur du texte en blanc */
+  --mdc-snackbar-container-color: #f44336!important; /* Couleur de fond en rouge */
+}
