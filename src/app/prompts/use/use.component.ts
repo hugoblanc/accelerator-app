@@ -17,7 +17,6 @@ interface UsePromptForm {
   variables?: VariableArray;
 }
 
-
 @Component({
   selector: 'app-use',
   templateUrl: './use.component.html',
@@ -76,7 +75,7 @@ export class UseComponent implements OnInit, OnDestroy {
           new FormGroup(
             {
               key: new FormControl(variable.value, { nonNullable: true }),
-              value: new FormControl(variable.value, { nonNullable: true }),
+              value: new FormControl('', { nonNullable: true }),
               type: new FormControl(variable.type, { nonNullable: true })
             }
           ))
@@ -100,14 +99,20 @@ export class UseComponent implements OnInit, OnDestroy {
     this.preview = this.initialPromptText;
     value.forEach((variable) => {
       if (variable.type === VariableType.text) {
-        this.preview = this.preview.replace(`text(${variable.key})`, this.getVariableValueViewComponent(variable.value));
+        this.preview = this.preview.replace(`text(${variable.key})`, this.getVariableValueViewComponent(variable.value, VariableType.text));
       } else if (variable.type === VariableType.longText) {
-        this.preview = this.preview.replace(`longText(${variable.key})`, this.getVariableValueViewComponent(variable.value));
+        this.preview = this.preview.replace(`longText(${variable.key})`, this.getVariableValueViewComponent(variable.value, VariableType.longText));
       }
     });
   }
 
-  private getVariableValueViewComponent(value: any): string {
+  private getVariableValueViewComponent(value: any, type?: VariableType): string {
+    if (type === VariableType.text) {
+      return '<b class="text-indigo-500">' + value + '</b>';
+    }
+    if (type === VariableType.longText) {
+      return '<i class="text-gray-500">' + value + '</i>';
+    }
     return '<b class="text-indigo-500">' + value + '</b>';
 }
 

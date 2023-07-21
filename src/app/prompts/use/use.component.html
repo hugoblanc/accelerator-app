@@ -14,11 +14,20 @@
           <mat-divider></mat-divider>
         </div>
 
-        <div class="font-bold mt-5" i18n>Variables:</div>
-        <div class="flex flex-col">
-          <mat-form-field *ngFor="let variable of usePromptForms.controls.variables?.controls" appearance="outline">
-            <input matInput [formControl]="variable.controls.value">
-          </mat-form-field>
+        <div class="flex flex-col mt-5">
+          <ng-container *ngFor="let variable of usePromptForms.controls.variables?.controls">
+<!--            NORMAL TEXT-->
+            <mat-form-field  *ngIf="variable.controls.type.value == 'text'" appearance="outline">
+              <mat-label>{{variable.controls.key.value}}</mat-label>
+              <input matInput [formControl]="variable.controls.value">
+            </mat-form-field>
+<!--            TEXT AREA-->
+            <mat-form-field appearance="outline" *ngIf="variable.controls.type.value == 'longText'">
+              <mat-label>{{variable.controls.key.value}}</mat-label>
+              <textarea matInput rows="5" [formControl]="variable.controls.value" class="outline-none focus:ring-0 focus-visible:ring-0"></textarea>
+            </mat-form-field>
+          </ng-container>
+
         </div>
 
         <div class="flex w-full justify-center">
