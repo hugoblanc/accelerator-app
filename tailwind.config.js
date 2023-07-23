@@ -8,6 +8,17 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    function({ addBase, config }) {
+      addBase({
+        'ul': {
+          listStyleType: 'disc',
+          padding: config('theme.spacing.1'),
+        },
+        'li': {
+          marginLeft: '10px'
+        }
+      })
+    }
   ],
 }
 

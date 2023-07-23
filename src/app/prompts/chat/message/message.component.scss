@@ -1,22 +1,6 @@
-
-
-:host {
-
-  .msg-info-name {
-    margin-right: 10px;
-    font-weight: bold;
-  }
-
-  .msg-text {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-
-  .msg-info-time {
-    font-size: 0.85em;
-  }
+.msg-info-name {
+  font-weight: bold;
 }
-
-:host[role="system"] {
-  display: none;
+.mat-typography p {
+  margin: 0;
 }

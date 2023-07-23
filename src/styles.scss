@@ -65,3 +65,8 @@ body {
   color: #fff!important; /* Couleur du texte en blanc */
   --mdc-snackbar-container-color: #f44336!important; /* Couleur de fond en rouge */
 }
+
+
+.btn {
+  @apply py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700;
+}
