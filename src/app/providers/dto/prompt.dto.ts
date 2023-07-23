@@ -1,4 +1,4 @@
-import { GPTModel } from '../../contribute/gtp-model.enum';
+import {GPTModel} from '../../contribute/gtp-model.enum';
 
 export interface PromptDto {
   id: string;
@@ -8,6 +8,7 @@ export interface PromptDto {
   promptVariables?: Variable[]
   categories?: Category[]
   lang: string;
+  userId: string;
 }
 
 export interface PromptToEditDto {

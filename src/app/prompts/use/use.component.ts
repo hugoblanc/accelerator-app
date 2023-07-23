@@ -1,10 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import {Observable, Subscription} from 'rxjs';
-import { ChatService } from '../../providers/chat.service';
-import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
-import { PromptsService } from '../../providers/prompts.service';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {ChatService} from '../../providers/chat.service';
+import {PromptDto, VariableType} from '../../providers/dto/prompt.dto';
+import {PromptsService} from '../../providers/prompts.service';
 import {UserService} from "../../providers/user.service";
 
 type VariableArray = FormArray<FormGroup<{
@@ -23,27 +23,29 @@ interface UsePromptForm {
   styleUrls: ['./use.component.scss']
 })
 export class UseComponent implements OnInit, OnDestroy {
-  @Input() set promptId(value: string) {
-    this._promptId = value;
-    this.getPrompt();
-  }
-
-  _promptId!: string;
   usePromptForms!: FormGroup<UsePromptForm>;
   preview: string = '';
   initialPromptText: string = '';
   prompt!: PromptDto;
   private routeSubscription!: Subscription;
 
-  get isSessionInitialized(): boolean {
-    return this.chatService.isSessionInitialized;
-  }
-
   constructor(
     private readonly promptsService: PromptsService,
+    private router: Router,
     public readonly userService: UserService,
     private readonly route: ActivatedRoute,
     private readonly chatService: ChatService) {
+  }
+
+  _promptId!: string;
+
+  @Input() set promptId(value: string) {
+    this._promptId = value;
+    this.getPrompt();
+  }
+
+  get isSessionInitialized(): boolean {
+    return this.chatService.isSessionInitialized;
   }
 
   ngOnInit(): void {
@@ -74,21 +76,41 @@ export class UseComponent implements OnInit, OnDestroy {
         prompt.promptVariables.map((variable) =>
           new FormGroup(
             {
-              key: new FormControl(variable.value, { nonNullable: true }),
-              value: new FormControl('', { nonNullable: true }),
-              type: new FormControl(variable.type, { nonNullable: true })
+              key: new FormControl(variable.value, {nonNullable: true}),
+              value: new FormControl('', {nonNullable: true}),
+              type: new FormControl(variable.type, {nonNullable: true})
             }
           ))
       );
       this.preview = prompt.text;
       this.initialPromptText = prompt.text;
-      this.usePromptForms = new FormGroup({ variables }) as any;
+      this.usePromptForms = new FormGroup({variables}) as any;
       this.initVariableListener(variables);
     }
   }
 
   initVariableListener(variables: VariableArray) {
     variables.valueChanges.subscribe((value) => this.updatePreview(value));
+  }
+
+  startEngine() {
+    this.chatService.usePrompt(this.usePromptForms.value, this.preview, this._promptId).subscribe();
+  }
+
+  fork() {
+    this.promptsService.forkPrompt(this.prompt?.id).subscribe((forkedPrompt: any) => {
+      this.router.navigate(['/prompts/' + forkedPrompt.id]).then(
+        () => this.userService.setPromptList()
+      );
+    });
+  }
+
+  delete() {
+    this.promptsService.deletePrompt(this.prompt.id).subscribe(
+      () => this.router.navigate(['/gallery']).then(
+        () => this.userService.setPromptList()
+      )
+    );
   }
 
   private updatePreview(value: Partial<{
@@ -114,10 +136,7 @@ export class UseComponent implements OnInit, OnDestroy {
       return '<i class="text-gray-500">' + value + '</i>';
     }
     return '<b class="text-indigo-500">' + value + '</b>';
-}
-
-
-  startEngine() {
-    this.chatService.usePrompt(this.usePromptForms.value, this.preview, this._promptId).subscribe();
   }
+
+
 }
