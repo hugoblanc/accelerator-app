@@ -42,7 +42,8 @@ export class ChatService {
   usePrompt(variables: any, preview: string, promptId: string) {
     this.chatSession = new ChatSession(promptId);
     this.chatSession.startLoading();
-    this.chatSession.messages.push({ content: preview, role: 'user' });
+    // Remove the first message from the user in the discussion, it is useless
+    // this.chatSession.messages.push({ content: preview, role: 'user' });
 
     return this.http.post<{ result: string }>('/chat/start-chat/' + this.chatSession.promptId, variables)
       .pipe(
