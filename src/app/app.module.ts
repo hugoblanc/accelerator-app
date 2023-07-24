@@ -13,10 +13,12 @@ import { SignUpModule } from "./sign-up/sign-up.module";
 import { AuthInterceptor } from "./providers/auth-interceptor";
 import { UserModule } from "./user/user.module";
 import { appInitializerProviders } from './core/initializer/app.initializer';
+import {SidebarComponent} from "./sidebar/sidebar.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
