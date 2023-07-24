@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: 'gallery', pathMatch: 'full' },
+  { path: '', redirectTo: 'landing', pathMatch: 'full' },
 
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
 
@@ -16,9 +16,12 @@ const routes: Routes = [
   { path: 'prompts', loadChildren: () => import('./prompts/prompts.module').then(m => m.PromptsModule) },
 
   { path: 'contribute', loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule) },
+
   { path: 'contribute/:promptId', loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule) },
 
   { path: 'gallery', loadChildren: () => import('./gallery/gallery.module').then(m => m.GalleryModule) },
+
+  { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
 
 ];
 
