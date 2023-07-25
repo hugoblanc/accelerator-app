@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   scrollToBottom(): void {
+    if (!this.router.url.includes('prompts')) return;
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
     } catch (err) { }
