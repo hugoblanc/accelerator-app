@@ -1,32 +1,25 @@
 <div class="content">
   <app-message *ngFor="let message of chatSession?.messages" [message]="message"></app-message>
-  <ng-container *ngIf="chatSession?.isLoading">
-    <app-loader></app-loader>
-  </ng-container>
+  <app-loader *ngIf="chatSession?.isLoading"></app-loader>
 </div>
 
 <form class="flex justify-center mt-3">
   <div class="flex flex-col w-9/12 py-[10px] md:py-4 md:pl-4 relative border bg-white rounded-md shadow-xs mb-3">
-  <textarea [formControl]="chatInputCtrl"
-            matInput
-            cdkTextareaAutosize
-            #autosize="cdkTextareaAutosize"
-            cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5"
-            (keyup.enter)="sendMessage()"
-            id="prompt-textarea" tabindex="0" placeholder="Send a message"
-            class="m-0 w-full outline-none border-0 bg-transparent p-0 pr-10 focus:ring-0 focus-visible:ring-0 pl-3"
-            style="max-height: 200px; height: 24px; overflow-y: hidden;"></textarea>
+    <textarea [formControl]="chatInputCtrl" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" (keyup.enter)="sendMessage()" id="prompt-textarea" tabindex="0"
+      placeholder="Send a message"
+      class="m-0 w-full outline-none border-0 bg-transparent p-0 pr-10 focus:ring-0 focus-visible:ring-0 pl-3"
+      style="max-height: 200px; height: 24px; overflow-y: hidden;"></textarea>
     <button (click)="sendMessage()" type="button" [disabled]="!chatInputCtrl.value"
-            class="absolute p-1 rounded-md md:bottom-3 md:p-2 md:right-3 right-2 disabled:text-gray-400 enabled:bg-brand-purple text-white bottom-1.5 transition-colors disabled:opacity-40"
-            >
-    <span class="" data-state="closed">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="h-4 w-4 m-1 md:m-0 text-indigo-500"
-           stroke-width="2"><path
-        d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z"
-        fill="currentColor"></path>
-      </svg>
-    </span>
+      class="absolute p-1 rounded-md md:bottom-3 md:p-2 md:right-3 right-2 disabled:text-gray-400 enabled:bg-brand-purple text-white bottom-1.5 transition-colors disabled:opacity-40">
+      <span class="" data-state="closed">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
+          class="h-4 w-4 m-1 md:m-0 text-indigo-500" stroke-width="2">
+          <path
+            d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z"
+            fill="currentColor"></path>
+        </svg>
+      </span>
     </button>
   </div>
 
