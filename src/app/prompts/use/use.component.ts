@@ -1,11 +1,12 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {ChatService} from '../../providers/chat.service';
-import {PromptDto, VariableType} from '../../providers/dto/prompt.dto';
-import {PromptsService} from '../../providers/prompts.service';
-import {UserService} from "../../providers/user.service";
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription, catchError } from 'rxjs';
+import { ChatService } from '../../providers/chat.service';
+import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
+import { PromptsService } from '../../providers/prompts.service';
+import { UserService } from "../../providers/user.service";
+import { NoSubscriptionLeftService } from '../../providers/no-subscription-left.service';
 
 type VariableArray = FormArray<FormGroup<{
   key: FormControl<string>,
@@ -27,13 +28,13 @@ export class UseComponent implements OnInit, OnDestroy {
   preview: string = '';
   initialPromptText: string = '';
   prompt!: PromptDto;
-  private routeSubscription!: Subscription;
 
   constructor(
     private readonly promptsService: PromptsService,
     private router: Router,
     public readonly userService: UserService,
     private readonly route: ActivatedRoute,
+    private readonly noSubLeftService: NoSubscriptionLeftService,
     private readonly chatService: ChatService) {
   }
 
@@ -49,7 +50,7 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.routeSubscription = this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(params => {
       const promptId = params.get('promptId');
       if (promptId) {
         this._promptId = promptId;
@@ -62,7 +63,8 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   getPrompt() {
-    this.promptsService.getPromptById(this._promptId).subscribe((prompt) => this.initForm(prompt));
+    this.promptsService.getPromptById(this._promptId)
+      .subscribe((prompt) => this.initForm(prompt));
   }
 
   ngOnDestroy(): void {
@@ -76,15 +78,15 @@ export class UseComponent implements OnInit, OnDestroy {
         prompt.promptVariables.map((variable) =>
           new FormGroup(
             {
-              key: new FormControl(variable.value, {nonNullable: true}),
-              value: new FormControl('', {nonNullable: true}),
-              type: new FormControl(variable.type, {nonNullable: true})
+              key: new FormControl(variable.value, { nonNullable: true }),
+              value: new FormControl('', { nonNullable: true }),
+              type: new FormControl(variable.type, { nonNullable: true })
             }
           ))
       );
       this.preview = prompt.text;
       this.initialPromptText = prompt.text;
-      this.usePromptForms = new FormGroup({variables}) as any;
+      this.usePromptForms = new FormGroup({ variables }) as any;
       this.initVariableListener(variables);
     }
   }
@@ -94,7 +96,9 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   startEngine() {
-    this.chatService.usePrompt(this.usePromptForms.value, this.preview, this._promptId).subscribe();
+    this.chatService.usePrompt(this.usePromptForms.value, this.preview, this._promptId)
+      .pipe(catchError((err) => this.noSubLeftService.showToaster(err)))
+      .subscribe();
   }
 
   fork() {

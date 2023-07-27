@@ -1,6 +1,6 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {tap} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { catchError, tap } from 'rxjs';
 
 export interface Message {
   name?: string;
@@ -52,7 +52,11 @@ export class ChatService {
 
     return this.http.post<{ result: string }>('/chat/start-chat/' + this.chatSession.promptId, variables)
       .pipe(
-        tap(this.addAssistantResponse.bind(this))
+        tap(this.addAssistantResponse.bind(this)),
+        catchError((err) => {
+          this.chatSession?.stopLoading();
+          throw err;
+        })
       );
   }
 
@@ -62,15 +66,21 @@ export class ChatService {
     }
 
     this.chatSession.startLoading();
-    this.chatSession?.messages.push({content: value, role: 'user'});
-    return this.http.post<{ result: string }>('/chat/continue-chatting/' + this.chatSession.promptId, {messages: this.chatSession?.messages})
-      .pipe(tap(this.addAssistantResponse.bind(this)));
+    this.chatSession?.messages.push({ content: value, role: 'user' });
+    return this.http.post<{ result: string }>('/chat/continue-chatting/' + this.chatSession.promptId, { messages: this.chatSession?.messages })
+      .pipe(
+        tap(this.addAssistantResponse.bind(this)),
+        catchError((err) => {
+          this.chatSession?.stopLoading();
+          throw err;
+        })
+      );
   }
 
   private addAssistantResponse(message: { result: string }) {
     if (!this.chatSession) return;
 
-    this.chatSession.messages.push({content: message.result, role: 'assistant'});
+    this.chatSession.messages.push({ content: message.result, role: 'assistant' });
     this.chatSession.stopLoading();
   }
 

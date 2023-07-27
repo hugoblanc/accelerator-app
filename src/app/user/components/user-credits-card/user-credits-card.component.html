@@ -1,4 +1,13 @@
-<div class="flex flex-row p-3 items-center">
-  <img ngSrc="/assets/images/coins.png" alt="coins image" height="32" width="32"/>
-  <span class="ml-2" i18n="Unlimited credits">Unlimited credits</span>
+<div class="flex flex-row p-3 items-center" *ngIf="subscription$ | async as subscription">
+  <img *ngIf="subscription.creditLeft > 0; else forbidden" ngSrc="/assets/images/coins.png" alt="coins image"
+    height="32" width="32" />
+  <ng-template #forbidden>
+    <img ngSrc="/assets/images/forbidden.png" alt="coins image" height="32" width="32" />
+  </ng-template>
+
+  <span *ngIf="subscription === null; else showcredit" class="ml-2" i18n="Unlimited credits">Unlimited credits</span>
+  <ng-template #showcredit>
+    <span class="ml-2" i18n="">{{subscription.creditLeft}} credits left</span>
+  </ng-template>
+
 </div>
