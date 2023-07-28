@@ -17,12 +17,14 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import {WorkspaceCurrentComponent} from './sidebar/workspace/workspace-current/workspace-current.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {OverlayModule} from "@angular/cdk/overlay";
+import { WorkspaceComponent } from './workspace/workspace.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     WorkspaceCurrentComponent,
+    WorkspaceComponent,
   ],
   imports: [
     BrowserModule,
