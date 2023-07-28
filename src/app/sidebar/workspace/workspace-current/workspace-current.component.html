@@ -1,0 +1,30 @@
+<ng-container>
+  <div class="workspace-container" [matMenuTriggerFor]="menu">
+    <span>{{workspaceService.currentWorkspace?.name || 'Personal Workspace' }}</span>
+    <mat-icon class="text-gray-500">unfold_more</mat-icon>
+  </div>
+</ng-container>
+
+<mat-menu #menu="matMenu">
+  <ng-container *ngFor="let workspace of userService.workspaceList">
+    <button class="workspace-name-menu" (click)="changeWorkSpace(workspace)">
+      {{workspace.name}}
+    </button>
+  </ng-container>
+  <div class="flex justify-center p-2">
+    <a class="btn" [routerLink]="'/create-workspace'">
+      Create a new Workspace
+    </a>
+
+  </div>
+
+
+</mat-menu>
+
+
+<!--<ng-template #personalWorkspace>-->
+<!--  <div class="workspace-container" [matMenuTriggerFor]="menu">-->
+<!--    <span>Personal Workspace</span>-->
+<!--    <mat-icon class="text-gray-500">unfold_more</mat-icon>-->
+<!--  </div>-->
+<!--</ng-template>-->

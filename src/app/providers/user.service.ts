@@ -1,10 +1,11 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from '@angular/core';
-import { Observable, tap } from "rxjs";
-import { AuthService } from "./auth.service";
-import { PromptDto } from "./dto/prompt.dto";
-import { UserDto } from "./dto/user.dto";
-import { PromptsService } from "./prompts.service";
+import {HttpClient} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {Observable, tap} from "rxjs";
+import {AuthService} from "./auth.service";
+import {PromptDto} from "./dto/prompt.dto";
+import {UserDto} from "./dto/user.dto";
+import {PromptsService} from "./prompts.service";
+import {WorkspaceDto} from "./dto/workspace.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,24 @@ export class UserService {
 
   public promptList: PromptDto[] = [];
   public promptListIsLoading: boolean = false;
+  public workspaceList: WorkspaceDto[] = [];
 
-  constructor(private http: HttpClient, private authService: AuthService, private promptService: PromptsService) { }
+  constructor(private http: HttpClient, private authService: AuthService, private promptService: PromptsService) {
+    // Init a workspaceList for user with test data
+    this.workspaceList = [
+      {
+        id: '534564112132a1zeaz1e32az1e',
+        name: 'My Workspace'
+      },
+      {
+        id: '534564112132a1zeaz1e32az1e',
+        name: 'My Workspace 2'
+      }
+    ]
+  }
 
   register(email: string, password: string, firstname: string, lastname: string): Observable<UserDto> {
-    const body = { email, password, firstname, lastname };
+    const body = {email, password, firstname, lastname};
     return this.http.post<UserDto>(`${this.apiUrl}/register`, body);
   }
 

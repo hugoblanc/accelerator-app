@@ -1,0 +1,12 @@
+.workspace-container {
+  @apply w-full px-2 py-4 border border-gray-500 bg-gray-100 hover:bg-gray-50
+  rounded flex justify-between items-center font-medium cursor-pointer ;
+}
+
+.menu {
+  @apply w-64 h-6 ;
+}
+
+.workspace-name-menu {
+  @apply font-medium px-4 py-4 w-64 text-start hover:bg-indigo-50 rounded;
+}
