@@ -2,7 +2,7 @@ const fs = require("fs");
 console.log(process.env);
 
 const config = {
-  apiUrl: process.env.API_URL || "http://localhost:3000",
+  apiUrl: process.env.API_URL || "/api",
 };
 
 const configFilePath = "src/assets/config.json";
