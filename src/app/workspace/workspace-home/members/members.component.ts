@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TeamService} from "../../../providers/team.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {TeamDto} from "../../../providers/dto/team.dto";
+import {WorkspaceService} from "../../../providers/workspace.service";
 
 @Component({
   selector: 'app-members',
@@ -18,6 +19,7 @@ export class MembersComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(private teamService: TeamService,
+              private workspaceService: WorkspaceService,
               private route: ActivatedRoute) {
     this.isLoading = true;
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -27,6 +29,8 @@ export class MembersComponent implements OnInit {
           this.team = team;
           this.getMembers();
         });
+      } else {
+        this.getMembers();
       }
     });
   }
@@ -42,7 +46,10 @@ export class MembersComponent implements OnInit {
         this.isLoading = false;
       });
     } else { // if teamId is undefined, get all workspace members
-
+      this.workspaceService.getMembers().subscribe((members) => {
+        this.members = members;
+        this.isLoading = false;
+      });
     }
   }
 

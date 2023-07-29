@@ -1,10 +1,9 @@
 import {TeamDto} from "./team.dto";
+import {UserDto} from "./user.dto";
 
 export class MemberDto {
   id!: string;
-  firstname!: string;
-  lastname!: string;
-  email!: string;
+  user!: UserDto;
   role: string = 'member';
   teams!: TeamDto[];
 }

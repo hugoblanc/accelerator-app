@@ -3,6 +3,7 @@ import {WorkspaceDto} from "./dto/workspace.dto";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MemberDto} from "./dto/member.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,10 @@ export class WorkspaceService {
     this.http.get<WorkspaceDto[]>('/workspaces/mine').subscribe(
       (result) => this.getMyWorkspacesSuccess(result)
     );
+  }
+
+  public getMembers() {
+    return this.http.get<MemberDto[]>('/workspaces/members');
   }
 
   private getMyWorkspacesSuccess(workspaces: WorkspaceDto[]) {
