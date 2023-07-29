@@ -1,12 +1,22 @@
 <div class="g-card w-full h-full">
   <div class="flex flex-row justify-between items-center">
     <h2>Teams</h2>
-    <button class="g-button-primary">
-      <mat-icon>add</mat-icon>
-      Create a team
-    </button>
+
+    <div class="flex gap-2 items-start">
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-label>Search</mat-label>
+        <input matInput [(ngModel)]="searchTerm"/>
+      </mat-form-field>
+
+      <button class="g-button-primary">
+        <mat-icon>add</mat-icon>
+        Create a team
+      </button>
+    </div>
+
   </div>
 
 
-  <app-teams-table></app-teams-table>
+  <app-teams-table [searchTerm]="searchTerm" ></app-teams-table>
 </div>

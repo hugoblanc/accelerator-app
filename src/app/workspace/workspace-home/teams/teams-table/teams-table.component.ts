@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {TeamDto} from "../../../../providers/dto/team.dto";
 
@@ -11,7 +11,9 @@ export class TeamsTableComponent implements OnInit {
   dataSource = new MatTableDataSource<TeamDto>();
   displayedColumns: string[] = ['name', 'membersCount', 'promptsCount'];
 
-  searchTerm: string = '';
+  @Input() set searchTerm(value: string) {
+    this.applyFilter(value);
+  }
 
   constructor() {
   }
@@ -27,8 +29,8 @@ export class TeamsTableComponent implements OnInit {
     this.dataSource.data = teams;
   }
 
-  applyFilter(): void {
-    const filterValue = this.searchTerm.trim().toLowerCase();
+  applyFilter(searchTerm: string): void {
+    const filterValue = searchTerm.trim().toLowerCase();
     this.dataSource.filter = filterValue;
   }
 }
