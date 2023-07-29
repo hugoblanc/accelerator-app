@@ -3,14 +3,14 @@
     <div class="g-title-1">{{workspaceService.currentWorkspace?.name}}</div>
 
     <div class="flex flex-row gap-5">
-      <div class="menu-card">
+      <div class="menu-card" routerLink="teams">
         <h2>Teams</h2>
         <div class="card-content">
           <span class="g-number-text">1</span>
         </div>
       </div>
 
-      <div class="menu-card">
+      <div class="menu-card" routerLink="members">
         <h2>Members</h2>
         <div class="card-content">
           <span class="g-number-text">5</span>
@@ -27,7 +27,7 @@
 
 
     <div class="flex-grow">
-      <app-teams></app-teams>
+      <router-outlet></router-outlet>
     </div>
 
 
