@@ -11,6 +11,8 @@ export class TeamsTableComponent implements OnInit {
   dataSource = new MatTableDataSource<TeamDto>();
   displayedColumns: string[] = ['name', 'membersCount', 'promptsCount'];
 
+  searchTerm: string = '';
+
   constructor() {
   }
 
@@ -23,5 +25,10 @@ export class TeamsTableComponent implements OnInit {
     ];
 
     this.dataSource.data = teams;
+  }
+
+  applyFilter(): void {
+    const filterValue = this.searchTerm.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 }

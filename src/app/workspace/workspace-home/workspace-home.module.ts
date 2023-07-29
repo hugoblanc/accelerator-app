@@ -7,6 +7,8 @@ import { MembersComponent } from './members/members.component';
 import { TeamsTableComponent } from './teams/teams-table/teams-table.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import {MatIconModule} from "@angular/material/icon";
     CommonModule,
     WorkspaceHomeRoutingModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    FormsModule
   ]
 })
 export class WorkspaceHomeModule {
