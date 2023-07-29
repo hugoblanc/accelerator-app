@@ -1,6 +1,6 @@
 <div class="g-screen-container">
-  <div *ngIf="workspaceService.currentWorkspace" class="w-full h-full flex flex-col gap-10">
-    <div class="g-title-1">{{workspaceService.currentWorkspace.name}}</div>
+  <div *ngIf="workspaceService?.currentWorkspace" class="w-full h-full flex flex-col gap-10">
+    <div class="g-title-1">{{workspaceService.currentWorkspace?.name}}</div>
 
     <div class="flex flex-row gap-5">
       <div class="menu-card">
@@ -24,6 +24,12 @@
         </div>
       </div>
     </div>
+
+<!--    <router-outlet></router-outlet>-->
+    <div class="flex-grow">
+      <app-teams></app-teams>
+    </div>
+
 
   </div>
 </div>
