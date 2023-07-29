@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {WorkspaceDto} from "./dto/workspace.dto";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +11,49 @@ export class WorkspaceService {
 
   currentWorkspace: WorkspaceDto | undefined;
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.currentWorkspace = new WorkspaceDto();
-    this.currentWorkspace.id = '534564112132a1zeaz1e32az1e';
-    this.currentWorkspace.name = 'My Workspace';
+  currentUserWorkspaces: WorkspaceDto[] = [];
+  public workspaceListIsLoading: boolean = false;
+
+  constructor(private http: HttpClient,
+              private router: Router,
+              private snackBar: MatSnackBar) {
+    this.getMyWorkspaces();
+  }
+
+  public changeWorkspace(workspace: WorkspaceDto) {
+    this.currentWorkspace = workspace;
+    localStorage.setItem('currentWorkspaceId', workspace.id);
+    this.router.navigate(['/workspace/home']).then();
   }
 
   public createWorkspace(name: string) {
-    // return this.http.post<WorkspaceDto>('/workspaces', {name}).subscribe(
-    //   (workspace) => this.workSpaceCreationSuccess(workspace)
-    // );
-    const ws = new WorkspaceDto();
-    ws.name = name;
-    this.workSpaceCreationSuccess(ws);
+    return this.http.post<WorkspaceDto>('/workspaces', {name: name}).subscribe(
+      (workspace) => this.workSpaceCreationSuccess(workspace)
+    );
   }
 
   private workSpaceCreationSuccess(workspace: WorkspaceDto) {
     this.currentWorkspace = workspace;
+    this.snackBar.open("Workspace created successfully", 'Close', { duration: 2000 });
     this.router.navigate(['/workspace/home']).then();
+  }
+
+  public getMyWorkspaces() {
+    this.workspaceListIsLoading = true;
+    this.http.get<WorkspaceDto[]>('/workspaces/mine').subscribe(
+      (result) => this.getMyWorkspacesSuccess(result)
+    );
+  }
+
+  private getMyWorkspacesSuccess(workspaces: WorkspaceDto[]) {
+    this.currentUserWorkspaces = workspaces;
+    if(workspaces.length > 0) {
+      if (localStorage.getItem('currentWorkspaceId')) {
+        this.currentWorkspace = workspaces.find(workspace => workspace.id === localStorage.getItem('currentWorkspaceId'));
+      } else {
+        this.currentWorkspace = workspaces[0];
+      }
+    }
+    this.workspaceListIsLoading = false;
   }
 }

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {WorkspaceService} from "../../../providers/workspace.service";
-import {UserService} from "../../../providers/user.service";
 import {WorkspaceDto} from "../../../providers/dto/workspace.dto";
 
 @Component({
@@ -10,16 +9,14 @@ import {WorkspaceDto} from "../../../providers/dto/workspace.dto";
 })
 export class WorkspaceCurrentComponent implements OnInit {
 
-  isLoading = false;
-
-  constructor(public workspaceService: WorkspaceService, public userService: UserService) {
+  constructor(public workspaceService: WorkspaceService) {
   }
 
   ngOnInit(): void {
   }
 
   changeWorkSpace(workspace: WorkspaceDto): void {
-    this.workspaceService.currentWorkspace = workspace;
+    this.workspaceService.changeWorkspace(workspace);
   }
 
 }

@@ -1,12 +1,12 @@
 <div class="h-12">
-  <ng-container *ngIf="!isLoading; else loading">
+  <ng-container *ngIf="!workspaceService.workspaceListIsLoading; else loading">
     <div class="workspace-container" [matMenuTriggerFor]="menu">
       <span>{{workspaceService.currentWorkspace?.name || 'Personal Workspace' }}</span>
       <mat-icon class="text-gray-500">unfold_more</mat-icon>
     </div>
 
     <mat-menu #menu="matMenu">
-      <ng-container *ngFor="let workspace of userService.workspaceList">
+      <ng-container *ngFor="let workspace of workspaceService.currentUserWorkspaces">
         <button class="workspace-name-menu" (click)="changeWorkSpace(workspace)">
           {{workspace.name}}
         </button>
