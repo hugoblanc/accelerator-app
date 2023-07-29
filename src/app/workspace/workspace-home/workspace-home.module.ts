@@ -6,6 +6,7 @@ import { TeamsComponent } from './teams/teams.component';
 import { MembersComponent } from './members/members.component';
 import { TeamsTableComponent } from './teams/teams-table/teams-table.component';
 import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {MatTableModule} from "@angular/material/table";
   imports: [
     CommonModule,
     WorkspaceHomeRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ]
 })
 export class WorkspaceHomeModule {
