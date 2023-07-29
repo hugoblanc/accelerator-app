@@ -1,35 +1,33 @@
-<div class="g-screen-container">
-  <div *ngIf="workspaceService?.currentWorkspace" class="w-full h-full flex flex-col gap-10">
-    <div class="g-title-1">{{workspaceService.currentWorkspace?.name}}</div>
+<div *ngIf="workspaceService?.currentWorkspace" class="g-screen-container flex flex-col gap-5">
+  <div class="g-title-1">{{workspaceService.currentWorkspace?.name}}</div>
 
-    <div class="flex flex-row gap-5">
-      <div class="menu-card" routerLink="teams">
-        <h2>Teams</h2>
-        <div class="card-content">
-          <span class="g-number-text">1</span>
-        </div>
-      </div>
-
-      <div class="menu-card" routerLink="members">
-        <h2>Members</h2>
-        <div class="card-content">
-          <span class="g-number-text">5</span>
-        </div>
-      </div>
-
-      <div class="menu-card">
-        <h2>Prompts</h2>
-        <div class="card-content">
-          <span class="g-number-text">18</span>
-        </div>
+  <div class="cards-item-menu">
+    <div routerLink="teams">
+      <h2>Teams</h2>
+      <div>
+        <span>1</span>
       </div>
     </div>
 
-
-    <div class="flex-grow">
-      <router-outlet></router-outlet>
+    <div routerLink="members">
+      <h2>Members</h2>
+      <div>
+        <span>5</span>
+      </div>
     </div>
 
-
+    <div routerLink="prompts">
+      <h2>Prompts</h2>
+      <div>
+        <span>18</span>
+      </div>
+    </div>
   </div>
+
+
+  <div class="flex-grow">
+    <router-outlet></router-outlet>
+  </div>
+
+
 </div>

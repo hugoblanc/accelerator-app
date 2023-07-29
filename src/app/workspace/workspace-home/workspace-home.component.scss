@@ -1,11 +1,16 @@
-.menu-card {
-  @apply bg-white p-6 rounded-xl shadow w-1/4 flex-col hover:shadow-2xl cursor-pointer;
-}
+.cards-item-menu {
+  @apply flex flex-row gap-5;
 
-.card-content {
-  @apply items-center
-}
+  > div {
+    @apply bg-white p-6 rounded-xl shadow w-1/4 flex-col hover:shadow-2xl cursor-pointer;
 
-.kpi {
-  @apply text-2xl font-bold mb-5 text-indigo-500;
+    > div {
+      @apply items-center;
+    }
+  }
+
+  span {
+    @apply text-4xl font-bold mb-5 text-indigo-500;
+  }
+
 }
