@@ -18,20 +18,9 @@ export class UserService {
 
   public promptList: PromptDto[] = [];
   public promptListIsLoading: boolean = false;
-  public workspaceList: WorkspaceDto[] = [];
 
   constructor(private http: HttpClient, private authService: AuthService, private promptService: PromptsService) {
-    // Init a workspaceList for user with test data
-    this.workspaceList = [
-      {
-        id: '534564112132a1zeaz1e32az1e',
-        name: 'My Workspace'
-      },
-      {
-        id: '534564112132a1zeaz1e32az1e',
-        name: 'My Workspace 2'
-      }
-    ]
+
   }
 
   register(email: string, password: string, firstname: string, lastname: string): Observable<UserDto> {
