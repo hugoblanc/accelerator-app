@@ -1,13 +1,12 @@
-<div class="g-screen-container">
-  <div class="g-card w-full">
-    <div class="g-card-title">Create a new workspace</div>
-    <form [formGroup]="formGp" (ngSubmit)="submit()" class="gap-3">
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label i18n>Workspace name</mat-label>
-        <input matInput placeholder="My new Workspace" formControlName="name" maxlength="255">
-        <mat-hint *ngIf="formGp.get('name')?.value?.length" align="end">{{formGp.get('name')?.value?.length}} / 50</mat-hint>
-      </mat-form-field>
-      <button class="g-button-primary" type="submit" [disabled]="!formGp.valid">Create</button>
-    </form>
-  </div>
+<div class="g-card w-full">
+  <div class="g-card-title">Create a new workspace</div>
+  <form [formGroup]="formGp" (ngSubmit)="submit()" class="gap-3">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label i18n>Workspace name</mat-label>
+      <input matInput placeholder="My new Workspace" formControlName="name" maxlength="255">
+      <mat-hint *ngIf="formGp.get('name')?.value?.length" align="end">{{formGp.get('name')?.value?.length}} /
+        50</mat-hint>
+    </mat-form-field>
+    <button class="g-button-primary" type="submit" [disabled]="!formGp.valid">Create</button>
+  </form>
 </div>
