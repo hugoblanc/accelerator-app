@@ -1,0 +1,7 @@
+:host {
+  @apply w-full h-36 text-gray-500;
+
+  div {
+    @apply flex flex-col items-center justify-center gap-3;
+  }
+}

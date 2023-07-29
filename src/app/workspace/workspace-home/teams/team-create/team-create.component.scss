@@ -1,0 +1,11 @@
+:host {
+  @apply flex;
+
+  .g-card {
+    @apply w-full;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}

@@ -12,6 +12,7 @@ import { appInitializerProviders } from './initializer/app.initializer';
 import { ApiUrlInterceptor } from './interceptors/api-url.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
+import { NoDataComponent } from './components/no-data/no-data.component';
 
 
 
@@ -20,14 +21,16 @@ import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-l
     CategorySelectionCardComponent,
     PromptCardComponent,
     LoaderComponent,
-    SkeletonLoaderComponent
+    SkeletonLoaderComponent,
+    NoDataComponent
   ],
-    exports: [
-        CategorySelectionCardComponent,
-        PromptCardComponent,
-        LoaderComponent,
-        SkeletonLoaderComponent
-    ],
+  exports: [
+    CategorySelectionCardComponent,
+    PromptCardComponent,
+    LoaderComponent,
+    SkeletonLoaderComponent,
+    NoDataComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,

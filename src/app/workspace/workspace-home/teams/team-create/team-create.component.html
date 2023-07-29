@@ -1,9 +1,9 @@
 <div class="g-card">
-  <div class="g-card-title">Create a new workspace</div>
+  <div class="g-card-title">Create a new team</div>
   <form [formGroup]="formGp" (ngSubmit)="submit()">
     <mat-form-field appearance="outline">
-      <mat-label i18n>Workspace name</mat-label>
-      <input matInput placeholder="My new Workspace" formControlName="name" maxlength="50">
+      <mat-label i18n>Team's name</mat-label>
+      <input matInput placeholder="My new team" formControlName="name" maxlength="50">
       <mat-hint *ngIf="formGp.get('name')?.value?.length" align="end">{{formGp.get('name')?.value?.length}} /
         50</mat-hint>
     </mat-form-field>

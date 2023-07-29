@@ -1,25 +1,25 @@
-<table mat-table [dataSource]="dataSource">
+<table *ngIf="dataSource.data.length > 0; else noData" mat-table [dataSource]="dataSource">
 
   <!-- Fullname Column -->
   <ng-container matColumnDef="fullname">
     <th mat-header-cell *matHeaderCellDef> Fullname </th>
-    <td mat-cell *matCellDef="let member"> {{member.firstname}} {{member.lastname}} </td>
+    <td mat-cell *matCellDef="let member"> {{member.user.firstname}} {{member.user.lastname}} </td>
   </ng-container>
 
   <!-- Email Column -->
   <ng-container matColumnDef="email">
-    <th mat-header-cell *matHeaderCellDef> email </th>
-    <td mat-cell *matCellDef="let member"> {{member.email}} </td>
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let member"> {{member.user.email}} </td>
   </ng-container>
 
   <!-- Teams Column -->
   <ng-container matColumnDef="teams">
     <th mat-header-cell *matHeaderCellDef> Teams </th>
     <td mat-cell *matCellDef="let member">
-      <span *ngFor="let team of member.teams">
+      <span *ngFor="let team of member?.teams">
         {{team.name}}<br>
       </span>
-      <span *ngIf="member.teams.length === 0" class="g-light-text">No teams</span>
+      <span *ngIf="member?.teams?.length === 0" class="g-light-text">No teams</span>
     </td>
   </ng-container>
 
@@ -40,3 +40,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<ng-template #noData>
+  <app-no-data [message]="'You don\'t have any team'"></app-no-data>
+</ng-template>

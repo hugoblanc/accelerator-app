@@ -1,6 +1,6 @@
 <div class="g-card w-full h-full">
   <div class="flex flex-row justify-between">
-    <h2>Members</h2>
+    <h2><span *ngIf="team">{{team.name}} > </span>Members</h2>
 
     <div class="flex gap-2 items-start">
       <mat-form-field appearance="outline">
@@ -18,5 +18,5 @@
   </div>
 
 
-  <app-members-table [searchTerm]="searchTerm" ></app-members-table>
+  <app-members-table *ngIf="!isLoading" [searchTerm]="searchTerm" [members]="members" [teamMode]="!!team"></app-members-table>
 </div>

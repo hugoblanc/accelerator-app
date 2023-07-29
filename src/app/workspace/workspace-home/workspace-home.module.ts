@@ -7,9 +7,11 @@ import { TeamsTableComponent } from './teams/teams-table/teams-table.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import { MembersTableComponent } from './members/members-table/members-table.component';
+import {CoreModule} from "../../core/core.module";
+import { TeamCreateComponent } from './teams/team-create/team-create.component';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { MembersTableComponent } from './members/members-table/members-table.com
     TeamsComponent,
     MembersComponent,
     TeamsTableComponent,
-    MembersTableComponent
+    MembersTableComponent,
+    TeamCreateComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,9 @@ import { MembersTableComponent } from './members/members-table/members-table.com
     MatIconModule,
     MatInputModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    CoreModule,
+    ReactiveFormsModule
   ]
 })
 export class WorkspaceHomeModule {

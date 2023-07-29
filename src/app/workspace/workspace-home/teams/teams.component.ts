@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {TeamService} from "../../../providers/team.service";
 
 @Component({
   selector: 'app-teams',
@@ -8,9 +9,17 @@ import {Component, OnInit} from '@angular/core';
 export class TeamsComponent implements OnInit {
   searchTerm: string = '';
 
-  constructor() {
+  teams: any[] = [];
+  constructor(private teamService: TeamService) {
   }
 
   ngOnInit() {
+    this.getWorkspaceTeams();
+  }
+
+  private getWorkspaceTeams() {
+    return this.teamService.getWorkspaceTeams()?.subscribe(teams => {
+      this.teams = teams;
+    })
   }
 }

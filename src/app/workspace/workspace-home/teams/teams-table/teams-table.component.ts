@@ -15,18 +15,14 @@ export class TeamsTableComponent implements OnInit {
     this.applyFilter(value);
   }
 
+  @Input() set teams(value: TeamDto[]) {
+    this.dataSource.data = value;
+  }
+
   constructor() {
   }
 
   ngOnInit() {
-    const teams: TeamDto[] = [
-      { id: '1', name: 'Recruitment', membersCount: 2, promptsCount: 3 },
-      { id: '2', name: 'Business', membersCount: 4, promptsCount: 3 },
-      { id: '3', name: 'Marketing', membersCount: 41, promptsCount: 3 },
-      // Add more data as needed
-    ];
-
-    this.dataSource.data = teams;
   }
 
   applyFilter(searchTerm: string): void {
