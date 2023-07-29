@@ -1,6 +1,6 @@
-<div class="g-card w-full">
+<div class="g-card">
   <div class="g-card-title">Create a new workspace</div>
-  <form [formGroup]="formGp" (ngSubmit)="submit()" class="gap-3">
+  <form [formGroup]="formGp" (ngSubmit)="submit()">
     <mat-form-field appearance="outline" class="w-full">
       <mat-label i18n>Workspace name</mat-label>
       <input matInput placeholder="My new Workspace" formControlName="name" maxlength="255">
