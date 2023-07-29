@@ -13,7 +13,4 @@ export class TeamsComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  applyFilter(): void {
-  }
 }

@@ -18,6 +18,12 @@
     <td mat-cell *matCellDef="let team"> {{team.promptsCount}} </td>
   </ng-container>
 
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let member"></td>
+  </ng-container>
+
   <!-- Define other columns here if needed -->
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

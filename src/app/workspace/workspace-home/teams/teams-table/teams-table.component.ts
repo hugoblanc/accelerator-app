@@ -9,7 +9,7 @@ import {TeamDto} from "../../../../providers/dto/team.dto";
 })
 export class TeamsTableComponent implements OnInit {
   dataSource = new MatTableDataSource<TeamDto>();
-  displayedColumns: string[] = ['name', 'membersCount', 'promptsCount'];
+  displayedColumns: string[] = ['name', 'membersCount', 'promptsCount', 'actions'];
 
   @Input() set searchTerm(value: string) {
     this.applyFilter(value);

@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
   styleUrls: ['./members.component.scss']
 })
-export class MembersComponent {
+export class MembersComponent implements OnInit {
+  searchTerm: string = '';
 
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
 }

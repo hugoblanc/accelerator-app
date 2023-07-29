@@ -38,7 +38,7 @@ body {
 // Global classes
 
 .g-card {
-  @apply bg-white p-6 rounded-xl shadow;
+  @apply bg-white px-4 py-3 rounded-xl shadow;
 }
 
 .g-card-title {
@@ -85,3 +85,6 @@ body {
   @apply text-4xl font-bold mb-5 text-indigo-500;
 }
 
+.g-light-text {
+  @apply text-gray-500
+}
