@@ -1,0 +1,29 @@
+<div class="g-screen-container">
+  <div *ngIf="workspaceService.currentWorkspace" class="w-full h-full flex flex-col gap-10">
+    <div class="g-title-1">{{workspaceService.currentWorkspace.name}}</div>
+
+    <div class="flex flex-row gap-5">
+      <div class="menu-card">
+        <h2>Teams</h2>
+        <div class="card-content">
+          <span class="g-number-text">1</span>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <h2>Members</h2>
+        <div class="card-content">
+          <span class="g-number-text">5</span>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <h2>Prompts</h2>
+        <div class="card-content">
+          <span class="g-number-text">18</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

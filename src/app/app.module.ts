@@ -18,6 +18,7 @@ import {WorkspaceCurrentComponent} from './sidebar/workspace/workspace-current/w
 import {MatMenuModule} from "@angular/material/menu";
 import {OverlayModule} from "@angular/cdk/overlay";
 import { WorkspaceComponent } from './workspace/workspace.component';
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     SignUpModule,
     UserModule,
     MatMenuModule,
-    OverlayModule
+    OverlayModule,
+    CoreModule
   ],
   providers: [
     appInitializerProviders,

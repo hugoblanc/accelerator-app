@@ -10,6 +10,8 @@ import {WorkspaceDto} from "../../../providers/dto/workspace.dto";
 })
 export class WorkspaceCurrentComponent implements OnInit {
 
+  isLoading = false;
+
   constructor(public workspaceService: WorkspaceService, public userService: UserService) {
   }
 

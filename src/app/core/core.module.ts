@@ -11,6 +11,7 @@ import { PromptCardComponent } from './components/prompt-card/prompt-card.compon
 import { appInitializerProviders } from './initializer/app.initializer';
 import { ApiUrlInterceptor } from './interceptors/api-url.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
 
 
 
@@ -18,13 +19,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   declarations: [
     CategorySelectionCardComponent,
     PromptCardComponent,
-    LoaderComponent
+    LoaderComponent,
+    SkeletonLoaderComponent
   ],
-  exports: [
-    CategorySelectionCardComponent,
-    PromptCardComponent,
-    LoaderComponent
-  ],
+    exports: [
+        CategorySelectionCardComponent,
+        PromptCardComponent,
+        LoaderComponent,
+        SkeletonLoaderComponent
+    ],
   imports: [
     CommonModule,
     MatButtonModule,

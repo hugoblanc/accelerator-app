@@ -5,12 +5,14 @@ import { WorkspaceCreateComponent } from './workspace-create/workspace-create.co
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import { WorkspaceHomeComponent } from './workspace-home/workspace-home.component';
 
 
 
 @NgModule({
   declarations: [
-    WorkspaceCreateComponent
+    WorkspaceCreateComponent,
+    WorkspaceHomeComponent
   ],
   imports: [
     CommonModule,

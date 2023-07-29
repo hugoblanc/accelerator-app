@@ -1,0 +1,11 @@
+.menu-card {
+  @apply bg-white p-6 rounded-xl shadow w-1/4 flex-col hover:shadow-2xl cursor-pointer;
+}
+
+.card-content {
+  @apply items-center
+}
+
+.kpi {
+  @apply text-2xl font-bold mb-5 text-indigo-500;
+}
