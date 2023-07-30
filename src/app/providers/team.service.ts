@@ -9,6 +9,9 @@ import {MemberDto} from "./dto/member.dto";
 })
 export class TeamService {
   private apiUrl: string = '/teams'
+
+  currentTeam: TeamDto | undefined;
+
   constructor(private http: HttpClient, private workspaceService: WorkspaceService) { }
 
   public getTeam(teamId: string) {

@@ -19,6 +19,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {OverlayModule} from "@angular/cdk/overlay";
 import { WorkspaceComponent } from './workspace/workspace.component';
 import {CoreModule} from "./core/core.module";
+import { TeamCurrentComponent } from './sidebar/team/team-current/team-current.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {CoreModule} from "./core/core.module";
     SidebarComponent,
     WorkspaceCurrentComponent,
     WorkspaceComponent,
+    TeamCurrentComponent,
   ],
   imports: [
     BrowserModule,

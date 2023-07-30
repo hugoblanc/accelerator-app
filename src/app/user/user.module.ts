@@ -7,6 +7,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatIconModule} from "@angular/material/icon";
 import { UserPromptsListComponent } from './components/user-prompts-list/user-prompts-list.component';
+import {CoreModule} from "../core/core.module";
 
 
 
@@ -23,12 +24,13 @@ import { UserPromptsListComponent } from './components/user-prompts-list/user-pr
     LogoutComponent,
     UserPromptsListComponent
   ],
-  imports: [
-    CommonModule,
-    NgOptimizedImage,
-    MatButtonModule,
-    MatTooltipModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        NgOptimizedImage,
+        MatButtonModule,
+        MatTooltipModule,
+        MatIconModule,
+        CoreModule
+    ]
 })
 export class UserModule { }

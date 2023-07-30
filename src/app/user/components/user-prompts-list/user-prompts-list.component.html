@@ -1,13 +1,23 @@
 <div class="h-full flex flex-col gap-1">
   <span class="text-gray-500" i18n>Your prompts</span>
-  <div *ngFor="let prompt of userService.promptList"
-       class="p-2 rounded-md text-sm border-2 border-gray-200 cursor-pointer bg-gray-200 hover:bg-gray-100"
-       (click)="goToPrompt(prompt)">
-    <span class="flex-grow">{{prompt.name}}</span>
-    <div class="w-full flex items-center flex-wrap gap-0.5 mt-1">
-      <div *ngFor="let category of prompt?.categories" class="px-1 py-1 bg-gray-100 rounded text-xs">
-        {{category.name}}
+  <ng-container *ngIf="userService.promptList.length > 0; else noData">
+    <div *ngFor="let prompt of userService.promptList"
+         class="p-2 rounded-md text-sm border-2 border-gray-200 cursor-pointer bg-gray-200 hover:bg-gray-100"
+         (click)="goToPrompt(prompt)">
+      <span class="flex-grow">{{prompt.name}}</span>
+      <div class="w-full flex items-center flex-wrap gap-0.5 mt-1">
+        <div *ngFor="let category of prompt?.categories" class="px-1 py-1 bg-gray-100 rounded text-xs">
+          {{category.name}}
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+
 </div>
+
+<ng-template #noData>
+  <div class="h-full items-center">
+    <app-no-data></app-no-data>
+
+  </div>
+</ng-template>
