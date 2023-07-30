@@ -24,6 +24,6 @@ export class TeamCurrentComponent implements OnInit {
   }
 
   changeTeam(team: TeamDto) {
-    this.teamService.currentTeam = team;
+    this.teamService.changeTeam(team);
   }
 }

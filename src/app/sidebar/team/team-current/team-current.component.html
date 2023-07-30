@@ -1,20 +1,18 @@
+<div class="title-line">
+  <span>Teams</span>
+  <mat-icon>add</mat-icon>
+</div>
 <ng-container *ngIf="!isLoading; else loading">
-  <div [matMenuTriggerFor]="menu" class="team-container">
-    <span>{{teamService.currentTeam?.name || 'No team selected'}}</span>
-    <mat-icon class="text-gray-500">unfold_more</mat-icon>
+  <div *ngFor="let team of teams"
+       (click)="changeTeam(team)"
+       class="team-line"
+       [ngClass]="{'active': teamService.currentTeam?.id === team.id}">
+    {{team.name}}
   </div>
-
-  <mat-menu #menu="matMenu">
-    <ng-container *ngFor="let team of teams">
-      <button (click)="changeTeam(team)" class="team-name-menu">
-        {{team.name}}
-      </button>
-    </ng-container>
-  </mat-menu>
-
 </ng-container>
 
 
 <ng-template #loading>
+  <app-skeleton-loader></app-skeleton-loader>
   <app-skeleton-loader></app-skeleton-loader>
 </ng-template>

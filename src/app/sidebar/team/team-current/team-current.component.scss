@@ -1,16 +1,31 @@
 :host {
-  @apply flex w-full h-6;
-}
+  @apply flex flex-col w-full;
 
-.team-container {
-  @apply w-full px-2 py-4 border border-gray-500 bg-gray-100 hover:bg-gray-50
-  rounded flex justify-between items-center font-medium cursor-pointer ;
-}
+  app-skeleton-loader {
+    @apply h-6 mb-1;
+  }
 
-.menu {
-  @apply w-64 h-6 ;
-}
+  .active {
+    @apply bg-indigo-100;
+  }
 
-.team-name-menu {
-  @apply font-medium px-4 py-4 w-64 text-start hover:bg-indigo-50 rounded;
+  .team-line {
+    @apply p-2 mb-1 rounded cursor-pointer font-medium;
+  }
+
+  .team-line:not(.active) {
+    @apply hover:bg-gray-200;
+  }
+
+  .title-line {
+    @apply flex flex-row gap-3 items-center;
+
+    span {
+      @apply text-gray-500;
+    }
+
+    mat-icon {
+      @apply text-indigo-500 font-medium;
+    }
+  }
 }

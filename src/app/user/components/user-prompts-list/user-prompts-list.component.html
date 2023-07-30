@@ -1,5 +1,5 @@
 <div class="h-full flex flex-col gap-1">
-  <span class="text-gray-500" i18n>Your prompts</span>
+  <span class="text-gray-500" i18n>Prompts</span>
   <ng-container *ngIf="userService.promptList.length > 0; else noData">
     <div *ngFor="let prompt of userService.promptList"
          class="p-2 rounded-md text-sm border-2 border-gray-200 cursor-pointer bg-gray-200 hover:bg-gray-100"
