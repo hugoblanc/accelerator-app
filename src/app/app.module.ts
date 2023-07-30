@@ -20,6 +20,7 @@ import {OverlayModule} from "@angular/cdk/overlay";
 import { WorkspaceComponent } from './workspace/workspace.component';
 import {CoreModule} from "./core/core.module";
 import { TeamCurrentComponent } from './sidebar/team/team-current/team-current.component';
+import { TeamPromptsComponent } from './sidebar/team/team-prompts/team-prompts.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TeamCurrentComponent } from './sidebar/team/team-current/team-current.c
     WorkspaceCurrentComponent,
     WorkspaceComponent,
     TeamCurrentComponent,
+    TeamPromptsComponent,
   ],
   imports: [
     BrowserModule,

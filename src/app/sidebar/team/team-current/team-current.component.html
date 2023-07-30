@@ -1,4 +1,4 @@
-<div class="title-line">
+<div class="g-title-line">
   <span>Teams</span>
   <mat-icon>add</mat-icon>
 </div>
@@ -6,7 +6,7 @@
   <div *ngFor="let team of teams"
        (click)="changeTeam(team)"
        class="team-line"
-       [ngClass]="{'active': teamService.currentTeam?.id === team.id}">
+       [ngClass]="{'active': currentTeam?.id === team.id}">
     {{team.name}}
   </div>
 </ng-container>

@@ -25,10 +25,13 @@
       <div *ngIf="userService.userAuthenticated" class="flex flex-col gap-3 h-full">
         <mat-divider></mat-divider>
 
-        <app-team-current></app-team-current>
+        <app-team-current (teamChanged)="currentTeam = $event" [currentTeam]="currentTeam"></app-team-current>
 
         <mat-divider></mat-divider>
 
+        <app-team-prompts *ngIf="currentTeam" [currentTeam]="currentTeam"></app-team-prompts>
+
+        <mat-divider></mat-divider>
 
         <app-user-prompts-list></app-user-prompts-list>
 

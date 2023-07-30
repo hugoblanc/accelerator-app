@@ -88,3 +88,23 @@ body {
 .g-light-text {
   @apply text-gray-500
 }
+
+.g-prompt-line {
+  @apply p-0.5 rounded-md text-sm cursor-pointer hover:bg-gray-200 flex items-center gap-2;
+
+  mat-icon {
+    @apply text-gray-500;
+  }
+}
+
+.g-title-line {
+  @apply flex flex-row gap-3 items-center;
+
+  span {
+    @apply text-gray-500;
+  }
+
+  mat-icon {
+    @apply text-indigo-500 font-medium;
+  }
+}

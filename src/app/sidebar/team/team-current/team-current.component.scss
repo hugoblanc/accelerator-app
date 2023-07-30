@@ -17,15 +17,4 @@
     @apply hover:bg-gray-200;
   }
 
-  .title-line {
-    @apply flex flex-row gap-3 items-center;
-
-    span {
-      @apply text-gray-500;
-    }
-
-    mat-icon {
-      @apply text-indigo-500 font-medium;
-    }
-  }
 }

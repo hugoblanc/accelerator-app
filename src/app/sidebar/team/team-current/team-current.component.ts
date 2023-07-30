@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TeamService} from "../../../providers/team.service";
 import {TeamDto} from "../../../providers/dto/team.dto";
 
@@ -12,6 +12,9 @@ export class TeamCurrentComponent implements OnInit {
   teams: TeamDto[] | undefined;
   isLoading = false;
 
+  @Input() currentTeam: TeamDto | undefined;
+  @Output() teamChanged = new EventEmitter<TeamDto>();
+
   constructor(public teamService: TeamService) {
   }
 
@@ -24,6 +27,6 @@ export class TeamCurrentComponent implements OnInit {
   }
 
   changeTeam(team: TeamDto) {
-    this.teamService.changeTeam(team);
+    this.teamChanged.emit(team);
   }
 }

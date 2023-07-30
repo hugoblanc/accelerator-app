@@ -1,0 +1,25 @@
+<div class="g-title-line">
+  <span>Team's prompts</span>
+  <mat-icon>add</mat-icon>
+</div>
+<ng-container *ngIf="!isLoading; else loading">
+  <ng-container *ngIf="prompts && prompts.length > 0; else noData">
+    <div *ngFor="let prompt of prompts"
+         class="g-prompt-line"
+         (click)="goToPrompt(prompt)">
+      <mat-icon>chevron_right</mat-icon>
+      <span class="flex-grow">{{prompt.name}}</span>
+    </div>
+  </ng-container>
+
+</ng-container>
+
+
+<ng-template #noData>
+  <div class="h-full items-center">
+    <app-no-data [message]="'No prompt'"></app-no-data>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+</ng-template>

@@ -11,18 +11,21 @@ export class PromptsService {
   getPrompts() {
     return this.http.get<PromptDto[]>('/prompts');
   }
-  getPromptById(promptId: unknown) {
+  getPromptById(promptId: string) {
     return this.http.get<PromptDto>('/prompts/id/' + promptId);
   }
 
-  getPromptToEdit(promptId: unknown) {
+  getPromptToEdit(promptId: string) {
     return this.http.get<PromptToEditDto>('/prompts/to-edit/' + promptId);
   }
-  getPromptByIds(promptIds: unknown) {
+  getPromptByIds(promptIds: string[]) {
     return this.http.post<PromptDto[]>('/prompts/ids', promptIds);
   }
   getMyPrompts() {
     return this.http.get<PromptDto[]>('/prompts/myPrompts');
+  }
+  getTeamPrompts(teamId: string) {
+    return this.http.get<PromptDto[]>('/prompts/team/' + teamId);
   }
   deletePrompt(promptId: string) {
     return this.http.delete('/prompts/' + promptId);
