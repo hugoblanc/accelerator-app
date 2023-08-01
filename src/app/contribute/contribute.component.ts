@@ -52,7 +52,7 @@ export class ContributeComponent implements OnInit {
     name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     categories: new FormControl<any[]>([], { nonNullable: true, validators: [Validators.required] }),
     lang: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    scope: new FormControl('', { nonNullable: false, validators: [Validators.required] })
+    scope: new FormControl('personal', { nonNullable: false, validators: [Validators.required] })
   });
 
   get modelEnum(): typeof GPTModel {

@@ -22,7 +22,12 @@
         <span i18n="gallery">Gallery</span>
       </a>
 
-      <a routerLink="/contribute" class="g-menu-line">
+      <a routerLink="/home" class="g-menu-line">
+        <mat-icon>list</mat-icon>
+        <span>My prompts</span>
+      </a>
+
+      <a routerLink="/contribute" class="g-menu-line-primary">
         <mat-icon>add_box</mat-icon>
         <span>New prompt</span>
       </a>
@@ -39,11 +44,6 @@
         <mat-divider></mat-divider>
 
         <app-user-prompts-list></app-user-prompts-list>
-
-        <a routerLink="/home" class="flex items-center gap-2 p-3 text-gray-500 text-sm">
-          <mat-icon>settings</mat-icon>
-          <span i18n="home">Manage your prompts</span>
-        </a>
 
         <mat-divider></mat-divider>
 

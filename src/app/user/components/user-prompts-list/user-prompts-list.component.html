@@ -1,6 +1,5 @@
 <div class="g-title-line">
   <span>Your prompts</span>
-  <mat-icon>add</mat-icon>
 </div>
 <ng-container *ngIf="userService.promptList.length > 0; else noData">
   <div *ngFor="let prompt of userService.promptList"

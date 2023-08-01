@@ -103,7 +103,14 @@ body {
   mat-icon {
     @apply text-gray-500;
   }
+}
 
+.g-menu-line-primary {
+  @apply p-1 rounded-md font-medium text-indigo-500 cursor-pointer hover:bg-indigo-100 flex items-center gap-2;
+
+  mat-icon {
+    @apply text-indigo-500;
+  }
 }
 
 .g-title-line {
