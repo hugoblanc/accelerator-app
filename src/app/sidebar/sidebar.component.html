@@ -22,6 +22,11 @@
         <span i18n="gallery">Gallery</span>
       </a>
 
+      <a routerLink="/contribute" class="g-menu-line">
+        <mat-icon>add_box</mat-icon>
+        <span>New prompt</span>
+      </a>
+
       <div *ngIf="userService.userAuthenticated" class="flex flex-col gap-3 h-full mt-3">
         <mat-divider></mat-divider>
 

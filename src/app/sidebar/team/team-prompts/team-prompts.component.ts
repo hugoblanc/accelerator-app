@@ -33,11 +33,8 @@ export class TeamPromptsComponent implements OnInit {
   }
 
   getPrompts(team: TeamDto) {
-    // this.promptsService.getTeamPrompts(this.teamService.currentTeam.id).subscribe((prompts) => {
-    //   this.prompts = prompts;
-    // });
     this.isLoading = true;
-    this.promptsService.getMyPrompts().subscribe((prompts) => {
+    this.promptsService.getTeamPrompts(team.id).subscribe((prompts) => {
       this.prompts = prompts;
       this.isLoading = false;
     });

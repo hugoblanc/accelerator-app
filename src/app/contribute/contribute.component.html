@@ -6,6 +6,25 @@
     <div class=g-card-title i18n="create prompt">Create a new prompt</div>
 
     <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Who is this prompt for ?</mat-label>
+      <mat-select formControlName="scope">
+        <mat-option [value]="'personal'">
+          <mat-icon>lock</mat-icon>
+          Personal use
+        </mat-option>
+        <mat-option [value]="'public'">
+          <mat-icon>public</mat-icon>
+          Public
+        </mat-option>
+        <mat-divider></mat-divider>
+        <mat-option *ngFor="let team of teams$ | async" [value]="team.id">
+          <mat-icon>people</mat-icon>
+          {{team.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label i18n>Name</mat-label>
       <input matInput placeholder="A killer prompt for sales" formControlName="name">
     </mat-form-field>
@@ -80,9 +99,6 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-
-    <mat-checkbox formControlName="opened" i18n>Will this prompt be accessible to everyone?</mat-checkbox>
-
 
     <div class="flex flex-row justify-center" *ngIf="!isEditing">
       <button type="submit" [disabled]="!createPromptForms.valid"

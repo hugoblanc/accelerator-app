@@ -15,6 +15,8 @@ import { PromptDto, PromptToEditDto } from "../providers/dto/prompt.dto";
 import { PromptsService } from '../providers/prompts.service';
 import { languagesList } from "../providers/dto/languages";
 import { CreatePromptDto } from '../providers/dto/create.prompt.dto';
+import {TeamService} from "../providers/team.service";
+import {TeamDto} from "../providers/dto/team.dto";
 
 interface CreatePromptForm {
   text: FormControl<string>;
@@ -22,8 +24,8 @@ interface CreatePromptForm {
   model: FormControl<GPTModel>;
   name: FormControl<string>;
   categories: FormControl<any[]>;
-  opened: FormControl<boolean>;
   lang: FormControl<string>
+  scope: FormControl<string | null>
 }
 
 
@@ -37,6 +39,7 @@ export class ContributeComponent implements OnInit {
   @ViewChild('myForm') myForm!: NgForm;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   categories$!: Observable<CategoryDto[]>;
+  teams$!: Observable<TeamDto[]>;
 
   categoryCtrl = new FormControl('', { nonNullable: true, validators: [Validators.required] });
 
@@ -48,8 +51,8 @@ export class ContributeComponent implements OnInit {
     model: new FormControl(GPTModel.GPT35Turbo, { nonNullable: true, validators: [Validators.required] }),
     name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     categories: new FormControl<any[]>([], { nonNullable: true, validators: [Validators.required] }),
-    opened: new FormControl(false, { nonNullable: true, validators: [Validators.required] }),
-    lang: new FormControl('', { nonNullable: true, validators: [Validators.required] })
+    lang: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    scope: new FormControl('', { nonNullable: false, validators: [Validators.required] })
   });
 
   get modelEnum(): typeof GPTModel {
@@ -65,6 +68,7 @@ export class ContributeComponent implements OnInit {
     private readonly categoryService: CategoryService,
     private readonly userService: UserService,
     private readonly router: Router,
+    private readonly teamService: TeamService,
     private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -77,13 +81,16 @@ export class ContributeComponent implements OnInit {
           this.promptService.getPromptToEdit(promptId).subscribe((prompt: PromptToEditDto) => {
             this.createPromptForms.controls.text.setValue(prompt.text);
             this.createPromptForms.controls.description.setValue(prompt.description);
-            console.log(prompt.model);
             this.createPromptForms.controls.model.setValue(prompt.model);
             this.createPromptForms.controls.name.setValue(prompt.name);
             this.createPromptForms.controls.lang.setValue(prompt.lang);
             this.createPromptForms.controls.categories.setValue(prompt.categories.map(category => category.id));
             this.categories = [...prompt.categories];
-            this.createPromptForms.controls.opened.setValue(prompt.opened);
+            if (prompt.teamId) {
+              this.createPromptForms.controls.scope.setValue(prompt.teamId);
+            } else {
+              this.createPromptForms.controls.scope.setValue('personal');
+            }
           });
         }
       });
@@ -94,24 +101,38 @@ export class ContributeComponent implements OnInit {
         debounceTime(200),
         switchMap(value => this.categoryService.getCategories(value))
       );
+
+    this.teams$ = this.teamService.getMyTeams();
   }
 
   save() {
 
-    const { text, name, description, model, opened, lang } = this.createPromptForms.value;
+    const { text, name, description, model, lang, scope } = this.createPromptForms.value;
     const categoryIds = this.categories.map(category => category.id).filter(id => id !== undefined) as string[];
     const categoryNamesToCreate = this.categories.filter(category => category.id === undefined).map(category => category.name);
 
-    if (!text || !name || !categoryIds || !description || !model || opened == null || !lang) return;
+    if (!text || !name || !categoryIds || !description || !model || !lang || !scope) return;
 
-    const data = { text, name, description, categoryIds, categoryNamesToCreate, model, opened, lang };
+    const data: CreatePromptDto = {
+      text: text,
+      name: name,
+      description: description,
+      categoryIds: categoryIds,
+      categoryNamesToCreate: categoryNamesToCreate,
+      model: model,
+      lang: lang,
+      opened: scope === 'public',
+      teamId: scope === 'personal' || scope === 'public' ? null : scope,
+    };
 
     if (this.isEditing) {
       this.saveEdition(data);
     } else {
+      console.log(data);
       this.createPrompt(data);
     }
   }
+
   private saveEdition(creationData: CreatePromptDto) {
     const promptId = this.route.snapshot.paramMap.get('promptId') ?? '';
     const editionData = { ...creationData, id: promptId };
@@ -162,5 +183,4 @@ export class ContributeComponent implements OnInit {
     this.categories.push(event.option.value as any);
     this.categoryCtrl.setValue('');
   }
-
 }

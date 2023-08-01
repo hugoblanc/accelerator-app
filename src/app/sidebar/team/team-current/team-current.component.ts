@@ -28,5 +28,7 @@ export class TeamCurrentComponent implements OnInit {
 
   changeTeam(team: TeamDto) {
     this.teamChanged.emit(team);
+    this.currentTeam = team;
+    localStorage.setItem('currentTeamId', team.id);
   }
 }

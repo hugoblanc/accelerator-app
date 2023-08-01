@@ -33,4 +33,8 @@ export class TeamService {
   public getTeamMembers(teamId: string)  {
     return this.http.get<MemberDto[]>(this.apiUrl + '/' + teamId + '/members');
   }
+
+  public getTeamsWhereCanCreatePrompt() {
+    return this.http.get<TeamDto[]>(this.apiUrl + '/mine');
+  }
 }

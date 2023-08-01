@@ -13,25 +13,29 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {CoreModule} from "../core/core.module";
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
   declarations: [
     ContributeComponent
   ],
-    imports: [
-        CommonModule,
-        ContributeRoutingModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatSelectModule,
-        MatAutocompleteModule,
-        MatChipsModule,
-        MatIconModule,
-        MatCheckboxModule
-    ]
+  imports: [
+    CommonModule,
+    ContributeRoutingModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatIconModule,
+    MatCheckboxModule,
+    CoreModule,
+    MatListModule
+  ]
 })
 export class ContributeModule { }

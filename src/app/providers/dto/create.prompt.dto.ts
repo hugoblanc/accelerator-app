@@ -9,6 +9,7 @@ export interface CreatePromptDto {
   categoryIds: string[];
   categoryNamesToCreate: string[];
   lang: string;
+  teamId: string | null;
 }
 
 export interface EditPromptDto extends CreatePromptDto { id: string };

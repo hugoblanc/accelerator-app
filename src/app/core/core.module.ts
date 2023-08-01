@@ -1,19 +1,19 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
-import { MatMenuModule } from "@angular/material/menu";
-import { MatTooltipModule } from "@angular/material/tooltip";
-import { RouterModule } from '@angular/router';
-import { CategorySelectionCardComponent } from './components/category-selection-card/category-selection-card.component';
-import { LoaderComponent } from './components/loader/loader.component';
-import { PromptCardComponent } from './components/prompt-card/prompt-card.component';
-import { appInitializerProviders } from './initializer/app.initializer';
-import { ApiUrlInterceptor } from './interceptors/api-url.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SkeletonLoaderComponent } from './components/skeleton-loader/skeleton-loader.component';
-import { NoDataComponent } from './components/no-data/no-data.component';
-
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {RouterModule} from '@angular/router';
+import {CategorySelectionCardComponent} from './components/category-selection-card/category-selection-card.component';
+import {LoaderComponent} from './components/loader/loader.component';
+import {PromptCardComponent} from './components/prompt-card/prompt-card.component';
+import {appInitializerProviders} from './initializer/app.initializer';
+import {ApiUrlInterceptor} from './interceptors/api-url.interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {SkeletonLoaderComponent} from './components/skeleton-loader/skeleton-loader.component';
+import {NoDataComponent} from './components/no-data/no-data.component';
+import {MatOptionModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -37,8 +37,10 @@ import { NoDataComponent } from './components/no-data/no-data.component';
     MatIconModule,
     MatTooltipModule,
     MatMenuModule,
-    RouterModule
+    RouterModule,
+    MatOptionModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true }]
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true}]
 })
-export class CoreModule { }
+export class CoreModule {
+}

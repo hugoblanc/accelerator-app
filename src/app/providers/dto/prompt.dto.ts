@@ -20,6 +20,7 @@ export interface PromptToEditDto {
   categories: Category[]
   lang: string;
   opened: boolean;
+  teamId: string;
 }
 
 
