@@ -75,6 +75,10 @@ body {
 
 .g-button-primary {
   @apply g-button bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-indigo-600;
+
+  mat-icon {
+    @apply mr-1;
+  }
 }
 
 .g-button-gray {

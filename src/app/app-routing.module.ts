@@ -22,6 +22,11 @@ const routes: Routes = [
     loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule)
   },
 
+  {
+    path: 'contribute/teamId/:teamId',
+    loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule)
+  },
+
   { path: 'gallery', loadChildren: () => import('./gallery/gallery.module').then(m => m.GalleryModule) },
 
   { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },

@@ -93,6 +93,12 @@ export class ContributeComponent implements OnInit {
             }
           });
         }
+
+        // if teamId is provided, set the scope to this team
+        const teamId = params.get('teamId');
+        if (teamId) {
+          this.createPromptForms.controls.scope.setValue(teamId);
+        }
       });
 
     this.categories$ = this.categoryCtrl.valueChanges

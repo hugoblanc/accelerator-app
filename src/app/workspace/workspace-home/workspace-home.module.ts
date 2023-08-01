@@ -12,6 +12,8 @@ import {RouterModule} from "@angular/router";
 import { MembersTableComponent } from './members/members-table/members-table.component';
 import {CoreModule} from "../../core/core.module";
 import { TeamCreateComponent } from './teams/team-create/team-create.component';
+import { PromptsComponent } from './prompts/prompts.component';
+import { PromptsTableComponent } from './prompts/prompts-table/prompts-table.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { TeamCreateComponent } from './teams/team-create/team-create.component';
     MembersComponent,
     TeamsTableComponent,
     MembersTableComponent,
-    TeamCreateComponent
+    TeamCreateComponent,
+    PromptsComponent,
+    PromptsTableComponent
   ],
   imports: [
     CommonModule,

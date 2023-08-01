@@ -10,7 +10,7 @@
   <ng-container matColumnDef="membersCount">
     <th mat-header-cell *matHeaderCellDef> Members Count </th>
     <td mat-cell *matCellDef="let team">
-      <a [routerLink]="'members/' + team.id">
+      <a [routerLink]="'/workspace/home/members/' + team.id">
         See members
       </a>
       {{team.membersCount}}
@@ -20,7 +20,11 @@
   <!-- Prompts Count Column -->
   <ng-container matColumnDef="promptsCount">
     <th mat-header-cell *matHeaderCellDef> Prompts Count </th>
-    <td mat-cell *matCellDef="let team"> {{team.promptsCount}} </td>
+    <td mat-cell *matCellDef="let team">
+      <a [routerLink]="'/workspace/home/prompts/' + team.id">
+        See prompts
+      </a>
+      {{team.promptsCount}} </td>
   </ng-container>
 
   <!-- Actions Column -->
