@@ -90,11 +90,20 @@ body {
 }
 
 .g-prompt-line {
-  @apply p-0.5 rounded-md text-sm cursor-pointer hover:bg-gray-200 flex items-center gap-2;
+  @apply p-0.5 rounded-md text-sm text-black cursor-pointer hover:bg-gray-200 flex items-center gap-2;
 
   mat-icon {
     @apply text-gray-500;
   }
+}
+
+.g-menu-line {
+  @apply p-1 rounded-md font-medium text-black cursor-pointer hover:bg-indigo-100 flex items-center gap-2;
+
+  mat-icon {
+    @apply text-gray-500;
+  }
+
 }
 
 .g-title-line {

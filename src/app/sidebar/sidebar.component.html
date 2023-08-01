@@ -12,17 +12,17 @@
       <app-workspace-current></app-workspace-current>
 
 
-      <a routerLink="/workspace/home" class="menu-item mt-5">
+      <a routerLink="/workspace/home" class="g-menu-line mt-5">
         <mat-icon>home</mat-icon>
         <span i18n="gallery">Home</span>
       </a>
 
-      <a routerLink="/gallery" class="menu-item">
+      <a routerLink="/gallery" class="g-menu-line">
         <mat-icon>dashboard</mat-icon>
         <span i18n="gallery">Gallery</span>
       </a>
 
-      <div *ngIf="userService.userAuthenticated" class="flex flex-col gap-3 h-full">
+      <div *ngIf="userService.userAuthenticated" class="flex flex-col gap-3 h-full mt-3">
         <mat-divider></mat-divider>
 
         <app-team-current (teamChanged)="currentTeam = $event" [currentTeam]="currentTeam"></app-team-current>
