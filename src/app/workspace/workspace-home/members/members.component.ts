@@ -84,12 +84,20 @@ export class MembersComponent implements OnInit {
 
   onConfirmDialogClosed(result: boolean, member: MemberDto) {
     if (result) {
-      this.workspaceService.removeMember(member.id).subscribe(
-        () => {
-          this.members = this.members.filter((p) => p.id !== member.id);
-          this.snackbar.open('Member removed', 'OK', {duration: 3000});
-        }
-      );
+      if (this.team) { // Team remove member
+        this.teamService.removeMember(this.team.id, member.id).subscribe(
+          () => this.removeSuccess(member)
+        );
+      } else { // Workspace remove member
+        this.workspaceService.removeMember(member.id).subscribe(
+          () => this.removeSuccess(member)
+        );
+      }
     }
+  }
+
+  private removeSuccess(member: MemberDto) {
+    this.members = this.members.filter((p) => p.id !== member.id);
+    this.snackbar.open('Member removed', 'OK', {duration: 3000});
   }
 }

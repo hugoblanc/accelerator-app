@@ -41,4 +41,8 @@ export class TeamService {
   public delete(teamId: string) {
     return this.http.delete(this.apiUrl + '/' + teamId);
   }
+
+  public removeMember(teamId: string, memberId: string) {
+    return this.http.delete(this.apiUrl + '/member/' + memberId);
+  }
 }

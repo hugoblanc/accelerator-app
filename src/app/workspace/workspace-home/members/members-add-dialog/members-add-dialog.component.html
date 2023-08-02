@@ -1,5 +1,8 @@
 <div class="container">
   <span class="g-card-title">Member invitation</span>
+  <ng-container *ngIf="team">
+    <p>Team : <b>{{team.name}}</b></p>
+  </ng-container>
   <p>Enter the user's email address.<br>
     <span class="info">Please note that the user must have an account created</span></p>
   <form>

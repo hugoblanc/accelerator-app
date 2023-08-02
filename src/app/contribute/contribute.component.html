@@ -3,7 +3,10 @@
   <form [formGroup]="createPromptForms" (ngSubmit)="createPromptForms.valid && save()" #myForm="ngForm"
         class="flex flex-col w-1/2 g-card shadow">
 
-    <div class=g-card-title i18n="create prompt">Create a new prompt</div>
+    <div class=g-card-title i18n="create prompt">
+      <ng-container *ngIf="!isEditing">Create a new prompt</ng-container>
+      <ng-container *ngIf="isEditing">Prompt edition</ng-container>
+    </div>
 
     <mat-form-field appearance="outline" class="w-full">
       <mat-label>Who is this prompt for ?</mat-label>

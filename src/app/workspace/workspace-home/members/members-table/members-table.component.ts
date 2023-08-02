@@ -29,6 +29,11 @@ export class MembersTableComponent implements OnInit {
     if (this.teamMode) {
       this.displayedColumns = this.displayedColumnsTeamMode;
     }
+    this.dataSource.filterPredicate = (member: MemberDto, filter: string) => {
+      return member.user.email.toLowerCase().includes(filter)
+        || member.user.firstname.toLowerCase().includes(filter)
+        || member.user.lastname.toLowerCase().includes(filter);
+    }
   }
 
   applyFilter(searchTerm: string): void {

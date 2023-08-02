@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
 
@@ -18,11 +18,11 @@ const routes: Routes = [
   { path: 'contribute', loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule) },
 
   {
-    path: 'contribute/:promptId',
+    path: 'contribute/edit/:promptId',
     loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule)
   },
   {
-    path: 'contribute/:promptId/:mode',
+    path: 'contribute/edit/:promptId/:mode',
     loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule)
   },
   {
