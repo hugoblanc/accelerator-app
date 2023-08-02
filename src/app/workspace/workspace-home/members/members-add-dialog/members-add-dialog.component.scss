@@ -1,0 +1,15 @@
+.container {
+  @apply flex flex-col gap-2 p-4 h-full;
+}
+
+.actions {
+  @apply flex flex-row gap-2 justify-end w-full;
+}
+
+form, mat-form-field {
+  @apply w-full
+}
+
+.info {
+  @apply text-indigo-500 font-medium;
+}

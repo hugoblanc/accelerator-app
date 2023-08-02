@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MemberDto} from "../../../../providers/dto/member.dto";
-import {TeamDto} from "../../../../providers/dto/team.dto";
 
 @Component({
   selector: 'app-members-table',
@@ -23,6 +22,9 @@ export class MembersTableComponent implements OnInit {
 
   @Input() teamMode: boolean = false;
 
+  @Output() deleted = new EventEmitter<MemberDto>();
+
+
   ngOnInit() {
     if (this.teamMode) {
       this.displayedColumns = this.displayedColumnsTeamMode;
@@ -32,5 +34,9 @@ export class MembersTableComponent implements OnInit {
   applyFilter(searchTerm: string): void {
     const filterValue = searchTerm.trim().toLowerCase();
     this.dataSource.filter = filterValue;
+  }
+
+  delete(member: MemberDto) {
+    this.deleted.emit(member);
   }
 }

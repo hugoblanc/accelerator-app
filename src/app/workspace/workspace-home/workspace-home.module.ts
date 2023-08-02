@@ -16,6 +16,7 @@ import {PromptsComponent} from './prompts/prompts.component';
 import {PromptsTableComponent} from './prompts/prompts-table/prompts-table.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
+import {MembersAddDialogComponent} from './members/members-add-dialog/members-add-dialog.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {MatMenuModule} from "@angular/material/menu";
     MembersTableComponent,
     TeamCreateComponent,
     PromptsComponent,
-    PromptsTableComponent
+    PromptsTableComponent,
+    MembersAddDialogComponent
   ],
   imports: [
     CommonModule,

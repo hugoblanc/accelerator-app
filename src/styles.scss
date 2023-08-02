@@ -35,6 +35,10 @@ body {
   font-weight: bolder;
 }
 
+textarea, .mat-input {
+  @apply outline-none focus:ring-0 focus-visible:ring-0
+}
+
 // Global classes
 
 .g-card {
@@ -74,7 +78,7 @@ body {
 }
 
 .g-button-primary {
-  @apply g-button bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-indigo-600;
+  @apply g-button bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-indigo-600 cursor-pointer;
 
   mat-icon {
     @apply mr-1;

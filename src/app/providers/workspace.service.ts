@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {WorkspaceDto} from "./dto/workspace.dto";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MemberDto} from "./dto/member.dto";
+import {InviteMemberDto} from "./dto/invite-member.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +61,13 @@ export class WorkspaceService {
       }
     }
     this.workspaceListIsLoading = false;
+  }
+
+  public inviteMember(inviteMember: InviteMemberDto) {
+    return this.http.put('/workspaces/invite', inviteMember);
+  }
+
+  public removeMember(memberId: string) {
+    return this.http.delete('/workspaces/members/' + memberId);
   }
 }

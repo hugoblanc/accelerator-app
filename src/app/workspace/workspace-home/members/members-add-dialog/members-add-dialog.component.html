@@ -1,0 +1,15 @@
+<div class="container">
+  <span class="g-card-title">Member invitation</span>
+  <p>Enter the user's email address.<br>
+    <span class="info">Please note that the user must have an account created</span></p>
+  <form>
+    <mat-form-field [formGroup]="formGp" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Email" required>
+    </mat-form-field>
+  </form>
+  <div class="actions">
+    <button class="g-cancel-button" type="submit" (click)="cancel()">Cancel</button>
+    <button class="g-button-primary" (click)="confirm()" [disabled]="!formGp.valid">Confirm</button>
+  </div>
+</div>
