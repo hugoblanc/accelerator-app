@@ -21,6 +21,7 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 import {CoreModule} from "./core/core.module";
 import { TeamCurrentComponent } from './sidebar/team/team-current/team-current.component';
 import { TeamPromptsComponent } from './sidebar/team/team-prompts/team-prompts.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { TeamPromptsComponent } from './sidebar/team/team-prompts/team-prompts.c
     UserModule,
     MatMenuModule,
     OverlayModule,
-    CoreModule
+    CoreModule,
+    MatDialogModule
   ],
   providers: [
     appInitializerProviders,
@@ -53,7 +55,7 @@ import { TeamPromptsComponent } from './sidebar/team/team-prompts/team-prompts.c
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })

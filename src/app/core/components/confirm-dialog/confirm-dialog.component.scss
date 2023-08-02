@@ -1,0 +1,7 @@
+.container {
+  @apply flex flex-col gap-2 p-4 h-full justify-center;
+}
+
+.actions {
+  @apply flex flex-row gap-2 justify-end w-full;
+}

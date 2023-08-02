@@ -85,6 +85,10 @@ body {
   @apply g-button bg-gray-400 hover:bg-gray-300 focus-visible:outline-gray-500;
 }
 
+.g-cancel-button {
+  @apply g-button bg-gray-400 hover:bg-gray-300 focus-visible:outline-gray-500;
+}
+
 .g-number-text {
   @apply text-4xl font-bold mb-5 text-indigo-500;
 }

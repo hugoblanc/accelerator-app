@@ -134,7 +134,6 @@ export class ContributeComponent implements OnInit {
     if (this.isEditing) {
       this.saveEdition(data);
     } else {
-      console.log(data);
       this.createPrompt(data);
     }
   }

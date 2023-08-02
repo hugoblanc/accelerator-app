@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {PromptDto} from "../../../../providers/dto/prompt.dto";
+import {PromptsService} from "../../../../providers/prompts.service";
 
 @Component({
   selector: 'app-prompts-table',
@@ -22,6 +23,8 @@ export class PromptsTableComponent implements OnInit {
 
   @Input() teamMode: boolean = false;
 
+  @Output() deleted = new EventEmitter<PromptDto>();
+
   ngOnInit() {
     if (this.teamMode) {
       this.displayedColumns = this.displayedColumnsTeamMode;
@@ -33,4 +36,7 @@ export class PromptsTableComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
+  delete(prompt: PromptDto) {
+    this.deleted.emit(prompt);
+  }
 }

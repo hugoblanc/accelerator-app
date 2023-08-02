@@ -17,5 +17,5 @@
 
   </div>
 
-  <app-prompts-table *ngIf="!isLoading" [searchTerm]="searchTerm" [prompts]="prompts" [teamMode]="!!team"></app-prompts-table>
+  <app-prompts-table *ngIf="!isLoading" [searchTerm]="searchTerm" [prompts]="prompts" [teamMode]="!!team" (deleted)="delete($event)"></app-prompts-table>
 </div>

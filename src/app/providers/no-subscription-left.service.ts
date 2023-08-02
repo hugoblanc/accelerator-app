@@ -9,7 +9,6 @@ export class NoSubscriptionLeftService {
   constructor(private readonly _snackBar: MatSnackBar) { }
 
   showToaster(err: any) {
-    console.log('§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§');
 
     this._snackBar.open('No more credit', 'Buy credit', {
       duration: 5000,

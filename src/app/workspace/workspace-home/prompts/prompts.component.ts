@@ -4,6 +4,9 @@ import {TeamService} from "../../../providers/team.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {PromptsService} from "../../../providers/prompts.service";
 import {PromptDto} from "../../../providers/dto/prompt.dto";
+import {MatDialog} from "@angular/material/dialog";
+import {ConfirmDialogComponent} from "../../../core/components/confirm-dialog/confirm-dialog.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-prompts',
@@ -19,6 +22,8 @@ export class PromptsComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(private promptsService: PromptsService,
+              private dialog: MatDialog,
+              private snackbar: MatSnackBar,
               private teamService: TeamService,
               private route: ActivatedRoute) {
     this.isLoading = true;
@@ -50,6 +55,25 @@ export class PromptsComponent implements OnInit {
       //   this.members = members;
       //   this.isLoading = false;
       // });
+    }
+  }
+
+  delete(prompt: PromptDto) {
+    this.dialog.open(ConfirmDialogComponent,
+      {
+        width: '400px',
+        height: '200px',
+      }).afterClosed().subscribe((result) => this.onConfirmDialogClosed(result, prompt));
+  }
+
+  onConfirmDialogClosed(result: boolean, prompt: PromptDto) {
+    if (result) {
+      this.promptsService.deletePrompt(prompt.id).subscribe(
+        () => {
+          this.prompts = this.prompts.filter((p) => p.id !== prompt.id);
+          this.snackbar.open('Prompt deleted', 'OK', {duration: 3000});
+        }
+      );
     }
   }
 }

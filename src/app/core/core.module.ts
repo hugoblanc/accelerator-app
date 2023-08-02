@@ -14,6 +14,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SkeletonLoaderComponent} from './components/skeleton-loader/skeleton-loader.component';
 import {NoDataComponent} from './components/no-data/no-data.component';
 import {MatOptionModule} from "@angular/material/core";
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import {MatOptionModule} from "@angular/material/core";
     PromptCardComponent,
     LoaderComponent,
     SkeletonLoaderComponent,
-    NoDataComponent
+    NoDataComponent,
+    ConfirmDialogComponent
   ],
   exports: [
     CategorySelectionCardComponent,
