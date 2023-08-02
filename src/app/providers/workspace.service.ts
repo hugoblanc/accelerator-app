@@ -25,7 +25,7 @@ export class WorkspaceService {
   public changeWorkspace(workspace: WorkspaceDto) {
     this.currentWorkspace = workspace;
     localStorage.setItem('currentWorkspaceId', workspace.id);
-    this.router.navigate(['/workspace/home']).then();
+    window.location.reload(); // voir comment faire mieux plus tard ;) (pour recharger la page)
   }
 
   public createWorkspace(name: string) {

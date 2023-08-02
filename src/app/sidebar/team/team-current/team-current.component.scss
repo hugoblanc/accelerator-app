@@ -9,12 +9,4 @@
     @apply bg-indigo-100;
   }
 
-  .team-line {
-    @apply p-2 mb-1 rounded cursor-pointer font-medium;
-  }
-
-  .team-line:not(.active) {
-    @apply hover:bg-gray-200;
-  }
-
 }

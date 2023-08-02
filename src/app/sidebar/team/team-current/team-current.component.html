@@ -4,8 +4,9 @@
 <ng-container *ngIf="!isLoading; else loading">
   <div *ngFor="let team of teams"
        (click)="changeTeam(team)"
-       class="team-line"
+       class="g-menu-line"
        [ngClass]="{'active': currentTeam?.id === team.id}">
+    <mat-icon>groups</mat-icon>
     {{team.name}}
   </div>
 </ng-container>
