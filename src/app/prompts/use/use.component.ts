@@ -101,14 +101,6 @@ export class UseComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  fork() {
-    this.promptsService.forkPrompt(this.prompt?.id).subscribe((forkedPrompt: any) => {
-      this.router.navigate(['/prompts/' + forkedPrompt.id]).then(
-        () => this.userService.setPromptList()
-      );
-    });
-  }
-
   delete() {
     this.promptsService.deletePrompt(this.prompt.id).subscribe(
       () => this.router.navigate(['/gallery']).then(

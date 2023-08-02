@@ -76,22 +76,12 @@ export class ContributeComponent implements OnInit {
     this.route.paramMap
       .subscribe(params => {
         const promptId = params.get('promptId');
+        let mode = params.get('mode');
+        if (!mode) {
+          mode = 'edit';
+        }
         if (promptId) {
-          this.isEditing = true;
-          this.promptService.getPromptToEdit(promptId).subscribe((prompt: PromptToEditDto) => {
-            this.createPromptForms.controls.text.setValue(prompt.text);
-            this.createPromptForms.controls.description.setValue(prompt.description);
-            this.createPromptForms.controls.model.setValue(prompt.model);
-            this.createPromptForms.controls.name.setValue(prompt.name);
-            this.createPromptForms.controls.lang.setValue(prompt.lang);
-            this.createPromptForms.controls.categories.setValue(prompt.categories.map(category => category.id));
-            this.categories = [...prompt.categories];
-            if (prompt.teamId) {
-              this.createPromptForms.controls.scope.setValue(prompt.teamId);
-            } else {
-              this.createPromptForms.controls.scope.setValue('personal');
-            }
-          });
+          this.getPromptToEdit(promptId, mode);
         }
 
         // if teamId is provided, set the scope to this team
@@ -109,6 +99,24 @@ export class ContributeComponent implements OnInit {
       );
 
     this.teams$ = this.teamService.getMyTeams();
+  }
+
+  getPromptToEdit(promptId: string, mode: string) {
+    this.isEditing = mode === 'edit'; // else duplication mode so we need to create a new ID
+    this.promptService.getPromptToEdit(promptId).subscribe((prompt: PromptToEditDto) => {
+      this.createPromptForms.controls.text.setValue(prompt.text);
+      this.createPromptForms.controls.description.setValue(prompt.description);
+      this.createPromptForms.controls.model.setValue(prompt.model);
+      this.createPromptForms.controls.name.setValue(prompt.name);
+      this.createPromptForms.controls.lang.setValue(prompt.lang);
+      this.createPromptForms.controls.categories.setValue(prompt.categories.map(category => category.id));
+      this.categories = [...prompt.categories];
+      if (prompt.teamId) {
+        this.createPromptForms.controls.scope.setValue(prompt.teamId);
+      } else {
+        this.createPromptForms.controls.scope.setValue('personal');
+      }
+    });
   }
 
   save() {

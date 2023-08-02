@@ -21,7 +21,10 @@ const routes: Routes = [
     path: 'contribute/:promptId',
     loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule)
   },
-
+  {
+    path: 'contribute/:promptId/:mode',
+    loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule)
+  },
   {
     path: 'contribute/teamId/:teamId',
     loadChildren: () => import('./contribute/contribute.module').then(m => m.ContributeModule)
