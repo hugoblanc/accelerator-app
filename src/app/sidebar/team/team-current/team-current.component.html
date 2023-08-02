@@ -2,14 +2,22 @@
   <span>Teams</span>
 </div>
 <ng-container *ngIf="!isLoading; else loading">
-  <div *ngFor="let team of teams"
-       (click)="changeTeam(team)"
-       class="g-menu-line"
-       [ngClass]="{'active': currentTeam?.id === team.id}">
-    <mat-icon>groups</mat-icon>
-    {{team.name}}
-  </div>
+  <ng-container *ngIf="teams && teams.length > 0; else noData">
+    <div *ngFor="let team of teams"
+         (click)="changeTeam(team)"
+         class="g-menu-line"
+         [ngClass]="{'active': currentTeam?.id === team.id}">
+      <mat-icon>groups</mat-icon>
+      {{team.name}}
+    </div>
+  </ng-container>
 </ng-container>
+
+<ng-template #noData>
+  <div class="h-full items-center">
+    <app-no-data [message]="'No team'"></app-no-data>
+  </div>
+</ng-template>
 
 
 <ng-template #loading>
