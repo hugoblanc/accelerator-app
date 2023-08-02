@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {TeamDto} from "../../../../providers/dto/team.dto";
 
@@ -19,6 +19,8 @@ export class TeamsTableComponent implements OnInit {
     this.dataSource.data = value;
   }
 
+  @Output() deleted = new EventEmitter<TeamDto>();
+
   constructor() {
   }
 
@@ -28,5 +30,9 @@ export class TeamsTableComponent implements OnInit {
   applyFilter(searchTerm: string): void {
     const filterValue = searchTerm.trim().toLowerCase();
     this.dataSource.filter = filterValue;
+  }
+
+  delete(team: TeamDto) {
+    this.deleted.emit(team);
   }
 }

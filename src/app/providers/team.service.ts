@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {TeamDto} from "./dto/team.dto";
 import {WorkspaceService} from "./workspace.service";
@@ -36,5 +36,9 @@ export class TeamService {
 
   public getTeamsWhereCanCreatePrompt() {
     return this.http.get<TeamDto[]>(this.apiUrl + '/mine');
+  }
+
+  public delete(teamId: string) {
+    return this.http.delete(this.apiUrl + '/' + teamId);
   }
 }
