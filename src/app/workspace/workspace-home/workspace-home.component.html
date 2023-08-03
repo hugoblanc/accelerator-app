@@ -5,14 +5,14 @@
     <div routerLink="teams">
       <h2>Teams</h2>
       <div>
-        <span>1</span>
+        <span *ngIf="!teamService.isTeamsLoading">{{teamService.teams.length}}</span>
       </div>
     </div>
 
     <div routerLink="members">
       <h2>Members</h2>
       <div>
-        <span>5</span>
+        <span>{{membersCount}}</span>
       </div>
     </div>
   </div>

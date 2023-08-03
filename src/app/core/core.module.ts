@@ -8,14 +8,12 @@ import {RouterModule} from '@angular/router';
 import {CategorySelectionCardComponent} from './components/category-selection-card/category-selection-card.component';
 import {LoaderComponent} from './components/loader/loader.component';
 import {PromptCardComponent} from './components/prompt-card/prompt-card.component';
-import {appInitializerProviders} from './initializer/app.initializer';
 import {ApiUrlInterceptor} from './interceptors/api-url.interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {SkeletonLoaderComponent} from './components/skeleton-loader/skeleton-loader.component';
 import {NoDataComponent} from './components/no-data/no-data.component';
 import {MatOptionModule} from "@angular/material/core";
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -27,13 +25,13 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
     NoDataComponent,
     ConfirmDialogComponent
   ],
-  exports: [
-    CategorySelectionCardComponent,
-    PromptCardComponent,
-    LoaderComponent,
-    SkeletonLoaderComponent,
-    NoDataComponent
-  ],
+    exports: [
+        CategorySelectionCardComponent,
+        PromptCardComponent,
+        LoaderComponent,
+        SkeletonLoaderComponent,
+        NoDataComponent
+    ],
   imports: [
     CommonModule,
     MatButtonModule,

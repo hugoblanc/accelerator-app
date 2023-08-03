@@ -18,5 +18,5 @@
   </div>
 
 
-  <app-teams-table [searchTerm]="searchTerm" [teams]="teams" (deleted)="delete($event)"></app-teams-table>
+  <app-teams-table [searchTerm]="searchTerm" [teams]="teamService.teams" (deleted)="delete($event)"></app-teams-table>
 </div>

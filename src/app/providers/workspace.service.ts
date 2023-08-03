@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MemberDto} from "./dto/member.dto";
 import {InviteMemberDto} from "./dto/invite-member.dto";
+import {TeamService} from "./team.service";
+import {TeamDto} from "./dto/team.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +19,11 @@ export class WorkspaceService {
   public workspaceListIsLoading: boolean = false;
 
   constructor(private http: HttpClient,
+              private teamService: TeamService,
               private router: Router,
               private snackBar: MatSnackBar) {
     this.getMyWorkspaces();
+    this.teamService.getWorkspaceTeams();
   }
 
   public changeWorkspace(workspace: WorkspaceDto) {

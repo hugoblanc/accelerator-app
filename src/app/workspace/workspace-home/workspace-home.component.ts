@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WorkspaceService} from "../../providers/workspace.service";
+import {TeamService} from "../../providers/team.service";
 
 @Component({
   selector: 'app-workspace-home',
@@ -8,9 +9,18 @@ import {WorkspaceService} from "../../providers/workspace.service";
 })
 export class WorkspaceHomeComponent implements OnInit {
 
-    constructor(public workspaceService: WorkspaceService) { }
+  membersCount: number | undefined;
+    constructor(public workspaceService: WorkspaceService,
+                public teamService: TeamService) { }
 
     ngOnInit(): void {
+      this.getMembersCount();
+    }
+
+    getMembersCount() {
+      this.workspaceService.getMembers().subscribe((members) => {
+        this.membersCount = members.length;
+      });
     }
 
 }

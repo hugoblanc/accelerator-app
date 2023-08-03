@@ -13,20 +13,12 @@ import {TeamDto} from "../../../providers/dto/team.dto";
 export class TeamsComponent implements OnInit {
   searchTerm: string = '';
 
-  teams: any[] = [];
-  constructor(private teamService: TeamService,
+  constructor(public teamService: TeamService,
               private snackbar: MatSnackBar,
               private dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this.getWorkspaceTeams();
-  }
-
-  private getWorkspaceTeams() {
-    return this.teamService.getWorkspaceTeams()?.subscribe(teams => {
-      this.teams = teams;
-    })
   }
 
   delete(team: TeamDto) {
@@ -41,7 +33,7 @@ export class TeamsComponent implements OnInit {
     if (result) {
       this.teamService.delete(team.id).subscribe(
         () => {
-          this.teams = this.teams.filter((p) => p.id !== team.id);
+          this.teamService.teams = this.teamService.teams.filter((p) => p.id !== team.id);
           this.snackbar.open('Team deleted', 'OK', {duration: 3000});
         }
       );

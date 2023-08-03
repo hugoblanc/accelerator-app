@@ -1,17 +1,18 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {TeamDto} from "./dto/team.dto";
-import {WorkspaceService} from "./workspace.service";
 import {MemberDto} from "./dto/member.dto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamService {
-  private apiUrl: string = '/teams'
+  private apiUrl: string = '/teams';
 
-  constructor(private http: HttpClient,
-              private workspaceService: WorkspaceService) {
+  teams: TeamDto[] = [];
+  isTeamsLoading: boolean = false;
+
+  constructor(private http: HttpClient) {
   }
 
   public getTeam(teamId: string) {
@@ -19,7 +20,16 @@ export class TeamService {
   }
 
   public getWorkspaceTeams() {
-    return this.http.get<TeamDto[]>(this.apiUrl + '/workspace/' + this.workspaceService.currentWorkspace?.id);
+    this.isTeamsLoading = true;
+    // TODO Change /temp because i don't why but its failing with /workspace
+    return this.http.get<TeamDto[]>(this.apiUrl + '/workspace/temp').subscribe(
+      (teams: TeamDto[]) => this.getTeamsSuccess(teams)
+    );
+  }
+
+  private getTeamsSuccess(teams: TeamDto[]) {
+    this.teams = teams;
+    this.isTeamsLoading = false;
   }
 
   public getMyTeams() {
