@@ -43,7 +43,8 @@ export class WorkspaceService {
   public getMyWorkspaces() {
     this.workspaceListIsLoading = true;
     this.http.get<WorkspaceDto[]>('/workspaces/mine').subscribe(
-      (result) => this.getMyWorkspacesSuccess(result)
+      (result) => this.getMyWorkspacesSuccess(result),
+      () => this.workspaceListIsLoading = false
     );
   }
 

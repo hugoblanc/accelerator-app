@@ -22,6 +22,9 @@ export class TeamCurrentComponent implements OnInit {
     this.isLoading = true;
     this.teamService.getMyTeams().subscribe((teams) => {
       this.teams = teams;
+      if (!this.currentTeam) {
+        this.changeTeam(this.teams[0]);
+      }
       this.isLoading = false;
     });
   }

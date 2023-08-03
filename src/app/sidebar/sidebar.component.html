@@ -9,10 +9,10 @@
 
       <!--      WORKSPACE MANGEMENT-->
 
-      <app-workspace-current></app-workspace-current>
+      <app-workspace-current *ngIf="userService.userAuthenticated"></app-workspace-current>
 
 
-      <a routerLink="/workspace/home" class="g-menu-line mt-5">
+      <a *ngIf="userService.userAuthenticated" routerLink="/workspace/home" class="g-menu-line mt-5">
         <mat-icon>home</mat-icon>
         <span i18n="gallery">Home</span>
       </a>
@@ -22,12 +22,12 @@
         <span i18n="gallery">Gallery</span>
       </a>
 
-      <a routerLink="/home" class="g-menu-line">
+      <a *ngIf="userService.userAuthenticated" routerLink="/home" class="g-menu-line">
         <mat-icon>list</mat-icon>
         <span>My prompts</span>
       </a>
 
-      <a routerLink="/contribute" class="g-menu-line-primary">
+      <a *ngIf="userService.userAuthenticated" routerLink="/contribute" class="g-menu-line-primary">
         <mat-icon>add_box</mat-icon>
         <span>New prompt</span>
       </a>

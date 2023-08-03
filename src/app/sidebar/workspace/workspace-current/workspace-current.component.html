@@ -1,4 +1,4 @@
-<div class="h-12">
+<div class="h-8">
   <ng-container *ngIf="!workspaceService.workspaceListIsLoading; else loading">
     <div class="workspace-container" [matMenuTriggerFor]="menu">
       <span>{{workspaceService.currentWorkspace?.name || 'Personal Workspace' }}</span>

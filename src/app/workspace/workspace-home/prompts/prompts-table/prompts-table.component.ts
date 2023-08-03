@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {PromptDto} from "../../../../providers/dto/prompt.dto";
-import {PromptsService} from "../../../../providers/prompts.service";
 
 @Component({
   selector: 'app-prompts-table',
@@ -10,8 +9,7 @@ import {PromptsService} from "../../../../providers/prompts.service";
 })
 export class PromptsTableComponent implements OnInit {
   dataSource = new MatTableDataSource<PromptDto>();
-  displayedColumns: string[] = ['name', 'teams', 'actions'];
-  displayedColumnsTeamMode: string[] = ['name', 'text', 'actions'];
+  displayedColumns: string[] = ['name', 'description', 'text', 'categories', 'actions'];
 
   @Input() set searchTerm(value: string) {
     this.applyFilter(value);
@@ -21,14 +19,9 @@ export class PromptsTableComponent implements OnInit {
     this.dataSource.data = value;
   }
 
-  @Input() teamMode: boolean = false;
-
   @Output() deleted = new EventEmitter<PromptDto>();
 
   ngOnInit() {
-    if (this.teamMode) {
-      this.displayedColumns = this.displayedColumnsTeamMode;
-    }
   }
 
   applyFilter(searchTerm: string): void {
