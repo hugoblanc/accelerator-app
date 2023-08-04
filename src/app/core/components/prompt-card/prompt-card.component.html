@@ -20,7 +20,7 @@
               <mat-icon>edit</mat-icon>
               <span i18n>Edit</span>
             </button>
-            <button mat-menu-item (click)="fork(prompt)">
+            <button mat-menu-item routerLink="/contribute/edit/{{prompt.id}}/duplicate">
               <mat-icon>difference</mat-icon>
               <span i18n>Duplicate</span>
             </button>
@@ -47,7 +47,7 @@
             <span class="mx-1" i18n="Try it">Try It</span>
           </button>
 
-          <button *ngIf="userService.userAuthenticated" (click)="fork(prompt)"
+          <button *ngIf="userService.userAuthenticated" routerLink="/contribute/edit/{{prompt.id}}/duplicate"
             class="rounded inline-flex items-center px-2 py-1.5 text-sm font-semibold border border-indigo-500 text-indigo-500">
             <mat-icon>difference</mat-icon>
             <span class="mx-1" i18n="Fork it">Duplicate</span>
