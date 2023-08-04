@@ -10,17 +10,23 @@ import {TeamService} from "../../providers/team.service";
 export class WorkspaceHomeComponent implements OnInit {
 
   membersCount: number | undefined;
-    constructor(public workspaceService: WorkspaceService,
-                public teamService: TeamService) { }
+  countIsLoading: boolean = false;
 
-    ngOnInit(): void {
-      this.getMembersCount();
-    }
+  constructor(public workspaceService: WorkspaceService,
+              public teamService: TeamService) {
+  }
 
-    getMembersCount() {
-      this.workspaceService.getMembers().subscribe((members) => {
-        this.membersCount = members.length;
+  ngOnInit(): void {
+  }
+
+  getMembersCount(): number {
+    if (this.membersCount === undefined && !this.countIsLoading) {
+      this.countIsLoading = true;
+      this.workspaceService.getMembersCount().subscribe((count) => {
+        this.membersCount = count;
+        this.countIsLoading = false;
       });
     }
-
+    return this.membersCount || 0;
+  }
 }

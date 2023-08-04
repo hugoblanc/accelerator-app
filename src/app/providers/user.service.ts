@@ -5,7 +5,7 @@ import {AuthService} from "./auth.service";
 import {PromptDto} from "./dto/prompt.dto";
 import {UserDto} from "./dto/user.dto";
 import {PromptsService} from "./prompts.service";
-import {WorkspaceDto} from "./dto/workspace.dto";
+import {WorkspaceService} from "./workspace.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,10 @@ export class UserService {
   public promptList: PromptDto[] = [];
   public promptListIsLoading: boolean = false;
 
-  constructor(private http: HttpClient, private authService: AuthService, private promptService: PromptsService) {
+  constructor(private http: HttpClient,
+              private workspaceService: WorkspaceService,
+              private authService: AuthService,
+              private promptService: PromptsService) {
 
   }
 
@@ -33,6 +36,7 @@ export class UserService {
       tap(user => {
         this.userAuthenticated = user;
         this.setPromptList();
+        this.workspaceService.initWorkspace();
       })
     );
   }

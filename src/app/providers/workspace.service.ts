@@ -6,7 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {MemberDto} from "./dto/member.dto";
 import {InviteMemberDto} from "./dto/invite-member.dto";
 import {TeamService} from "./team.service";
-import {TeamDto} from "./dto/team.dto";
+import {of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,9 @@ export class WorkspaceService {
               private teamService: TeamService,
               private router: Router,
               private snackBar: MatSnackBar) {
+  }
+
+  public initWorkspace() {
     this.getMyWorkspaces();
     this.teamService.getWorkspaceTeams();
   }
@@ -53,7 +56,15 @@ export class WorkspaceService {
   }
 
   public getMembers() {
-    return this.http.get<MemberDto[]>('/workspaces/members');
+    if (this.currentWorkspace) {
+      return this.http.get<MemberDto[]>('/workspaces/members');
+    } else {
+      return of();
+    }
+  }
+
+  public getMembersCount() {
+    return this.http.get<number>('/workspaces/members/count');
   }
 
   private getMyWorkspacesSuccess(workspaces: WorkspaceDto[]) {

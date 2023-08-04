@@ -37,9 +37,12 @@
 
         <app-team-current (teamChanged)="currentTeam = $event" [currentTeam]="currentTeam"></app-team-current>
 
-        <mat-divider></mat-divider>
+        <ng-container *ngIf="currentTeam">
+          <mat-divider></mat-divider>
 
-        <app-team-prompts *ngIf="currentTeam" [currentTeam]="currentTeam"></app-team-prompts>
+          <app-team-prompts [currentTeam]="currentTeam"></app-team-prompts>
+        </ng-container>
+
 
         <mat-divider></mat-divider>
 

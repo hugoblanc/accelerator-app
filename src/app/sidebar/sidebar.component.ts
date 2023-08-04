@@ -13,11 +13,13 @@ export class SidebarComponent implements OnInit {
   currentTeam : TeamDto | undefined;
 
   constructor(public readonly userService: UserService, private teamService: TeamService ) {
-    const currentTeamId = localStorage.getItem('currentTeamId');
-    if (currentTeamId) {
-      this.teamService.getTeam(currentTeamId).subscribe((team) => {
-        this.currentTeam = team;
-      });
+    if (this.userService.userAuthenticated) {
+      const currentTeamId = localStorage.getItem('currentTeamId');
+      if (currentTeamId) {
+        this.teamService.getTeam(currentTeamId).subscribe((team) => {
+          this.currentTeam = team;
+        });
+      }
     }
   }
 
