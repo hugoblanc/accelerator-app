@@ -2,7 +2,10 @@
   <div class="g-card rounded-md shadow-md flex flex-col gap-1 min-w-full min-h-full max-h-80"
     [ngClass]="{'cursor-pointer': mode === 'home'}">
     <div class="w-full flex items-center">
-      <div class="font-medium text-xl w-9/12">{{prompt.name}}</div>
+      <div class="prompt-title w-9/12">
+        <span>{{prompt.name}}</span>
+        <mat-icon *ngIf="prompt.opened" [matTooltip]="'This prompt is public'">public</mat-icon>
+      </div>
       <div class="flex w-3/12 justify-end">
         <ng-container *ngIf="mode === 'home'; else language">
           <button mat-icon-button [matMenuTriggerFor]="menu">

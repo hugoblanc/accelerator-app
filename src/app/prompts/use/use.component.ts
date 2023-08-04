@@ -1,12 +1,15 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, catchError } from 'rxjs';
-import { ChatService } from '../../providers/chat.service';
-import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
-import { PromptsService } from '../../providers/prompts.service';
-import { UserService } from "../../providers/user.service";
-import { NoSubscriptionLeftService } from '../../providers/no-subscription-left.service';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {catchError} from 'rxjs';
+import {ChatService} from '../../providers/chat.service';
+import {PromptDto, VariableType} from '../../providers/dto/prompt.dto';
+import {PromptsService} from '../../providers/prompts.service';
+import {UserService} from "../../providers/user.service";
+import {NoSubscriptionLeftService} from '../../providers/no-subscription-left.service';
+import {ConfirmDialogComponent} from "../../core/components/confirm-dialog/confirm-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 type VariableArray = FormArray<FormGroup<{
   key: FormControl<string>,
@@ -32,6 +35,8 @@ export class UseComponent implements OnInit, OnDestroy {
   constructor(
     private readonly promptsService: PromptsService,
     private router: Router,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar,
     public readonly userService: UserService,
     private readonly route: ActivatedRoute,
     private readonly noSubLeftService: NoSubscriptionLeftService,
@@ -102,11 +107,26 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   delete() {
+    this.dialog.open(ConfirmDialogComponent,
+      {
+        width: '400px',
+        height: '200px',
+      }).afterClosed().subscribe((result) => this.onConfirmDialogClosed(result));
+  }
+
+  onConfirmDialogClosed(result: boolean) {
     this.promptsService.deletePrompt(this.prompt.id).subscribe(
-      () => this.router.navigate(['/gallery']).then(
-        () => this.userService.setPromptList()
-      )
+      () => this.onDeleteSuccess()
     );
+  }
+
+  onDeleteSuccess() {
+    this.router.navigate(['/gallery']).then(
+      () => {
+        this.snackbar.open('Prompt deleted', 'OK', {duration: 3000});
+        this.userService.setPromptList()
+      }
+    )
   }
 
   private updatePreview(value: Partial<{
