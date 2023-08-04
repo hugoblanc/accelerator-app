@@ -6,7 +6,11 @@
        class="g-prompt-line"
        (click)="goToPrompt(prompt)">
     <mat-icon>chevron_right</mat-icon>
-    <span class="flex-grow">{{prompt.name}}</span>
+    <div class="prompt-title">
+      <span>{{prompt.name}}</span>
+      <mat-icon *ngIf="prompt.opened" [matTooltip]="'This prompt is public'">public</mat-icon>
+    </div>
+
   </div>
 </ng-container>
 

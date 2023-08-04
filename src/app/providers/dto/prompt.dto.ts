@@ -9,6 +9,7 @@ export interface PromptDto {
   categories?: Category[]
   lang: string;
   userId: string;
+  opened: boolean;
 }
 
 export interface PromptToEditDto {

@@ -2,3 +2,7 @@
   @apply whitespace-pre-wrap align-top bg-gray-100 rounded p-2;
   min-height: 75px;
 }
+
+.prompt-title {
+  @apply text-2xl flex items-center gap-3;
+}

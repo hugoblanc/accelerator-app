@@ -1,7 +1,10 @@
 <div class="p-2 max-h-full text-sm">
   <div *ngIf="prompt" class="flex flex-row w-full justify-between items-center">
     <div class="flex-col">
-      <div class="text-2xl">{{prompt.name}}</div>
+      <div class="prompt-title">
+        <span>{{prompt.name}}</span>
+        <mat-icon *ngIf="prompt.opened" [matTooltip]="'This prompt is public'">public</mat-icon>
+      </div>
       <div class="text-md text-gray-500">{{prompt.description}}</div>
     </div>
     <div *ngIf="userService.userAuthenticated" class="flex gap-3">

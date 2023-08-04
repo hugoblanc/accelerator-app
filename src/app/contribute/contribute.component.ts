@@ -1,20 +1,20 @@
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, debounceTime, filter, startWith, switchMap } from 'rxjs';
-import { CategoryService } from '../providers/category.service';
-import { CategoryDto } from '../providers/dto/category.dto';
-import { ContribPromptService } from './contrib-prompt.service';
-import { GPTModel } from './gtp-model.enum';
-import { UserService } from "../providers/user.service";
-import { PromptDto, PromptToEditDto } from "../providers/dto/prompt.dto";
-import { PromptsService } from '../providers/prompts.service';
-import { languagesList } from "../providers/dto/languages";
-import { CreatePromptDto } from '../providers/dto/create.prompt.dto';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ActivatedRoute, Router} from '@angular/router';
+import {debounceTime, Observable, startWith, switchMap} from 'rxjs';
+import {CategoryService} from '../providers/category.service';
+import {CategoryDto} from '../providers/dto/category.dto';
+import {ContribPromptService} from './contrib-prompt.service';
+import {GPTModel} from './gtp-model.enum';
+import {UserService} from "../providers/user.service";
+import {PromptToEditDto} from "../providers/dto/prompt.dto";
+import {PromptsService} from '../providers/prompts.service';
+import {languagesList} from "../providers/dto/languages";
+import {CreatePromptDto} from '../providers/dto/create.prompt.dto';
 import {TeamService} from "../providers/team.service";
 import {TeamDto} from "../providers/dto/team.dto";
 
@@ -51,7 +51,7 @@ export class ContributeComponent implements OnInit {
     model: new FormControl(GPTModel.GPT35Turbo, { nonNullable: true, validators: [Validators.required] }),
     name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     categories: new FormControl<any[]>([], { nonNullable: true, validators: [Validators.required] }),
-    lang: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    lang: new FormControl('en', { nonNullable: true, validators: [Validators.required] }),
     scope: new FormControl('personal', { nonNullable: false, validators: [Validators.required] })
   });
 
