@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from "./providers/auth.service";
-import { UserService } from "./providers/user.service";
-import { Router } from "@angular/router";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AuthService} from "./providers/auth.service";
+import {UserService} from "./providers/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.userService.setCurrentUser().subscribe();
+    } else {
+      this.router.navigate(['/gallery']).then();
     }
     this.scrollToBottom();
   }

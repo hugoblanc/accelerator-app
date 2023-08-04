@@ -30,9 +30,13 @@ export class WorkspaceService {
   }
 
   public changeWorkspace(workspace: WorkspaceDto) {
+    this.setCurrentWorkspace(workspace);
+    window.location.reload(); // voir comment faire mieux plus tard ;) (pour recharger la page)
+  }
+
+  private setCurrentWorkspace(workspace: WorkspaceDto) {
     this.currentWorkspace = workspace;
     localStorage.setItem('currentWorkspaceId', workspace.id);
-    window.location.reload(); // voir comment faire mieux plus tard ;) (pour recharger la page)
   }
 
   public createWorkspace(name: string) {
@@ -73,7 +77,7 @@ export class WorkspaceService {
       if (localStorage.getItem('currentWorkspaceId')) {
         this.currentWorkspace = workspaces.find(workspace => workspace.id === localStorage.getItem('currentWorkspaceId'));
       } else {
-        this.currentWorkspace = workspaces[0];
+        this.setCurrentWorkspace(workspaces[0])
       }
     }
     this.workspaceListIsLoading = false;
