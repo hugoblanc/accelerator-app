@@ -33,9 +33,13 @@
       </a>
 
       <div *ngIf="userService.userAuthenticated" class="flex flex-col gap-3 h-full mt-3">
-        <mat-divider></mat-divider>
 
-        <app-team-current (teamChanged)="currentTeam = $event" [currentTeam]="currentTeam"></app-team-current>
+        <ng-container *ngIf="workspaceService.currentWorkspace">
+          <mat-divider></mat-divider>
+
+          <app-team-current (teamChanged)="currentTeam = $event" [currentTeam]="currentTeam"></app-team-current>
+        </ng-container>
+
 
         <ng-container *ngIf="currentTeam">
           <mat-divider></mat-divider>

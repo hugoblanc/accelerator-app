@@ -46,7 +46,7 @@ export class WorkspaceService {
   }
 
   private workSpaceCreationSuccess(workspace: WorkspaceDto) {
-    this.currentWorkspace = workspace;
+    this.setCurrentWorkspace(workspace);
     this.snackBar.open("Workspace created successfully", 'Close', { duration: 2000 });
     this.router.navigate(['/workspace/home']).then();
   }

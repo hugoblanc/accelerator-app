@@ -8,7 +8,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {WelcomeModule} from "./welcome/welcome.module";
 import {SignUpModule} from "./sign-up/sign-up.module";
 import {AuthInterceptor} from "./providers/auth-interceptor";
 import {UserModule} from "./user/user.module";
@@ -17,11 +16,11 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import {WorkspaceCurrentComponent} from './sidebar/workspace/workspace-current/workspace-current.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {OverlayModule} from "@angular/cdk/overlay";
-import { WorkspaceComponent } from './workspace/workspace.component';
+import {WorkspaceComponent} from './workspace/workspace.component';
 import {CoreModule} from "./core/core.module";
-import { TeamCurrentComponent } from './sidebar/team/team-current/team-current.component';
-import { TeamPromptsComponent } from './sidebar/team/team-prompts/team-prompts.component';
-import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {TeamCurrentComponent} from './sidebar/team/team-current/team-current.component';
+import {TeamPromptsComponent} from './sidebar/team/team-prompts/team-prompts.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -40,7 +39,6 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialog, MatDialogModule, MatDialogRef} fr
     MatIconModule,
     MatButtonModule,
     HttpClientModule,
-    WelcomeModule,
     MatListModule,
     SignUpModule,
     UserModule,

@@ -2,11 +2,11 @@
   <div class="g-card rounded-md shadow-md flex flex-col gap-1 min-w-full min-h-full max-h-80"
     [ngClass]="{'cursor-pointer': mode === 'home'}">
     <div class="w-full flex items-center">
-      <div class="prompt-title w-9/12">
+      <div class="prompt-title w-10/12">
         <span>{{prompt.name}}</span>
         <mat-icon *ngIf="prompt.opened" [matTooltip]="'This prompt is public'">public</mat-icon>
       </div>
-      <div class="flex w-3/12 justify-end">
+      <div class="flex w-2/12 justify-end">
         <ng-container *ngIf="mode === 'home'; else language">
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_horiz</mat-icon>
@@ -37,7 +37,7 @@
         {{category.name}}
       </div>
     </div>
-    <p class="text-slate-500 text-xs max-h-64">{{prompt.description}}</p>
+    <div class="text-slate-500 text-xs flex-grow">{{prompt.description}}</div>
     <div class="flex flex-row">
       <ng-container *ngIf="mode === 'gallery'">
         <div class="flex flex-row gap-x-2">
