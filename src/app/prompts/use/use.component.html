@@ -61,7 +61,7 @@
         </div>
 
         <div class="flex w-full justify-center">
-          <button [disabled]="!userService.userAuthenticated"
+          <button [disabled]="!userService.userAuthenticated || usePromptForms.invalid"
             class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-gray-500">
             <mat-icon>psychology</mat-icon>
             <span class="mx-1" i18n>Run It</span>

@@ -10,12 +10,13 @@ export class NoSubscriptionLeftService {
 
   showToaster(err: any) {
 
-    this._snackBar.open('No more credit', 'Buy credit', {
+    this._snackBar.open(err.error.message, 'Buy credit', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
     });
     return [];
   }
+
 
 }

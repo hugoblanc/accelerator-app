@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from '@angular/router';
@@ -86,7 +86,7 @@ export class UseComponent implements OnInit, OnDestroy {
           new FormGroup(
             {
               key: new FormControl(variable.value, { nonNullable: true }),
-              value: new FormControl('', { nonNullable: true }),
+              value: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
               type: new FormControl(variable.type, { nonNullable: true })
             }
           ))
