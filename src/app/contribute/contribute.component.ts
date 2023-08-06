@@ -1,22 +1,22 @@
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ActivatedRoute, Router} from '@angular/router';
-import {debounceTime, Observable, startWith, switchMap} from 'rxjs';
-import {CategoryService} from '../providers/category.service';
-import {CategoryDto} from '../providers/dto/category.dto';
-import {ContribPromptService} from './contrib-prompt.service';
-import {GPTModel} from './gtp-model.enum';
-import {UserService} from "../providers/user.service";
-import {PromptToEditDto} from "../providers/dto/prompt.dto";
-import {PromptsService} from '../providers/prompts.service';
-import {languagesList} from "../providers/dto/languages";
-import {CreatePromptDto} from '../providers/dto/create.prompt.dto';
-import {TeamService} from "../providers/team.service";
-import {TeamDto} from "../providers/dto/team.dto";
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime, Observable, startWith, switchMap } from 'rxjs';
+import { CategoryService } from '../providers/category.service';
+import { CategoryDto } from '../providers/dto/category.dto';
+import { ContribPromptService } from './contrib-prompt.service';
+import { GPTModel } from './gtp-model.enum';
+import { UserService } from "../providers/user.service";
+import { PromptToEditDto } from "../providers/dto/prompt.dto";
+import { PromptsService } from '../providers/prompts.service';
+import { languagesList } from "../providers/dto/languages";
+import { CreatePromptDto } from '../providers/dto/create.prompt.dto';
+import { TeamService } from "../providers/team.service";
+import { TeamDto } from "../providers/dto/team.dto";
 
 interface CreatePromptForm {
   text: FormControl<string>;
@@ -153,6 +153,8 @@ export class ContributeComponent implements OnInit {
     this.contribPrompt.editPrompt(editionData).subscribe((prompt) => {
       this.snackBar.open("Prompt created!", 'Close', { duration: 2000 });
       this.resetAndNavigate(promptId);
+    }, (err) => {
+      this.snackBar.open(err.error.message, 'Close', { duration: 2000 });
     });
 
   }
@@ -161,6 +163,8 @@ export class ContributeComponent implements OnInit {
     this.contribPrompt.createPrompt(creationData).subscribe((prompt) => {
       this.snackBar.open("Prompt created!", 'Close', { duration: 2000 });
       this.resetAndNavigate((prompt as any).id);
+    }, (err) => {
+      this.snackBar.open(err.error.message, 'Close', { duration: 2000 });
     });
   }
 

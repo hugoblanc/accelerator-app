@@ -1,7 +1,7 @@
 <div class="g-screen-container flex justify-center">
 
   <form [formGroup]="createPromptForms" (ngSubmit)="createPromptForms.valid && save()" #myForm="ngForm"
-        class="flex flex-col w-1/2 g-card shadow">
+    class="flex flex-col w-1/2 g-card shadow">
 
     <div class=g-card-title i18n="create prompt">
       <ng-container *ngIf="!isEditing">Create a new prompt</ng-container>
@@ -65,21 +65,28 @@
     <div class="text-gray-500 text-xs p-2">
       <span>You can make the prompt variable by inserting the following tags:</span>
       <ul>
-        <li><span class="text-gray-600">text(VARIABLE NAME)</span> : to create a variable to be filled in a regular field.</li>
-        <li><span class="text-gray-600">longText(VARIABLE NAME)</span> : to create a variable to be filled in a text area.</li>
+        <li><span class="text-gray-600">text(VARIABLE NAME)</span> : to create a variable to be filled in a regular
+          field.</li>
+        <li><span class="text-gray-600">longText(VARIABLE NAME)</span> : to create a variable to be filled in a text
+          area.</li>
+        <li>
+          <span class="text-gray-600">pdf(VARIABLE NAME)</span> : to create a variable that will be replaced by a PDF
+          file. <strong>(Max 1 file per prompt)</strong>
+        </li>
+
       </ul>
     </div>
     <mat-form-field appearance="outline">
       <mat-label>Prompt</mat-label>
       <textarea matInput i18n-placeholder="prompt create-placeholder"
-                placeholder="Put prompt variables between text(), eg: Act as persona text(PERSONA)" rows="15"
-                formControlName="text"></textarea>
+        placeholder="Put prompt variables between text(), eg: Act as persona text(PERSONA)" rows="15"
+        formControlName="text"></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
       <textarea matInput i18n-placeholder="description help" placeholder="Description to help users to understand it"
-                rows="3" formControlName="description"></textarea>
+        rows="3" formControlName="description"></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline" *ngIf="categories$ != null">
@@ -93,10 +100,10 @@
         </mat-chip-row>
       </mat-chip-grid>
       <input type="text" placeholder="Software engineer" aria-label="Category" matInput [formControl]="categoryCtrl"
-             multiple [matAutocomplete]="auto" [matChipInputFor]="chipGrid"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+        multiple [matAutocomplete]="auto" [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayCategory"
-                        (optionSelected)="selected($event)">
+        (optionSelected)="selected($event)">
         <mat-option *ngFor="let category of categories$ | async" [value]="category">
           {{category.name}}
         </mat-option>
@@ -105,7 +112,7 @@
 
     <div class="flex flex-row justify-center" *ngIf="!isEditing">
       <button type="submit" [disabled]="!createPromptForms.valid"
-              class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         <mat-icon>add</mat-icon>
         <span class="mx-1" i18n>Create my prompt</span>
       </button>
@@ -113,7 +120,7 @@
 
     <div class="flex flex-row justify-center" *ngIf="isEditing">
       <button type="submit" [disabled]="!createPromptForms.valid"
-              class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        class="rounded inline-flex items-center bg-fuchsia-800 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-700 focus-visible:outline focus-visible:outline-2 disabled:bg-gray-500 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         <mat-icon>edit</mat-icon>
         <span class="mx-1" i18n>Save modifications</span>
       </button>
