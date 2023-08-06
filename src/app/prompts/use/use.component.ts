@@ -1,15 +1,15 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {catchError} from 'rxjs';
-import {ChatService} from '../../providers/chat.service';
-import {PromptDto, VariableType} from '../../providers/dto/prompt.dto';
-import {PromptsService} from '../../providers/prompts.service';
-import {UserService} from "../../providers/user.service";
-import {NoSubscriptionLeftService} from '../../providers/no-subscription-left.service';
-import {ConfirmDialogComponent} from "../../core/components/confirm-dialog/confirm-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError } from 'rxjs';
+import { ConfirmDialogComponent } from "../../core/components/confirm-dialog/confirm-dialog.component";
+import { ChatService } from '../../providers/chat.service';
+import { PromptDto, VariableType } from '../../providers/dto/prompt.dto';
+import { NoSubscriptionLeftService } from '../../providers/no-subscription-left.service';
+import { PromptsService } from '../../providers/prompts.service';
+import { UserService } from "../../providers/user.service";
 
 type VariableArray = FormArray<FormGroup<{
   key: FormControl<string>,
@@ -31,6 +31,8 @@ export class UseComponent implements OnInit, OnDestroy {
   preview: string = '';
   initialPromptText: string = '';
   prompt!: PromptDto;
+
+  selectedFile?: File;
 
   constructor(
     private readonly promptsService: PromptsService,
@@ -101,7 +103,12 @@ export class UseComponent implements OnInit, OnDestroy {
   }
 
   startEngine() {
-    this.chatService.usePrompt(this.usePromptForms.value, this.preview, this._promptId)
+    let usePrompt$ = this.chatService.usePrompt(this.usePromptForms.value, this.preview, this._promptId);
+    if (this.selectedFile) {
+      usePrompt$ = this.chatService.usePromptV2(this.usePromptForms.value, this.selectedFile, this._promptId)
+    }
+
+    usePrompt$
       .pipe(catchError((err) => this.noSubLeftService.showToaster(err)))
       .subscribe();
   }
@@ -123,11 +130,17 @@ export class UseComponent implements OnInit, OnDestroy {
   onDeleteSuccess() {
     this.router.navigate(['/gallery']).then(
       () => {
-        this.snackbar.open('Prompt deleted', 'OK', {duration: 3000});
+        this.snackbar.open('Prompt deleted', 'OK', { duration: 3000 });
         this.userService.setPromptList()
       }
     )
   }
+
+
+  onPdfSelected(event: any): void {
+    this.selectedFile = event.target.files[0] ?? null;
+  }
+
 
   private updatePreview(value: Partial<{
     key: string;
@@ -140,6 +153,8 @@ export class UseComponent implements OnInit, OnDestroy {
         this.preview = this.preview.replace(`text(${variable.key})`, this.getVariableValueViewComponent(variable.value, VariableType.text));
       } else if (variable.type === VariableType.longText) {
         this.preview = this.preview.replace(`longText(${variable.key})`, this.getVariableValueViewComponent(variable.value, VariableType.longText));
+      } else if (variable.type === VariableType.pdf) {
+        this.preview = this.preview.replace(`pdf(${variable.key})`, this.getVariableValueViewComponent(variable.value, VariableType.pdf));
       }
     });
   }
@@ -151,6 +166,7 @@ export class UseComponent implements OnInit, OnDestroy {
     if (type === VariableType.longText) {
       return '<i class="text-gray-500">' + value + '</i>';
     }
+
     return '<b class="text-indigo-500">' + value + '</b>';
   }
 

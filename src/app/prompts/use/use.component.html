@@ -9,19 +9,18 @@
     </div>
     <div *ngIf="userService.userAuthenticated" class="flex gap-3">
       <button *ngIf="userService.userAuthenticated.id === prompt.userId"
-              class="rounded inline-flex items-center px-2 py-1.5 text-sm font-semibold border border-indigo-500 text-indigo-500"
-              routerLink="/contribute/edit/{{prompt.id}}"
-              routerLinkActive="router-link-active">
+        class="rounded inline-flex items-center px-2 py-1.5 text-sm font-semibold border border-indigo-500 text-indigo-500"
+        routerLink="/contribute/edit/{{prompt.id}}" routerLinkActive="router-link-active">
         <mat-icon>edit</mat-icon>
         <span class="mx-1" i18n="Edit">Edit</span>
       </button>
       <button routerLink="/contribute/edit/{{prompt.id}}/duplicate"
-              class="rounded inline-flex items-center px-2 py-1.5 text-sm font-semibold border border-indigo-500 text-indigo-500">
+        class="rounded inline-flex items-center px-2 py-1.5 text-sm font-semibold border border-indigo-500 text-indigo-500">
         <mat-icon>difference</mat-icon>
         <span class="mx-1" i18n="Fork it">Duplicate</span>
       </button>
       <button (click)="delete()"
-              class="rounded inline-flex items-center px-2 py-1.5 text-sm font-semibold border border-gray-500 text-gray-500">
+        class="rounded inline-flex items-center px-2 py-1.5 text-sm font-semibold border border-gray-500 text-gray-500">
         <mat-icon>delete</mat-icon>
         <span class="mx-1" i18n="Delete">Delete</span>
       </button>
@@ -30,8 +29,7 @@
 
   <div class="flex flex-col gap-5 h-full mt-2">
     <div class="g-card shadow flex flex-row justify-center">
-      <form (ngSubmit)="startEngine()" *ngIf="usePromptForms"
-            [formGroup]="usePromptForms" class="md:w-1/2 w-full">
+      <form (ngSubmit)="startEngine()" *ngIf="usePromptForms" [formGroup]="usePromptForms" class="md:w-1/2 w-full">
         <div [innerHTML]="preview" class="preview"></div>
 
 
@@ -46,16 +44,25 @@
             <mat-form-field *ngIf="variable.controls.type.value == 'longText'" appearance="outline">
               <mat-label>{{variable.controls.key.value}}</mat-label>
               <textarea [formControl]="variable.controls.value" class="outline-none focus:ring-0 focus-visible:ring-0"
-                        matInput
-                        rows="5"></textarea>
+                matInput rows="5"></textarea>
             </mat-form-field>
+
+            <!--         PDF File -->
+            <div class="pdf-loader" *ngIf="variable.controls.type.value == 'pdf'">
+              <button type="button" mat-stroked-button (click)="fileInput.click()">Pdf file:
+                {{variable.controls.key.value}}</button>
+              <input hidden (change)="onPdfSelected($event)" [formControl]="variable.controls.value" #fileInput
+                type="file">
+              <span class="file-name">{{selectedFile?.name}}</span>
+            </div>
+
           </ng-container>
 
         </div>
 
         <div class="flex w-full justify-center">
           <button [disabled]="!userService.userAuthenticated"
-                  class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-gray-500">
+            class="rounded inline-flex items-center bg-indigo-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-gray-500">
             <mat-icon>psychology</mat-icon>
             <span class="mx-1" i18n>Run It</span>
           </button>

@@ -47,10 +47,29 @@ export class ChatService {
   usePrompt(variables: any, preview: string, promptId: string) {
     this.chatSession = new ChatSession(promptId);
     this.chatSession.startLoading();
-    // Remove the first message from the user in the discussion, it is useless
-    // this.chatSession.messages.push({ content: preview, role: 'user' });
+
 
     return this.http.post<{ result: string }>('/chat/start-chat/' + this.chatSession.promptId, variables)
+      .pipe(
+        tap(this.addAssistantResponse.bind(this)),
+        catchError((err) => {
+          this.chatSession?.stopLoading();
+          throw err;
+        })
+      );
+  }
+
+  usePromptV2({ variables }: any, file: File, promptId: string) {
+    this.chatSession = new ChatSession(promptId);
+    this.chatSession.startLoading();
+    const fileVariable = variables.find((variable: any) => variable.type === 'pdf');
+    const formData = new FormData();
+    formData.append(fileVariable.key, file, file.name);
+    const stringifiedVariables = JSON.stringify(variables);
+    formData.append("variables", stringifiedVariables);
+
+
+    return this.http.post<{ result: string }>('/chat/start-prompt-v2/' + this.chatSession.promptId, formData)
       .pipe(
         tap(this.addAssistantResponse.bind(this)),
         catchError((err) => {

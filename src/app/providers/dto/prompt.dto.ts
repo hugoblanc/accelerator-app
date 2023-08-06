@@ -1,4 +1,4 @@
-import {GPTModel} from '../../contribute/gtp-model.enum';
+import { GPTModel } from '../../contribute/gtp-model.enum';
 
 export interface PromptDto {
   id: string;
@@ -40,5 +40,6 @@ interface Variable {
 
 export enum VariableType {
   text = 'text',
-  longText = 'longText'
+  longText = 'longText',
+  pdf = 'pdf'
 }
