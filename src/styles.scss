@@ -35,6 +35,10 @@ body {
   font-weight: bolder;
 }
 
+.g-sub-title {
+  @apply text-gray-500 mt-2;
+}
+
 textarea, .mat-input {
   @apply outline-none focus:ring-0 focus-visible:ring-0
 }
