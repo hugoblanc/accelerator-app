@@ -1,0 +1,7 @@
+.search-bar {
+  @apply w-full flex flex-col md:flex-row md:space-x-3;
+}
+
+.prompt-list {
+  @apply grid gap-4 md:grid-cols-2 lg:grid-cols-4;
+}

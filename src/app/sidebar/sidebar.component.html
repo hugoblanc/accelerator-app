@@ -1,67 +1,65 @@
-<div class="p-3 select-none h-full">
-  <div class="flex p-3 bg-gray-100 rounded-md h-full flex-col sidebar">
-    <div class="flex flex-row justify-between w-full items-center">
-      <!-- logo -->
-      <a class="text-2xl font-semibold whitespace-nowrap g-bg-linear">Proaft.ai</a>
-      <span class="py-1 px-2 text-white bg-indigo-500 rounded">Beta</span>
-    </div>
-    <div class="mt-5 flex flex-col h-full">
+<div class="flex p-2 bg-gray-100 rounded-md h-full flex-col">
+  <div class="flex flex-row justify-between w-full items-center">
+    <!-- logo -->
+    <a class="title">Proaft</a>
+    <span class="py-1 px-2 text-white bg-indigo-500 rounded">Beta</span>
+  </div>
+  <div class="mt-5 flex flex-col h-full overflow-y-auto overflow-x-hidden">
 
-      <!--      WORKSPACE MANGEMENT-->
+    <!--      WORKSPACE MANGEMENT-->
 
-      <app-workspace-current *ngIf="userService.userAuthenticated"></app-workspace-current>
-
-
-      <a *ngIf="userService.userAuthenticated" routerLink="/workspace/home" class="g-menu-line mt-5">
-        <mat-icon>home</mat-icon>
-        <span i18n="gallery">Home</span>
-      </a>
-
-      <a routerLink="/gallery" class="g-menu-line">
-        <mat-icon>dashboard</mat-icon>
-        <span i18n="gallery">Gallery</span>
-      </a>
-
-      <a *ngIf="userService.userAuthenticated" routerLink="/home" class="g-menu-line">
-        <mat-icon>list</mat-icon>
-        <span>My prompts</span>
-      </a>
-
-      <a *ngIf="userService.userAuthenticated" routerLink="/contribute" class="g-menu-line-primary">
-        <mat-icon>add_box</mat-icon>
-        <span>New prompt</span>
-      </a>
-
-      <div *ngIf="userService.userAuthenticated" class="flex flex-col gap-3 h-full mt-3">
-
-        <ng-container *ngIf="workspaceService.currentWorkspace">
-          <mat-divider></mat-divider>
-
-          <app-team-current (teamChanged)="currentTeam = $event" [currentTeam]="currentTeam"></app-team-current>
-        </ng-container>
+    <app-workspace-current *ngIf="userService.userAuthenticated"></app-workspace-current>
 
 
-        <ng-container *ngIf="currentTeam">
-          <mat-divider></mat-divider>
+    <a *ngIf="userService.userAuthenticated" routerLink="/workspace/home" class="g-menu-line mt-5">
+      <mat-icon>home</mat-icon>
+      <span i18n="gallery">Home</span>
+    </a>
 
-          <app-team-prompts [currentTeam]="currentTeam"></app-team-prompts>
-        </ng-container>
+    <a routerLink="/gallery" class="g-menu-line">
+      <mat-icon>dashboard</mat-icon>
+      <span i18n="gallery">Gallery</span>
+    </a>
 
+    <a *ngIf="userService.userAuthenticated" routerLink="/home" class="g-menu-line">
+      <mat-icon>list</mat-icon>
+      <span>My prompts</span>
+    </a>
 
+    <a *ngIf="userService.userAuthenticated" routerLink="/contribute" class="g-menu-line-primary">
+      <mat-icon>add_box</mat-icon>
+      <span>New prompt</span>
+    </a>
+
+    <div *ngIf="userService.userAuthenticated" class="flex flex-col gap-3 h-full mt-3">
+
+      <ng-container *ngIf="workspaceService.currentWorkspace">
         <mat-divider></mat-divider>
 
-        <app-user-prompts-list></app-user-prompts-list>
+        <app-team-current (teamChanged)="currentTeam = $event" [currentTeam]="currentTeam"></app-team-current>
+      </ng-container>
 
+
+      <ng-container *ngIf="currentTeam">
         <mat-divider></mat-divider>
 
-        <div class="flex flex-col mt-auto">
-          <app-user-credits-card></app-user-credits-card>
-          <app-user-card></app-user-card>
-          <app-logout class="mt-2"></app-logout>
-        </div>
+        <app-team-prompts [currentTeam]="currentTeam"></app-team-prompts>
+      </ng-container>
+
+
+      <mat-divider></mat-divider>
+
+      <app-user-prompts-list></app-user-prompts-list>
+
+      <mat-divider></mat-divider>
+
+      <div class="flex flex-col mt-auto">
+        <app-user-credits-card></app-user-credits-card>
+        <app-user-card></app-user-card>
+        <app-logout class="mt-2"></app-logout>
       </div>
-
-
     </div>
+
+
   </div>
 </div>

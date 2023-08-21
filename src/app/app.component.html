@@ -1,18 +1,18 @@
-<div class="flex flex-row h-full max-h-screen">
-  <app-sidebar class="w-2/12"></app-sidebar>
-  <div class="w-10/12 flex-col p-3 overflow-auto" #scrollMe>
+<div class="flex flex-col md:flex-row h-full max-h-screen">
+  <app-sidebar class="md:w-2/12 w-full"></app-sidebar>
+
+  <div class="md:w-10/12 w-full flex-col p-3 md:overflow-auto" #scrollMe>
     <div *ngIf="!userService.userAuthenticated" class="w-full flex justify-end gap-5">
       <a routerLink="/login"
-        class="rounded inline-flex items-center px-3 py-2 text-sm font-semibold border-2 border-indigo-500 text-indigo-500">
+         class="rounded inline-flex items-center px-3 py-2 text-sm font-semibold border-2 border-indigo-500 text-indigo-500">
         <span i18n>Sign In</span>
       </a>
 
       <a routerLink="/signup"
-        class="rounded inline-flex items-center bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+         class="rounded inline-flex items-center bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
         <span i18n>Start for free</span>
       </a>
     </div>
-
     <router-outlet></router-outlet>
   </div>
 </div>

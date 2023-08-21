@@ -14,16 +14,8 @@ export class SidebarComponent implements OnInit {
   currentTeam : TeamDto | undefined;
 
   constructor(public readonly userService: UserService,
-              public workspaceService: WorkspaceService,
-              private teamService: TeamService ) {
-    if (this.userService.userAuthenticated) {
-      const currentTeamId = localStorage.getItem('currentTeamId');
-      if (currentTeamId) {
-        this.teamService.getTeam(currentTeamId).subscribe((team) => {
-          this.currentTeam = team;
-        });
-      }
-    }
+              public workspaceService: WorkspaceService) {
+
   }
 
   ngOnInit() {

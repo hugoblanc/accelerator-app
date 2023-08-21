@@ -1,7 +1,12 @@
 :host {
   min-width: 250px;
+  @apply select-none p-2 h-full;
 }
 
 .menu-item {
  @apply flex items-center gap-2 p-3 text-lg hover:bg-gray-200 rounded
+}
+
+.title {
+  @apply text-2xl font-semibold whitespace-nowrap;
 }
