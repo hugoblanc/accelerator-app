@@ -4,7 +4,7 @@
     <div class="g-sub-title" i18n="prompts-additional-text">Manage your prompts below</div>
   </div>
 
-  <div class="grid grid-cols-3 gap-4 mt-2">
+  <div class="home-grid">
     <ng-container *ngIf="userService.promptList?.length; else emptyPrompts">
       <app-prompt-card *ngFor="let prompt of userService.promptList" class="max-h-36"
                        (deleted)="delete($event)"

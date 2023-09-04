@@ -5,3 +5,7 @@
 .prompt-list {
   @apply grid gap-4 md:grid-cols-2 lg:grid-cols-4;
 }
+
+.gallery-container {
+  @apply g-screen-container flex flex-col gap-5;
+}
